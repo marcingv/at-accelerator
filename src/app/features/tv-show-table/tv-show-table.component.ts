@@ -12,4 +12,5 @@ import { TvShow } from "@core/models";
 })
 export class TvShowTableComponent {
   @Input({ required: true }) shows: TvShow[] = [];
+  @Input() isLoading: boolean = false;
 }
