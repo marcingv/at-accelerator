@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tv-show-table.component.html',
-  styleUrls: ['./tv-show-table.component.css']
+  styleUrls: ['./tv-show-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowTableComponent {
 

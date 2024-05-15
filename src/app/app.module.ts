@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FavoritesViewComponent } from './favorites-view/favorites-view.component';
 import { provideHttpClient, withFetch } from "@angular/common/http";
 
 @NgModule({
@@ -12,12 +11,11 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
   ],
   declarations: [
     AppComponent,
-    FavoritesViewComponent
   ],
   providers: [
     provideHttpClient(withFetch()),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
