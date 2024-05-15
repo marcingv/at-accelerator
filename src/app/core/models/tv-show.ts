@@ -10,6 +10,6 @@ export interface TvShow {
   end_date?: DateString | null;
   country: Country;
   network: string;
-  status: Status;
+  status?: Status;
   image_thumbnail_path: string;
 }

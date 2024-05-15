@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TvShow } from "@core/models";
 
 @Component({
   selector: 'app-tv-show-table',
@@ -10,5 +11,5 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowTableComponent {
-
+  @Input({ required: true }) shows: TvShow[] = [];
 }
