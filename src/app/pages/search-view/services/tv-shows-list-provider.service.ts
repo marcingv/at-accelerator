@@ -1,7 +1,7 @@
 import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { TvShowsApiService } from "@core/api/tv-shows-api.service";
 import { TvShow, TvShowsPagedCollectionResponse } from "@core/models";
-import { finalize, map, Observable, switchMap } from "rxjs";
+import { catchError, finalize, map, Observable, of, switchMap } from "rxjs";
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 
 @Injectable({
@@ -46,6 +46,7 @@ export class TvShowsListProviderService {
 
     return source$.pipe(
       map((response: TvShowsPagedCollectionResponse) => response.tv_shows),
+      catchError(() => of([])),
       finalize(() => this.isLoadingSignal.set(false))
     );
   }
