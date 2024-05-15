@@ -12,7 +12,7 @@
     @if (isLoading) {
       <tr>
         <td colspan="5" style="text-align: center">
-          <div class="spinner primary"></div>
+          <app-loading-spinner></app-loading-spinner>
         </td>
       </tr>
     } @else if (!shows.length) {
