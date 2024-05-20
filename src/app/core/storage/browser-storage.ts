@@ -10,8 +10,9 @@ export abstract class BrowserStorage {
   }
 
   public setItem<T>(key: string, value: T): void {
-    this.storageProvider().setItem(key, JSON.stringify(value));
-    this.getWritableSignal(key).set(value);
+    const json = JSON.stringify(value);
+    this.storageProvider().setItem(key, json);
+    this.getWritableSignal(key).set(JSON.parse(json));
   }
 
   public hasItem(key: string): boolean {

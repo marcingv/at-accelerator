@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShowTableComponent } from "@features/tv-show-table";
-import { TvShowsListProviderService } from "./services/tv-shows-list-provider.service";
+import { TvShowsListProviderService } from "@features/tv-shows-data-access";
 import { TvShow } from "@core/models";
 import { TvShowSearchFormComponent } from "@features/tv-show-search-form";
 
