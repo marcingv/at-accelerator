@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FavoritesViewComponent } from './favorites-view.component';
 
 describe('FavoritesViewComponent', () => {
@@ -7,9 +6,7 @@ describe('FavoritesViewComponent', () => {
   let fixture: ComponentFixture<FavoritesViewComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [FavoritesViewComponent]
-    });
+    TestBed.configureTestingModule({});
     fixture = TestBed.createComponent(FavoritesViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
