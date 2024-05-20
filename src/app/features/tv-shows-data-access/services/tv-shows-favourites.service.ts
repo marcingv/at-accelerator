@@ -35,9 +35,8 @@ export class TvShowsFavouritesService {
     if (!dictionary) {
       dictionary = {};
     }
-    dictionary[tvShow.id] = tvShow;
 
-    this.storage.setItem(this.STORAGE_KEY, dictionary);
+    this.storage.setItem(this.STORAGE_KEY, { ...dictionary, [tvShow.id]: tvShow });
   }
 
   public remove(tvShowId: number): void {
@@ -49,7 +48,7 @@ export class TvShowsFavouritesService {
       delete dictionary[tvShowId];
     }
 
-    this.storage.setItem(this.STORAGE_KEY, dictionary);
+    this.storage.setItem(this.STORAGE_KEY, { ...dictionary });
   }
 
   public isFavourite(tvShowId: number): Signal<boolean> {
