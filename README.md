@@ -35,3 +35,15 @@ Production image can be run locally using following command:
 ```bash
 docker-compose -f docker-compose.prod.yml up
 ```
+
+# Kubernetes deployment
+
+To deploy app to production server please run the following commands:
+
+```bash
+# Apply deployment:
+kubectl apply -f=kubernetes/deployment.yml
+
+# Apply ingress settings:
+kubectl apply -f=kubernetes/ingress.yml
+```
