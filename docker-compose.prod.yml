@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  angular:
+    image: marcingv/at-accelerator:latest
+    tty: true
+    stdin_open: true
+    ports:
+      - 4000:80
