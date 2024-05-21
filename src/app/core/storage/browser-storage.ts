@@ -1,46 +1,62 @@
-import { computed, signal, Signal, WritableSignal } from "@angular/core";
+import { computed, Signal } from "@angular/core";
+import { fromEvent, Subject, tap } from "rxjs";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 
 export abstract class BrowserStorage {
-  private readonly VALUES_SIGNALS_MAP: { [key: string]: WritableSignal<unknown> } = {};
+  private readonly newValue$ = new Subject<{ key: string, value: unknown }>();
+  private readonly newValueSignal = toSignal(this.newValue$);
+
+  public constructor() {
+    fromEvent(window, 'storage').pipe(
+      tap((event: Event): void => {
+        if (event instanceof StorageEvent && event.storageArea === this.storageProvider()) {
+          this.newValue$.next({
+            key: event.key ?? '',
+            value: event.newValue ? JSON.parse(event.newValue) : null
+          });
+        }
+      }),
+      takeUntilDestroyed(),
+    ).subscribe();
+  }
 
   protected abstract storageProvider(): Storage;
 
   public getItem<T>(key: string): T | null {
-    return this.getWritableSignal<T>(key)();
+    return this.readItemValue(key);
   }
 
   public setItem<T>(key: string, value: T): void {
     const json = JSON.stringify(value);
     this.storageProvider().setItem(key, json);
-    this.getWritableSignal(key).set(JSON.parse(json));
+    this.newValue$.next({ key: key, value: value });
   }
 
   public hasItem(key: string): boolean {
-    return !!this.getWritableSignal(key)();
+    return !!this.getItem(key);
   }
 
   public clearItem(key: string): void {
-    this.getWritableSignal(key).set(null);
+    this.storageProvider().removeItem(key);
+    this.newValue$.next({ key: key, value: null });
   }
 
   public getItemSignal<T>(key: string): Signal<T | null> {
-    const signal = this.getWritableSignal<T>(key);
+    return computed(() => {
+      const newValueInStorage = this.newValueSignal();
 
-    return signal.asReadonly();
+      if (newValueInStorage?.key === key) {
+        return newValueInStorage.value as T;
+      }
+
+      return this.readItemValue(key);
+    });
   }
 
   public hasItemSignal(key: string): Signal<boolean> {
     return computed<boolean>(() => {
-      return !!this.getWritableSignal(key)();
+      return !!this.getItemSignal(key)();
     });
-  }
-
-  private getWritableSignal<T>(key: string): WritableSignal<T | null> {
-    if (!this.VALUES_SIGNALS_MAP[key]) {
-      this.VALUES_SIGNALS_MAP[key] = signal<T | null>(this.readItemValue(key));
-    }
-
-    return this.VALUES_SIGNALS_MAP[key] as WritableSignal<T | null>;
   }
 
   private readItemValue<T>(key: string): T | null {

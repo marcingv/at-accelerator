@@ -1,5 +1,5 @@
 import { TvShow } from "@core/models";
 
 export interface FavouriteTvShowsDictionary {
-  [showId: number]: TvShow;
+    [showId: TvShow['id']]: TvShow;
 }
