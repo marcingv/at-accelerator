@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: at-accelerator-frontend-service
+spec:
+  selector:
+    app: at-accelerator
+    tier: frontend
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 80 # Inside container
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: at-accelerator-app-frontend-deployment
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: at-accelerator
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: at-accelerator
+        tier: frontend
+    spec:
+      containers:
+        - name: at-accelerator
+          image: marcingv/at-accelerator:latest
+          imagePullPolicy: Always

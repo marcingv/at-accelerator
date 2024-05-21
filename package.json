@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --disable-host-check true",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "docker-prod-build": "docker build --file ./prod.Dockerfile --tag marcingv/at-accelerator:latest .",
+    "docker-prod-publish": "docker push marcingv/at-accelerator:latest"
   },
   "private": true,
   "dependencies": {
