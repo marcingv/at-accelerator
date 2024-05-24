@@ -11,13 +11,15 @@
   <tbody>
     @if (isLoading) {
       <tr>
-        <td colspan="5" style="text-align: center">
-          <app-loading-spinner></app-loading-spinner>
+        <td colspan="5">
+          <div class="flex justify-center">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
         </td>
       </tr>
     } @else if (!shows.length) {
       <tr>
-        <td colspan="5" style="text-align: center">No results found</td>
+        <td colspan="5" class="text-center">No results found</td>
       </tr>
     } @else {
       @for (tvShow of shows; track tvShow; let i = $index) {
