@@ -1,13 +1,19 @@
 <form [formGroup]="formGroup">
   <fieldset>
-    <legend>TV Show Search</legend>
-    <label for="name">Name</label>
-    <input
-      [formControl]="formGroup.controls.query"
-      type="text"
-      id="name"
-      placeholder="Name of the show"
-    />
-    <button class="primary" (click)="onSubmitSearch()">Search</button>
+    <legend class="mb-4 font-normal">TV Show Search</legend>
+
+    <div class="flex gap-4 items-center">
+      <label for="name" class="text-sm text-gray-400">Name</label>
+
+      <input
+        [formControl]="formGroup.controls.query"
+        type="text"
+        id="name"
+        placeholder="Name of the show"
+        class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      />
+
+      <button appButton="primary" (click)="onSubmitSearch()">Search</button>
+    </div>
   </fieldset>
 </form>

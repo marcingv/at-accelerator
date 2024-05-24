@@ -1,18 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <app-tv-show-search-form
-        [query]="filterQuery()"
-        (search)="onSearch($event)"
-      ></app-tv-show-search-form>
-    </div>
+  <div class="p-4 bg-white mb-8 border-b-2">
+    <app-tv-show-search-form
+      [query]="filterQuery()"
+      (search)="onSearch($event)"
+    ></app-tv-show-search-form>
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <app-tv-show-table
-        [shows]="tvShows()"
-        [isLoading]="isLoading()"
-      ></app-tv-show-table>
-    </div>
+
+  <div class="p-4 bg-white mb-8 border-b-2">
+    <app-tv-show-table
+      [shows]="tvShows()"
+      [isLoading]="isLoading()"
+    ></app-tv-show-table>
   </div>
 </div>

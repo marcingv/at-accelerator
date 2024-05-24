@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { distinctUntilChanged, tap } from 'rxjs';
+import { ButtonDirective } from '@shared/buttons/directives';
 
 @Component({
   selector: 'app-tv-show-search-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonDirective],
   templateUrl: './tv-show-search-form.component.html',
   styleUrl: './tv-show-search-form.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
