@@ -5,3 +5,6 @@
 .github
 node_modules
 dist
+kubernetes
+coverage
+
