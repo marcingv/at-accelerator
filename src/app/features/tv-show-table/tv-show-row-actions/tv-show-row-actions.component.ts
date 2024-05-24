@@ -12,11 +12,21 @@ import { ButtonDirective } from '@shared/buttons/directives';
 import { RouterLink } from '@angular/router';
 import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
 import { CommonModule } from '@angular/common';
+import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
+import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
+import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-right-on-square-icon';
 
 @Component({
   selector: 'app-tv-show-row-actions',
   standalone: true,
-  imports: [CommonModule, ButtonDirective, RouterLink],
+  imports: [
+    CommonModule,
+    ButtonDirective,
+    RouterLink,
+    BookmarkIconComponent,
+    InfoCircleIconComponent,
+    ArrowTopRightOnSquareIconComponent,
+  ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
