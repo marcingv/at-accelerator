@@ -1,0 +1,25 @@
+<div class="py-2 border-b-2 mb-4">
+  <h1 class="text-2xl">
+    {{ details.name }} - {{ details.country }} -
+    {{ details.start_date | date: "y" }}
+  </h1>
+</div>
+
+<div class="flex gap-4 p-4 bg-white border-b-2">
+  <div class="flex flex-col shrink-0 gap-4">
+    <img
+      [src]="details.image_path"
+      [alt]="details.name"
+      class="w-64 rounded border-1"
+    />
+
+    <div class="text-sm">
+      Rating: {{ details.rating | number: "1.2-2" }} / 10 (rated by
+      {{ details.rating_count | number: "1.0-0" }} people)
+    </div>
+  </div>
+
+  <div class="flex-1">
+    <div [innerHTML]="details.description"></div>
+  </div>
+</div>

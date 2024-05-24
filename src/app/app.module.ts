@@ -7,13 +7,17 @@ import {
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
+  withComponentInputBinding,
 } from '@angular/router';
 import { routes } from '@core/routing/app.routes';
 
 @NgModule({
   imports: [BrowserModule, RouterOutlet, RouterLink, RouterLinkActive],
   declarations: [AppComponent],
-  providers: [provideRouter(routes), provideHttpClient(withFetch())],
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
