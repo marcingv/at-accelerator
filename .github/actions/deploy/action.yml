@@ -45,4 +45,3 @@ runs:
       if: steps.cache-deployment.outputs.cache-hit == 'true'
       run: kubectl rollout restart deployment/at-accelerator-app-frontend-deployment
       shell: bash
-

@@ -1,0 +1,16 @@
+
+table thead {
+  @apply border-b-2;
+}
+
+table thead th {
+  @apply py-2 text-start;
+}
+
+table tbody td {
+  @apply py-2;
+}
+
+table tbody tr {
+  @apply border-b;
+}

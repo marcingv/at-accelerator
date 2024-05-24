@@ -1,0 +1,3 @@
+:host ::ng-deep .row-actions .highlight svg {
+  @apply fill-yellow-400;
+}

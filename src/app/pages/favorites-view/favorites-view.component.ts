@@ -7,6 +7,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./favorites-view.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoritesViewComponent {
-
-}
+export class FavoritesViewComponent {}

@@ -1,23 +1,28 @@
-import { computed, Signal } from "@angular/core";
-import { fromEvent, Subject, tap } from "rxjs";
-import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
+import { computed, Signal } from '@angular/core';
+import { fromEvent, Subject, tap } from 'rxjs';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 export abstract class BrowserStorage {
-  private readonly newValue$ = new Subject<{ key: string, value: unknown }>();
+  private readonly newValue$ = new Subject<{ key: string; value: unknown }>();
   private readonly newValueSignal = toSignal(this.newValue$);
 
   public constructor() {
-    fromEvent(window, 'storage').pipe(
-      tap((event: Event): void => {
-        if (event instanceof StorageEvent && event.storageArea === this.storageProvider()) {
-          this.newValue$.next({
-            key: event.key ?? '',
-            value: event.newValue ? JSON.parse(event.newValue) : null
-          });
-        }
-      }),
-      takeUntilDestroyed(),
-    ).subscribe();
+    fromEvent(window, 'storage')
+      .pipe(
+        tap((event: Event): void => {
+          if (
+            event instanceof StorageEvent &&
+            event.storageArea === this.storageProvider()
+          ) {
+            this.newValue$.next({
+              key: event.key ?? '',
+              value: event.newValue ? JSON.parse(event.newValue) : null,
+            });
+          }
+        }),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
   }
 
   protected abstract storageProvider(): Storage;

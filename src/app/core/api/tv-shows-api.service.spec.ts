@@ -1,8 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { TvShowsApiService } from './tv-shows-api.service';
-import { HttpTestingController, provideHttpClientTesting, TestRequest } from "@angular/common/http/testing";
-import { provideHttpClient } from "@angular/common/http";
-import { TvShowsPagedCollectionResponse } from "@core/models";
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+  TestRequest,
+} from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { TvShowsPagedCollectionResponse } from '@core/models';
 
 describe('TvShowsApiService', () => {
   let service: TvShowsApiService;
@@ -10,10 +14,7 @@ describe('TvShowsApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -25,8 +26,8 @@ describe('TvShowsApiService', () => {
   });
 
   it('should search tv shows', (): void => {
-    const searchQuery = 'phrase'
-    const expectedRequestUrl = `https://www.episodate.com/api/search?q=${ searchQuery }`;
+    const searchQuery = 'phrase';
+    const expectedRequestUrl = `https://www.episodate.com/api/search?q=${searchQuery}`;
     const expectedResponseData: TvShowsPagedCollectionResponse = {
       total: '1',
       page: 1,
@@ -34,13 +35,13 @@ describe('TvShowsApiService', () => {
       tv_shows: [
         {
           id: 1,
-          status: "Running",
+          status: 'Running',
           start_date: '2024-01-01',
           country: 'UK',
           name: 'Show 1',
           network: 'Network',
           permalink: 'http://localhost',
-          image_thumbnail_path: 'http://localhost'
+          image_thumbnail_path: 'http://localhost',
         },
       ],
     };

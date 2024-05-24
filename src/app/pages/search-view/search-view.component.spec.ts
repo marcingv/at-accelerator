@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchViewComponent } from './search-view.component';
-import { TvShowsListProviderService } from "@features/tv-shows-data-access";
-import { Signal, signal } from "@angular/core";
-import { TvShow } from "@core/models";
+import { TvShowsListProviderService } from '@features/tv-shows-data-access';
+import { Signal, signal } from '@angular/core';
+import { TvShow } from '@core/models';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('SearchViewComponent', () => {
@@ -20,7 +20,7 @@ describe('SearchViewComponent', () => {
       },
       get tvShows(): Signal<TvShow[]> {
         return signal([]);
-      }
+      },
     });
 
     TestBed.configureTestingModule({

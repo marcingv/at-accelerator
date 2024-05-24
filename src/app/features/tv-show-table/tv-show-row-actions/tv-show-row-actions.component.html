@@ -1,0 +1,29 @@
+<div class="flex gap-1 items-center row-actions text-gray-500">
+  <button appButton="transparent" class="!p-1">
+    <app-info-circle-icon cssClass="size-5"></app-info-circle-icon>
+  </button>
+
+  <button
+    appButton="transparent"
+    class="!p-1"
+    [attr.data-test-id]="'action-bookmark-' + tvShow.id"
+    [title]="isFavorite() ? 'Remove from favourites' : 'Add to favourites'"
+    (click)="toggleFavorite($event)"
+  >
+    <app-bookmark-icon
+      cssClass="size-5"
+      [ngClass]="{ highlight: isFavorite() }"
+    ></app-bookmark-icon>
+  </button>
+
+  <a
+    appButton="transparent"
+    class="!p-1"
+    [routerLink]="detailsLink"
+    [title]="tvShow.name"
+  >
+    <app-arrow-top-right-on-square-icon
+      cssClass="size-5"
+    ></app-arrow-top-right-on-square-icon>
+  </a>
+</div>

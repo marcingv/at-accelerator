@@ -1,41 +1,37 @@
-<table>
+<table class="w-full text-sm font-light border-collapse table-auto">
   <thead>
-  <tr>
-    <th>Name</th>
-    <th>Country</th>
-    <th>Year started</th>
-    <th>Status</th>
-    <th>Actions</th>
-  </tr>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th>Year started</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
     @if (isLoading) {
       <tr>
-        <td colspan="5" style="text-align: center">
-          <app-loading-spinner></app-loading-spinner>
+        <td colspan="5">
+          <div class="flex justify-center">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
         </td>
       </tr>
     } @else if (!shows.length) {
       <tr>
-        <td colspan="5" style="text-align: center">No results found</td>
+        <td colspan="5" class="text-center">No results found</td>
       </tr>
     } @else {
       @for (tvShow of shows; track tvShow; let i = $index) {
         <tr>
           <td data-label="Name">{{ tvShow.name }}</td>
           <td data-label="Country">{{ tvShow.country }}</td>
-          <td data-label="Year started">{{ tvShow.start_date | date:'y' }}</td>
-          <td data-label="Status">{{ tvShow.status ?? 'To Be Determined' }}</td>
+          <td data-label="Year started">{{ tvShow.start_date | date: "y" }}</td>
+          <td data-label="Status">{{ tvShow.status ?? "To Be Determined" }}</td>
           <td data-label="Actions">
-            <span class="icon-info"></span>
-            <span
-              class="icon-bookmark"
-              [attr.data-test-id]="'action-bookmark-' + tvShow.id"
-              [ngClass]="{ 'highlight': favouritesService.isFavourite(tvShow.id)() }"
-              [title]="favouritesService.isFavourite(tvShow.id)() ? 'Remove from favourites' : 'Add to favourites'"
-              (click)="favouritesService.isFavourite(tvShow.id)() ? removeFromFavourites(tvShow, $event) : addToFavourites(tvShow, $event)"
-            ></span>
-            <span class="icon-link"></span>
+            <app-tv-show-row-actions
+              [tvShow]="tvShow"
+            ></app-tv-show-row-actions>
           </td>
         </tr>
       }

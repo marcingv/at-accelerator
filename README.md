@@ -33,7 +33,7 @@ npm run docker-prod-publish
 Production image can be run locally using following command:
 
 ```bash
-docker-compose -f docker-compose.prod.yml up
+docker compose -f docker-compose.prod.yml up
 ```
 
 # Kubernetes deployment

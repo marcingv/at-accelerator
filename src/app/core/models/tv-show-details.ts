@@ -1,5 +1,5 @@
-import { Episode } from "./episode";
-import { TvShow } from "./tv-show";
+import { Episode } from './episode';
+import { TvShow } from './tv-show';
 
 export interface TvShowDetails extends TvShow {
   url: string;

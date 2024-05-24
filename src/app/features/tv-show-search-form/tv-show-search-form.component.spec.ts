@@ -8,10 +8,9 @@ describe('TvShowSearchFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TvShowSearchFormComponent]
-    })
-    .compileComponents();
-    
+      imports: [TvShowSearchFormComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TvShowSearchFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
