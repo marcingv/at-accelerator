@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TvShowsFavouritesService } from './tv-shows-favourites.service';
-import { TvShow } from "@core/models";
+import { TvShow } from '@core/models';
 
 describe('TvShowsFavouritesService', () => {
   let service: TvShowsFavouritesService;
@@ -9,33 +9,33 @@ describe('TvShowsFavouritesService', () => {
   const shows: TvShow[] = [
     {
       id: 1,
-      status: "Running",
+      status: 'Running',
       start_date: '2024-01-01',
       country: 'UK',
       name: 'Show 1',
       network: 'Network',
       permalink: 'http://localhost',
-      image_thumbnail_path: 'http://localhost'
+      image_thumbnail_path: 'http://localhost',
     },
     {
       id: 2,
-      status: "Running",
+      status: 'Running',
       start_date: '2024-01-01',
       country: 'UK',
       name: 'Show 2',
       network: 'Network',
       permalink: 'http://localhost',
-      image_thumbnail_path: 'http://localhost'
+      image_thumbnail_path: 'http://localhost',
     },
     {
       id: 3,
-      status: "Running",
+      status: 'Running',
       start_date: '2024-01-01',
       country: 'UK',
       name: 'Show 3',
       network: 'Network',
       permalink: 'http://localhost',
-      image_thumbnail_path: 'http://localhost'
+      image_thumbnail_path: 'http://localhost',
     },
   ];
 
@@ -70,14 +70,8 @@ describe('TvShowsFavouritesService', () => {
     expect(favouritesSignal().length).toEqual(2);
     expect(favouritesIdsSignal().length).toEqual(2);
 
-    expect(favouritesSignal()).toEqual([
-      shows[0],
-      shows[1],
-    ]);
-    expect(favouritesIdsSignal()).toEqual([
-      shows[0].id,
-      shows[1].id,
-    ]);
+    expect(favouritesSignal()).toEqual([shows[0], shows[1]]);
+    expect(favouritesIdsSignal()).toEqual([shows[0].id, shows[1].id]);
   });
 
   it('should not have duplicates', () => {

@@ -2,7 +2,12 @@
   <fieldset>
     <legend>TV Show Search</legend>
     <label for="name">Name</label>
-    <input [formControl]="formGroup.controls.query" type="text" id="name" placeholder="Name of the show"/>
+    <input
+      [formControl]="formGroup.controls.query"
+      type="text"
+      id="name"
+      placeholder="Name of the show"
+    />
     <button class="primary" (click)="onSubmitSearch()">Search</button>
   </fieldset>
 </form>

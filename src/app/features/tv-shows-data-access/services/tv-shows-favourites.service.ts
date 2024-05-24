@@ -1,17 +1,18 @@
 import { computed, inject, Injectable, Signal } from '@angular/core';
-import { BrowserStorage, LocalStorageService } from "@core/storage";
-import { FavouriteTvShowsDictionary } from "@features/tv-shows-data-access";
-import { TvShow } from "@core/models";
+import { BrowserStorage, LocalStorageService } from '@core/storage';
+import { FavouriteTvShowsDictionary } from '@features/tv-shows-data-access';
+import { TvShow } from '@core/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TvShowsFavouritesService {
   private readonly STORAGE_KEY = 'favourites-tv-shows';
 
   private storage: BrowserStorage = inject(LocalStorageService);
 
-  private favouritesDictSignal = this.storage.getItemSignal<FavouriteTvShowsDictionary>(this.STORAGE_KEY);
+  private favouritesDictSignal =
+    this.storage.getItemSignal<FavouriteTvShowsDictionary>(this.STORAGE_KEY);
 
   public listSignal: Signal<TvShow[]> = computed(() => {
     const dictionary = this.favouritesDictSignal();
@@ -36,7 +37,10 @@ export class TvShowsFavouritesService {
       dictionary = {};
     }
 
-    this.storage.setItem(this.STORAGE_KEY, { ...dictionary, [tvShow.id]: tvShow });
+    this.storage.setItem(this.STORAGE_KEY, {
+      ...dictionary,
+      [tvShow.id]: tvShow,
+    });
   }
 
   public remove(tvShowId: TvShow['id']): void {

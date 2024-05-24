@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { TvShowDetailsResponse, TvShowsPagedCollectionResponse } from "../models";
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import {
+  TvShowDetailsResponse,
+  TvShowsPagedCollectionResponse,
+} from '../models';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TvShowsApiService {
   private readonly API_URL = 'https://www.episodate.com/api';
@@ -12,10 +15,11 @@ export class TvShowsApiService {
   private readonly SEARCH_ENDPOINT = '/search';
   private readonly DETAILS_ENDPOINT = '/show-details';
 
-  public constructor(private http: HttpClient) {
-  }
+  public constructor(private http: HttpClient) {}
 
-  public popularList(page?: number): Observable<TvShowsPagedCollectionResponse> {
+  public popularList(
+    page?: number,
+  ): Observable<TvShowsPagedCollectionResponse> {
     const url = this.getEndpointUrl(this.MOST_POPULAR_ENDPOINT);
     const params: { page?: number } = {};
 
@@ -23,14 +27,19 @@ export class TvShowsApiService {
       params['page'] = page;
     }
 
-    return this.http.get<TvShowsPagedCollectionResponse>(url, { params: params });
+    return this.http.get<TvShowsPagedCollectionResponse>(url, {
+      params: params,
+    });
   }
 
-  public search(query: string, page?: number): Observable<TvShowsPagedCollectionResponse> {
+  public search(
+    query: string,
+    page?: number,
+  ): Observable<TvShowsPagedCollectionResponse> {
     const url = this.getEndpointUrl(this.SEARCH_ENDPOINT);
     const params: {
-      q: string,
-      page?: number
+      q: string;
+      page?: number;
     } = {
       q: query,
     };
@@ -39,7 +48,9 @@ export class TvShowsApiService {
       params['page'] = page;
     }
 
-    return this.http.get<TvShowsPagedCollectionResponse>(url, { params: params });
+    return this.http.get<TvShowsPagedCollectionResponse>(url, {
+      params: params,
+    });
   }
 
   public details(query: string): Observable<TvShowDetailsResponse> {

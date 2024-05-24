@@ -1,12 +1,12 @@
 <table>
   <thead>
-  <tr>
-    <th>Name</th>
-    <th>Country</th>
-    <th>Year started</th>
-    <th>Status</th>
-    <th>Actions</th>
-  </tr>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th>Year started</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
     @if (isLoading) {
@@ -24,16 +24,26 @@
         <tr>
           <td data-label="Name">{{ tvShow.name }}</td>
           <td data-label="Country">{{ tvShow.country }}</td>
-          <td data-label="Year started">{{ tvShow.start_date | date:'y' }}</td>
-          <td data-label="Status">{{ tvShow.status ?? 'To Be Determined' }}</td>
+          <td data-label="Year started">{{ tvShow.start_date | date: "y" }}</td>
+          <td data-label="Status">{{ tvShow.status ?? "To Be Determined" }}</td>
           <td data-label="Actions">
             <span class="icon-info"></span>
             <span
               class="icon-bookmark"
               [attr.data-test-id]="'action-bookmark-' + tvShow.id"
-              [ngClass]="{ 'highlight': favouritesService.isFavourite(tvShow.id)() }"
-              [title]="favouritesService.isFavourite(tvShow.id)() ? 'Remove from favourites' : 'Add to favourites'"
-              (click)="favouritesService.isFavourite(tvShow.id)() ? removeFromFavourites(tvShow, $event) : addToFavourites(tvShow, $event)"
+              [ngClass]="{
+                highlight: favouritesService.isFavourite(tvShow.id)()
+              }"
+              [title]="
+                favouritesService.isFavourite(tvShow.id)()
+                  ? 'Remove from favourites'
+                  : 'Add to favourites'
+              "
+              (click)="
+                favouritesService.isFavourite(tvShow.id)()
+                  ? removeFromFavourites(tvShow, $event)
+                  : addToFavourites(tvShow, $event)
+              "
             ></span>
             <span class="icon-link"></span>
           </td>

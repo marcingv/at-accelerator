@@ -6,10 +6,13 @@
         (search)="onSearch($event)"
       ></app-tv-show-search-form>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <app-tv-show-table
+        [shows]="tvShows()"
+        [isLoading]="isLoading()"
+      ></app-tv-show-table>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <app-tv-show-table [shows]="tvShows()" [isLoading]="isLoading()"></app-tv-show-table>
-      </div>
   </div>
 </div>

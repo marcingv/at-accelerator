@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TvShow } from "@core/models";
-import { LoadingSpinnerComponent } from "@shared/loading-spinner";
-import { TvShowsFavouritesService } from "@features/tv-shows-data-access";
+import { TvShow } from '@core/models';
+import { LoadingSpinnerComponent } from '@shared/loading-spinner';
+import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
 
 @Component({
   selector: 'app-tv-show-table',

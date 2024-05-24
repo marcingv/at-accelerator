@@ -8,5 +8,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './loading-spinner.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoadingSpinnerComponent {
-}
+export class LoadingSpinnerComponent {}

@@ -1,6 +1,6 @@
-import { Country } from "./country";
-import { Status } from "./status";
-import { DateString } from "./date-string";
+import { Country } from './country';
+import { Status } from './status';
+import { DateString } from './date-string';
 
 export interface TvShow {
   id: number;

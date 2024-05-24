@@ -1,4 +1,4 @@
-import { DateTimeString } from "./date-time-string";
+import { DateTimeString } from './date-time-string';
 
 export interface Episode {
   season: number;

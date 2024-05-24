@@ -7,7 +7,7 @@ spec:
     app: at-accelerator
     tier: frontend
   ports:
-    - protocol: 'TCP'
+    - protocol: "TCP"
       port: 80
       targetPort: 80 # Inside container
   type: LoadBalancer
