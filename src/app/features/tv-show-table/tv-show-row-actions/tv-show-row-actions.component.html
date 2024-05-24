@@ -1,0 +1,23 @@
+<div class="flex gap-1 items-center">
+  <a appButton="transparent" [routerLink]="detailsLink" [title]="tvShow.name">
+    <span class="icon-info"></span>
+  </a>
+
+  <button
+    appButton="transparent"
+    [attr.data-test-id]="'action-bookmark-' + tvShow.id"
+    [title]="isFavorite() ? 'Remove from favourites' : 'Add to favourites'"
+    (click)="toggleFavorite($event)"
+  >
+    <span
+      class="icon-bookmark"
+      [ngClass]="{
+        highlight: isFavorite()
+      }"
+    ></span>
+  </button>
+
+  <button appButton="transparent">
+    <span class="icon-link"></span>
+  </button>
+</div>

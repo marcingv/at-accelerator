@@ -1,37 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShow } from '@core/models';
 import { LoadingSpinnerComponent } from '@shared/loading-spinner';
-import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
+import { TvShowRowActionsComponent } from '@features/tv-show-table/tv-show-row-actions/tv-show-row-actions.component';
 
 @Component({
   selector: 'app-tv-show-table',
   standalone: true,
-  imports: [CommonModule, LoadingSpinnerComponent],
+  imports: [CommonModule, LoadingSpinnerComponent, TvShowRowActionsComponent],
   templateUrl: './tv-show-table.component.html',
   styleUrls: ['./tv-show-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowTableComponent {
-  protected favouritesService = inject(TvShowsFavouritesService);
-
   @Input({ required: true }) shows: TvShow[] = [];
   @Input() isLoading: boolean = false;
-
-  protected addToFavourites(tvShow: TvShow, $event?: MouseEvent): void {
-    $event?.preventDefault();
-
-    this.favouritesService.add(tvShow);
-  }
-
-  protected removeFromFavourites(tvShow: TvShow, $event?: MouseEvent): void {
-    $event?.preventDefault();
-
-    this.favouritesService.remove(tvShow.id);
-  }
 }

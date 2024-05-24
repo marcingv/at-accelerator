@@ -27,25 +27,9 @@
           <td data-label="Year started">{{ tvShow.start_date | date: "y" }}</td>
           <td data-label="Status">{{ tvShow.status ?? "To Be Determined" }}</td>
           <td data-label="Actions">
-            <span class="icon-info"></span>
-            <span
-              class="icon-bookmark"
-              [attr.data-test-id]="'action-bookmark-' + tvShow.id"
-              [ngClass]="{
-                highlight: favouritesService.isFavourite(tvShow.id)()
-              }"
-              [title]="
-                favouritesService.isFavourite(tvShow.id)()
-                  ? 'Remove from favourites'
-                  : 'Add to favourites'
-              "
-              (click)="
-                favouritesService.isFavourite(tvShow.id)()
-                  ? removeFromFavourites(tvShow, $event)
-                  : addToFavourites(tvShow, $event)
-              "
-            ></span>
-            <span class="icon-link"></span>
+            <app-tv-show-row-actions
+              [tvShow]="tvShow"
+            ></app-tv-show-row-actions>
           </td>
         </tr>
       }
