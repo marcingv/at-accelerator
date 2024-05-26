@@ -4,7 +4,7 @@ import { TvShow } from './tv-show';
 export interface TvShowDetails extends TvShow {
   url: string;
   description: string;
-  description_source: string;
+  description_source: string | null;
   runtime: number;
   youtube_link?: string | null;
   image_path: string;
