@@ -19,6 +19,18 @@
       Rating: {{ details.rating | number: "1.2-2" }} / 10 (rated by
       {{ details.rating_count | number: "1.0-0" }} people)
     </div>
+
+    <div class="text-sm">
+      <span>
+        {{ details | tvShowEpisodesCount | number }}
+        {{ details | tvShowEpisodesCount | i18nPlural: EpisodesPluralForms }}
+      </span>
+      <span> - </span>
+      <span>
+        {{ details | tvShowSeasonsCount | number }}
+        {{ details | tvShowSeasonsCount | i18nPlural: SeasonPluralForms }}
+      </span>
+    </div>
   </div>
 
   <div class="flex-1 p-4 bg-white border-b-2">
