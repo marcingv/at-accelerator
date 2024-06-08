@@ -30,9 +30,12 @@ export class FavoriteTvShowsListComponent {
   public readonly favorites = signal<TvShowDetails[]>([]);
 
   public constructor() {
-    effect(() => {
-      this.loadDetailsFor(this.favoritesId()).subscribe();
-    });
+    effect(
+      () => {
+        this.loadDetailsFor(this.favoritesId()).subscribe();
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   private loadDetailsFor(ids: TvShowId[]): Observable<TvShowDetails[]> {
@@ -47,9 +50,7 @@ export class FavoriteTvShowsListComponent {
         return data.filter((details) => !!details) as TvShowDetails[];
       }),
       tap((data: Array<TvShowDetails>) => {
-        // console.error(data);
         this.favorites.set(data);
-        console.error('no i mam', this.favorites());
       }),
     );
   }

@@ -31,6 +31,10 @@ export class TvShowsFavouritesService {
     this.storage.clearItem(this.STORAGE_KEY);
   }
 
+  public toggle(tvShow: TvShow): void {
+    this.isFavourite(tvShow.id) ? this.remove(tvShow.id) : this.add(tvShow);
+  }
+
   public add(tvShow: TvShow): void {
     let dictionary = this.favouritesDictSignal();
     if (!dictionary) {

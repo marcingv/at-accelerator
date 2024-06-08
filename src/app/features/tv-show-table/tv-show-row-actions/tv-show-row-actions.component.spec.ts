@@ -29,8 +29,7 @@ describe('TvShowRowActionsComponent', () => {
     isFavoriteSignal = signal<boolean>(false);
 
     favouritesService = createSpyObj<TvShowsFavouritesService>([
-      'add',
-      'remove',
+      'toggle',
       'isFavourite',
     ]);
     favouritesService.isFavourite.and.returnValue(isFavoriteSignal);
@@ -61,7 +60,7 @@ describe('TvShowRowActionsComponent', () => {
     expect(bookmarkAction).toBeTruthy();
 
     bookmarkAction.triggerEventHandler('click');
-    expect(favouritesService.add).toHaveBeenCalled();
+    expect(favouritesService.toggle).toHaveBeenCalled();
   });
 
   it('should remove tv show to favourites', () => {
@@ -74,6 +73,6 @@ describe('TvShowRowActionsComponent', () => {
     expect(bookmarkAction).toBeTruthy();
 
     bookmarkAction.triggerEventHandler('click');
-    expect(favouritesService.remove).toHaveBeenCalled();
+    expect(favouritesService.toggle).toHaveBeenCalled();
   });
 });

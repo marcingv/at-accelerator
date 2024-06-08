@@ -44,21 +44,9 @@ export class TvShowRowActionsComponent implements OnChanges {
     this.detailsLink = [Paths.ROOT, Paths.DETAILS, this.tvShow.id + ''];
   }
 
-  protected addToFavourites($event?: MouseEvent): void {
-    $event?.preventDefault();
-
-    this.favouritesService.add(this.tvShow);
-  }
-
-  protected removeFromFavourites($event?: MouseEvent): void {
-    $event?.preventDefault();
-
-    this.favouritesService.remove(this.tvShow.id);
-  }
-
   protected toggleFavorite($event?: MouseEvent): void {
-    this.isFavorite()
-      ? this.removeFromFavourites($event)
-      : this.addToFavourites($event);
+    $event?.preventDefault();
+
+    this.favouritesService.toggle(this.tvShow);
   }
 }

@@ -50,4 +50,8 @@ export class TvShowCardComponent {
   protected detailsLink = computed(() => {
     return [Paths.ROOT, Paths.DETAILS, this.tvShow().id];
   });
+
+  protected toggleFavorite(): void {
+    this.favoritesService.toggle(this.tvShow());
+  }
 }
