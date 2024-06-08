@@ -1,6 +1,9 @@
 import { TvShowSeasonsCountPipe } from './tv-show-seasons-count.pipe';
 import { TvShowDetails } from '@core/models';
-import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../../testing';
+import {
+  TvShowDetailsFactory,
+  TvShowEpisodeFactory,
+} from '../../../../../testing';
 
 describe('TvShowSeasonsCountPipe', (): void => {
   let pipe: TvShowSeasonsCountPipe;

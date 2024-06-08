@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CardComponent } from '@shared/cards';
-import { TvShowCardComponent } from '@features/tv-show-card';
-import { FavoriteTvShowsListComponent } from '@features/favorite-tv-shows-list';
+import { TvShowCardComponent } from 'src/app/features/tv-shows/components/tv-show-card';
+import { FavoriteTvShowsListComponent } from 'src/app/features/tv-shows/components/favorite-tv-shows-list';
 
 @Component({
   selector: 'app-favorites-view',

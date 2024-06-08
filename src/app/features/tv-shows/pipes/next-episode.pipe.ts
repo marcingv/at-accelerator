@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Episode, TvShowDetails } from '@core/models';
-import { getNextEpisode } from '@features/utils';
+import { getNextEpisode } from '@features/tv-shows/utils';
 
 @Pipe({
   name: 'nextEpisode',

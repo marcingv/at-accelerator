@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowRowActionsComponent } from './tv-show-row-actions.component';
 import { TvShow } from '@core/models';
-import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
+import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';

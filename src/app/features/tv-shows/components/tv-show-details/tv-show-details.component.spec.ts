@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TvShowDetailsComponent } from './tv-show-details.component';
 import { TvShowDetails } from '@core/models';
-import { TvShowDetailsFactory } from '../../testing';
+import { TvShowDetailsFactory } from '../../../../testing';
 
 describe('TvShowDetailsComponent', () => {
   let component: TvShowDetailsComponent;

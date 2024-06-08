@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Episode, TvShow } from '@core/models';
 import { CardComponent } from '@shared/cards';
-import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
+import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { CommonModule } from '@angular/common';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';

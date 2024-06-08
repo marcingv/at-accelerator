@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, Signal } from '@angular/core';
 import { BrowserStorage, LocalStorageService } from '@core/storage';
-import { FavouriteTvShowsDictionary } from '@features/tv-shows-data-access';
+import { FavouriteTvShowsDictionary } from 'src/app/features/data-access';
 import { TvShow, TvShowId } from '@core/models';
 
 @Injectable({

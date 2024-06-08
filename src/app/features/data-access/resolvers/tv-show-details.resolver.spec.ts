@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
 import { tvShowDetailsResolver } from './tv-show-details.resolver';
-import { ResolvedTvShowDetails } from '@features/tv-shows-data-access/resolvers/types/resolved-tv-show-details';
+import { ResolvedTvShowDetails } from '@features/data-access/resolvers/types/resolved-tv-show-details';
 import { Observable } from 'rxjs';
 
 describe('tvShowDetailsResolver', () => {

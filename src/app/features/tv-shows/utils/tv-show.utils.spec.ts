@@ -1,6 +1,9 @@
 import { Episode, TvShowDetails } from '@core/models';
-import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../testing';
-import { getNextEpisode, sortEpisodes } from '@features/utils/tv-show.utils';
+import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../../testing';
+import {
+  getNextEpisode,
+  sortEpisodes,
+} from '@features/tv-shows/utils/tv-show.utils';
 
 describe('TvShowUtils', () => {
   it('Sorting episodes', () => {

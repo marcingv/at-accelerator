@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
-import { TvShowsDetailsDictionary } from '@features/tv-shows-data-access';
+import { TvShowsDetailsDictionary } from 'src/app/features/data-access';
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { TvShowDetails, TvShowDetailsResponse, TvShowId } from '@core/models';
 

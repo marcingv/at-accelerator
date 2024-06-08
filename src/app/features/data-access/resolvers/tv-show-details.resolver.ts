@@ -1,10 +1,10 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { ResolvedTvShowDetails } from '@features/tv-shows-data-access/resolvers/types/resolved-tv-show-details';
+import { ResolvedTvShowDetails } from '@features/data-access/resolvers/types/resolved-tv-show-details';
 import { map, Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
 import { PathParams } from '@core/routing/path-params';
 import { TvShowDetails, TvShowId } from '@core/models';
-import { TvShowDetailsService } from '@features/tv-shows-data-access/services/tv-show-details.service';
+import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 
 const NOT_FOUND_MESSAGE = 'Tv show does not exist.';
 

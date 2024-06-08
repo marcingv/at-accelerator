@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShow } from '@core/models';
 import { LoadingSpinnerComponent } from '@shared/loading-spinner';
-import { TvShowRowActionsComponent } from '@features/tv-show-table/tv-show-row-actions/tv-show-row-actions.component';
+import { TvShowRowActionsComponent } from '@features/tv-shows/components/tv-show-table/tv-show-row-actions/tv-show-row-actions.component';
 
 @Component({
   selector: 'app-tv-show-table',

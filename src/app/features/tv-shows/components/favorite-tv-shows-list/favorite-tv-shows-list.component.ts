@@ -5,13 +5,13 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
+import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { forkJoin, map, Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { TvShowDetailsService } from '@features/tv-shows-data-access/services/tv-show-details.service';
-import { TvShowCardComponent } from '@features/tv-show-card';
-import { NextEpisodePipe } from '@features/pipes';
+import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
+import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
+import { NextEpisodePipe } from '@features/tv-shows/pipes';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',

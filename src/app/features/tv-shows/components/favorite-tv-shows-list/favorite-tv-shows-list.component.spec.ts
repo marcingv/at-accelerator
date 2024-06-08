@@ -1,9 +1,9 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FavoriteTvShowsListComponent } from './favorite-tv-shows-list.component';
-import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
-import { TvShowDetailsService } from '@features/tv-shows-data-access/services/tv-show-details.service';
+import { TvShowsFavouritesService } from 'src/app/features/data-access';
+import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { TvShowId } from '@core/models';
-import { TvShowDetailsFactory } from '../../testing';
+import { TvShowDetailsFactory } from '../../../../testing';
 import { of } from 'rxjs';
 import { signal } from '@angular/core';
 import SpyObj = jasmine.SpyObj;
