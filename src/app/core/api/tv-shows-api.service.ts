@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  TvShow,
   TvShowDetailsResponse,
+  TvShowId,
   TvShowsPagedCollectionResponse,
 } from '../models';
 import { Observable } from 'rxjs';
@@ -54,9 +54,7 @@ export class TvShowsApiService {
     });
   }
 
-  public details(
-    query: string | TvShow['id'],
-  ): Observable<TvShowDetailsResponse> {
+  public details(query: string | TvShowId): Observable<TvShowDetailsResponse> {
     const url = this.getEndpointUrl(this.DETAILS_ENDPOINT);
     const params: { q: string } = { q: query.toString() };
 

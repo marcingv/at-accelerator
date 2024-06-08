@@ -1,5 +1,5 @@
-import { TvShowDetails } from '@core/models';
+import { TvShowDetails, TvShowId } from '@core/models';
 
 export interface TvShowsDetailsDictionary {
-  [showId: TvShowDetails['id']]: TvShowDetails;
+  [showId: TvShowId]: TvShowDetails;
 }

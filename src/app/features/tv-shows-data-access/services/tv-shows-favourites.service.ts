@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, Signal } from '@angular/core';
 import { BrowserStorage, LocalStorageService } from '@core/storage';
 import { FavouriteTvShowsDictionary } from '@features/tv-shows-data-access';
-import { TvShow } from '@core/models';
+import { TvShow, TvShowId } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +43,7 @@ export class TvShowsFavouritesService {
     });
   }
 
-  public remove(tvShowId: TvShow['id']): void {
+  public remove(tvShowId: TvShowId): void {
     let dictionary = this.favouritesDictSignal();
     if (!dictionary) {
       dictionary = {};
@@ -55,7 +55,7 @@ export class TvShowsFavouritesService {
     this.storage.setItem(this.STORAGE_KEY, { ...dictionary });
   }
 
-  public isFavourite(tvShowId: TvShow['id']): Signal<boolean> {
+  public isFavourite(tvShowId: TvShowId): Signal<boolean> {
     return computed<boolean>(() => {
       const dict = this.favouritesDictSignal();
 

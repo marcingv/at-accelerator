@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { TvShowDetailsService } from './tv-show-details.service';
-import SpyObj = jasmine.SpyObj;
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
-import createSpyObj = jasmine.createSpyObj;
-import { TvShow, TvShowDetails } from '@core/models';
+import { TvShowDetails, TvShowId } from '@core/models';
 import { firstValueFrom, of } from 'rxjs';
 import { TvShowDetailsFactory } from '../../../testing';
+import SpyObj = jasmine.SpyObj;
+import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowDetailsService', () => {
   let service: TvShowDetailsService;
@@ -33,7 +33,7 @@ describe('TvShowDetailsService', () => {
 
   describe('Loading details from api', () => {
     it('should load details from api', async () => {
-      api.details.and.callFake((id: TvShow['id']) => {
+      api.details.and.callFake((id: TvShowId) => {
         return of({
           tvShow: TvShowDetailsFactory.createInstance({ id: id }),
         });
@@ -56,7 +56,7 @@ describe('TvShowDetailsService', () => {
 
   describe('Getting details', () => {
     it('should cache details', async () => {
-      api.details.and.callFake((id: TvShow['id']) => {
+      api.details.and.callFake((id: TvShowId) => {
         return of({
           tvShow: TvShowDetailsFactory.createInstance({ id: id }),
         });

@@ -3,7 +3,7 @@ import { ResolvedTvShowDetails } from '@features/tv-shows-data-access/resolvers/
 import { map, Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
 import { PathParams } from '@core/routing/path-params';
-import { TvShow, TvShowDetails } from '@core/models';
+import { TvShowDetails, TvShowId } from '@core/models';
 import { TvShowDetailsService } from '@features/tv-shows-data-access/services/tv-show-details.service';
 
 const NOT_FOUND_MESSAGE = 'Tv show does not exist.';
@@ -15,7 +15,7 @@ export const tvShowDetailsResolver: ResolveFn<
     inject(TvShowDetailsService);
 
   const idParam: string | null = route.paramMap.get(PathParams.ID);
-  const id: TvShow['id'] | null = idParam ? +idParam : null;
+  const id: TvShowId | null = idParam ? +idParam : null;
   if (!id || isNaN(id)) {
     return of({
       details: null,

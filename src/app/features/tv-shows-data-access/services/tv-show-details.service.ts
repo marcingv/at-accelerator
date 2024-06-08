@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { TvShowsDetailsDictionary } from '@features/tv-shows-data-access';
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
-import { TvShow, TvShowDetails, TvShowDetailsResponse } from '@core/models';
+import { TvShowDetails, TvShowDetailsResponse, TvShowId } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class TvShowDetailsService {
   private readonly data$: BehaviorSubject<TvShowsDetailsDictionary> =
     new BehaviorSubject<TvShowsDetailsDictionary>({});
 
-  public getDetails(id: TvShow['id']): Observable<TvShowDetails | null> {
+  public getDetails(id: TvShowId): Observable<TvShowDetails | null> {
     if (this.data$.value[id]) {
       return of(this.data$.value[id]);
     }
@@ -30,7 +30,7 @@ export class TvShowDetailsService {
     );
   }
 
-  public loadDetails(id: TvShow['id']): Observable<TvShowDetails | null> {
+  public loadDetails(id: TvShowId): Observable<TvShowDetails | null> {
     return this.api.details(id).pipe(
       catchError(() => of(null)),
       tap((response: TvShowDetailsResponse | null): void => {
