@@ -40,7 +40,7 @@
         {{ nextEpisode()!.air_date | date: "short" }}
       </span>
     } @else {
-      <span class="text-gray-400"> All episodes have been released </span>
+      <span class="text-gray-400">{{ tvShow().status }}</span>
     }
   </ng-template>
 </app-card>

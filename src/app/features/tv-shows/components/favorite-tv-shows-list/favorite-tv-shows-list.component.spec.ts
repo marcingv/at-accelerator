@@ -5,8 +5,11 @@ import { TvShowDetailsService } from '@features/data-access/services/tv-show-det
 import { TvShowId } from '@core/models';
 import { TvShowDetailsFactory } from '../../../../testing';
 import { of } from 'rxjs';
-import { signal } from '@angular/core';
+import { DebugElement, signal } from '@angular/core';
 import SpyObj = jasmine.SpyObj;
+import { By } from '@angular/platform-browser';
+import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
+import { provideRouter } from '@angular/router';
 
 describe('FavoriteTvShowsListComponent', () => {
   let component: FavoriteTvShowsListComponent;
@@ -21,8 +24,10 @@ describe('FavoriteTvShowsListComponent', () => {
   beforeEach(async () => {
     favoritesService = jasmine.createSpyObj<TvShowsFavouritesService>([
       'idsSignal',
+      'isFavourite',
     ]);
     favoritesService.idsSignal.and.returnValue(favoritesIdsSignal());
+    favoritesService.isFavourite.and.returnValue(signal<boolean>(true));
 
     detailsService = jasmine.createSpyObj<TvShowDetailsService>(['getDetails']);
     detailsService.getDetails.and.callFake((tvShowId: TvShowId) => {
@@ -32,6 +37,7 @@ describe('FavoriteTvShowsListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [FavoriteTvShowsListComponent],
       providers: [
+        provideRouter([]),
         { provide: TvShowsFavouritesService, useValue: favoritesService },
         { provide: TvShowDetailsService, useValue: detailsService },
       ],
@@ -52,5 +58,14 @@ describe('FavoriteTvShowsListComponent', () => {
     expect(detailsService.getDetails).toHaveBeenCalledTimes(
       FAVORITES_IDS.length,
     );
+
+    TestBed.flushEffects();
+    fixture.detectChanges();
+
+    const cards: DebugElement[] = fixture.debugElement.queryAll(
+      By.directive(TvShowCardComponent),
+    );
+
+    expect(cards.length).toEqual(FAVORITES_IDS.length);
   }));
 });

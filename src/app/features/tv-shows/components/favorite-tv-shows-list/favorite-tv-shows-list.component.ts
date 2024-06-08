@@ -12,6 +12,10 @@ import { CommonModule } from '@angular/common';
 import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
 import { NextEpisodePipe } from '@features/tv-shows/pipes';
+import {
+  sortTvShowsByNextEpisode,
+  sortTvShowsByStatus,
+} from '@features/tv-shows/utils';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',
@@ -47,9 +51,13 @@ export class FavoriteTvShowsListComponent {
 
     return forkJoin(requests$).pipe(
       map((data: Array<TvShowDetails | null>) => {
-        return data.filter((details) => !!details) as TvShowDetails[];
+        const shows: TvShowDetails[] = data.filter(
+          (details: TvShowDetails | null) => !!details,
+        ) as TvShowDetails[];
+
+        return shows.sort(sortTvShowsByStatus).sort(sortTvShowsByNextEpisode);
       }),
-      tap((data: Array<TvShowDetails>) => {
+      tap((data: Array<TvShowDetails>): void => {
         this.favorites.set(data);
       }),
     );
