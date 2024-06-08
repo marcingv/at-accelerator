@@ -6,7 +6,7 @@ import {
   input,
   InputSignal,
 } from '@angular/core';
-import { TvShow } from '@core/models';
+import { Episode, TvShow } from '@core/models';
 import { CardComponent } from '@shared/cards';
 import { TvShowsFavouritesService } from '@features/tv-shows-data-access';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
@@ -35,6 +35,9 @@ export class TvShowCardComponent {
   private readonly favoritesService = inject(TvShowsFavouritesService);
 
   public tvShow: InputSignal<TvShow> = input.required<TvShow>();
+  public nextEpisode: InputSignal<Episode | undefined> = input<
+    Episode | undefined
+  >();
 
   protected isFavorite = computed(() => {
     return this.favoritesService.isFavourite(this.tvShow().id)();

@@ -33,5 +33,14 @@
     </div>
   </ng-template>
 
-  <ng-template #footer> Next episode: </ng-template>
+  <ng-template #footer>
+    @if (nextEpisode()?.air_date) {
+      <span>Next episode: </span>
+      <span class="font-bold">
+        {{ nextEpisode()!.air_date | date: "short" }}
+      </span>
+    } @else {
+      <span class="text-gray-400"> All episodes have been released </span>
+    }
+  </ng-template>
 </app-card>
