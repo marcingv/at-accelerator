@@ -32,7 +32,7 @@ export class TvShowsFavouritesService {
   }
 
   public toggle(tvShow: TvShow): void {
-    this.isFavourite(tvShow.id) ? this.remove(tvShow.id) : this.add(tvShow);
+    this.isFavourite(tvShow.id)() ? this.remove(tvShow.id) : this.add(tvShow);
   }
 
   public add(tvShow: TvShow): void {
