@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ResolvedTvShowDetails } from '@features/tv-shows-data-access/resolvers';
+import { ResolvedTvShowDetails } from '@features/data-access/resolvers';
 import { ErrorPlaceholderComponent } from '@shared/placeholders/error-placeholder';
-import { TvShowDetailsComponent } from '@features/tv-show-details';
+import { TvShowDetailsComponent } from 'src/app/features/tv-shows/components/tv-show-details';
 import { BackButtonComponent } from '@shared/buttons/components/back-button';
 
 @Component({

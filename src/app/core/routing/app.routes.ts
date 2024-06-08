@@ -3,7 +3,7 @@ import { SearchViewComponent } from '@pages/search-view';
 import { Paths } from './paths';
 import { FavoritesViewComponent } from '@pages/favorites-view';
 import { PathParams } from './path-params';
-import { tvShowDetailsResolver } from '@features/tv-shows-data-access/resolvers';
+import { tvShowDetailsResolver } from '@features/data-access/resolvers';
 
 export const routes: Routes = [
   { path: '', component: SearchViewComponent },

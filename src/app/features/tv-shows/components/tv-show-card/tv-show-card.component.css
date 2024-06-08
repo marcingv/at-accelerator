@@ -1,0 +1,3 @@
+:host ::ng-deep app-bookmark-icon.highlight svg {
+  @apply fill-yellow-400;
+}

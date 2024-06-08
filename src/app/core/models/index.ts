@@ -3,6 +3,7 @@ export * from './date-string';
 export * from './date-time-string';
 export * from './episode';
 export * from './status';
+export * from './tv-show-id';
 export * from './tv-show';
 export * from './tv-show-details';
 export * from './tv-show-details-response';

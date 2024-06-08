@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailsViewComponent } from './details-view.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ResolvedTvShowDetails } from '@features/tv-shows-data-access/resolvers';
+import { ResolvedTvShowDetails } from '@features/data-access/resolvers';
 
 describe('DetailsViewComponent', () => {
   let component: DetailsViewComponent;

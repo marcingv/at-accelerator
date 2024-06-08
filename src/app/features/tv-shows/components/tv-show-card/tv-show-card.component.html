@@ -1,0 +1,46 @@
+<app-card>
+  <ng-template #header>
+    <div class="flex flex-row items-center justify-between">
+      <h2
+        class="whitespace-nowrap overflow-hidden text-ellipsis"
+        [title]="tvShow().name"
+      >
+        {{ tvShow().name }}
+      </h2>
+
+      <div class="flex flex-row">
+        <button appButton="transparent" class="!p-1" (click)="toggleFavorite()">
+          <app-bookmark-icon
+            [ngClass]="{ highlight: isFavorite() }"
+          ></app-bookmark-icon>
+        </button>
+
+        <button appButton="transparent" class="!p-1">
+          <app-info-circle-icon></app-info-circle-icon>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #body>
+    <div class="-m-4">
+      <a class="block w-full h-56 overflow-hidden" [routerLink]="detailsLink()">
+        <div
+          class="size-full bg-cover bg-center hover:scale-125 transition-all"
+          [style.background-image]="cssBackgroundImage()"
+        ></div>
+      </a>
+    </div>
+  </ng-template>
+
+  <ng-template #footer>
+    @if (nextEpisode()?.air_date) {
+      <span>Next episode: </span>
+      <span class="font-bold">
+        {{ nextEpisode()!.air_date | date: "short" }}
+      </span>
+    } @else {
+      <span class="text-gray-400">{{ tvShow().status }}</span>
+    }
+  </ng-template>
+</app-card>

@@ -1,9 +1,10 @@
 import { Country } from './country';
 import { Status } from './status';
 import { DateString } from './date-string';
+import { TvShowId } from './tv-show-id';
 
 export interface TvShow {
-  id: number;
+  id: TvShowId;
   name: string;
   permalink: string;
   start_date: DateString;
