@@ -1,5 +1,5 @@
 import { ToggleFavoriteTvShowDirective } from './toggle-favorite-tv-show.directive';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import { TvShowDetailsFactory } from '../../../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -25,7 +25,11 @@ describe('ToggleFavoriteTvShowDirective', () => {
   let favoritesService: SpyObj<TvShowsFavouritesService>;
 
   beforeEach(() => {
-    favoritesService = createSpyObj<TvShowsFavouritesService>(['toggle']);
+    favoritesService = createSpyObj<TvShowsFavouritesService>([
+      'toggle',
+      'isFavourite',
+    ]);
+    favoritesService.isFavourite.and.returnValue(signal<boolean>(false));
 
     TestBed.configureTestingModule({
       imports: [HostComponent],

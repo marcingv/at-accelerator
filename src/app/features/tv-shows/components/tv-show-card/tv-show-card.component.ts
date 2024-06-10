@@ -2,13 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
   InputSignal,
 } from '@angular/core';
 import { TvShowDetails } from '@core/models';
 import { CardComponent } from '@shared/cards';
-import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { CommonModule } from '@angular/common';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
@@ -36,13 +34,7 @@ import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowCardComponent {
-  private readonly favoritesService = inject(TvShowsFavouritesService);
-
   public tvShow: InputSignal<TvShowDetails> = input.required<TvShowDetails>();
-
-  protected isFavorite = computed(() => {
-    return this.favoritesService.isFavourite(this.tvShow().id)();
-  });
 
   protected cssBackgroundImage = computed(() => {
     return `url('${this.tvShow().image_thumbnail_path}')`;
