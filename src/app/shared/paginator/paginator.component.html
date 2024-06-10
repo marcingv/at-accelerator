@@ -1,0 +1,54 @@
+<div class="flex flex-row justify-between">
+  <div class="flex flex-row gap-1">
+    <button
+      appButton="secondary"
+      title="First page"
+      [disabled]="isFirstPage()"
+      (click)="goToFirstPage()"
+    >
+      <<
+    </button>
+
+    <button
+      appButton="secondary"
+      title="Prev page"
+      [disabled]="!hasPrevPage()"
+      (click)="goToPrevPage()"
+    >
+      <
+    </button>
+  </div>
+
+  <div class="flex flex-row gap-1">
+    @for (pageNumber of pageButtons(); track pageNumber) {
+      <button
+        appButton="secondary"
+        [title]="'Go to page ' + pageNumber"
+        [ngClass]="{ 'font-bold': pageNumber === currentPage() }"
+        (click)="goToPage(pageNumber)"
+      >
+        {{ pageNumber }}
+      </button>
+    }
+  </div>
+
+  <div class="flex flex-row gap-1">
+    <button
+      appButton="secondary"
+      title="Next page"
+      [disabled]="!hasNextPage()"
+      (click)="goToNextPage()"
+    >
+      >
+    </button>
+
+    <button
+      appButton="secondary"
+      title="Last page"
+      [disabled]="isLastPage()"
+      (click)="goToLastPage()"
+    >
+      >>
+    </button>
+  </div>
+</div>

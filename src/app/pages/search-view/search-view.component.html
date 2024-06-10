@@ -6,6 +6,13 @@
     ></app-tv-show-search-form>
   </div>
 
+  <div class="mb-4">
+    <app-paginator
+      [totalPages]="totalPages()"
+      [(currentPage)]="currentPage"
+    ></app-paginator>
+  </div>
+
   <div class="p-4 bg-white mb-8 border-b-2">
     <app-tv-show-table
       [shows]="tvShows()"
