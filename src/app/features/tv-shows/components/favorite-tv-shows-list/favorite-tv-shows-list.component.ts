@@ -16,11 +16,17 @@ import {
   sortTvShowsByNextEpisode,
   sortTvShowsByStatus,
 } from '@features/tv-shows/utils';
+import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-collection-placeholder';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',
   standalone: true,
-  imports: [CommonModule, TvShowCardComponent, NextEpisodePipe],
+  imports: [
+    CommonModule,
+    TvShowCardComponent,
+    NextEpisodePipe,
+    EmptyCollectionPlaceholderComponent,
+  ],
   templateUrl: './favorite-tv-shows-list.component.html',
   styleUrl: './favorite-tv-shows-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
