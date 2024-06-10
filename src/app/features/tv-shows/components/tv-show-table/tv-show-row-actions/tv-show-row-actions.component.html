@@ -6,14 +6,10 @@
   <button
     appButton="transparent"
     class="!p-1"
+    [appToggleFavoriteTvShow]="tvShow"
     [attr.data-test-id]="'action-bookmark-' + tvShow.id"
-    [title]="isFavorite() ? 'Remove from favourites' : 'Add to favourites'"
-    (click)="toggleFavorite($event)"
   >
-    <app-bookmark-icon
-      cssClass="size-5"
-      [ngClass]="{ highlight: isFavorite() }"
-    ></app-bookmark-icon>
+    <app-bookmark-icon cssClass="size-5"></app-bookmark-icon>
   </button>
 
   <a
