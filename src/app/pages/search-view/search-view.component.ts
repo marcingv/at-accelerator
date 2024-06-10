@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   signal,
   Signal,
 } from '@angular/core';
@@ -25,21 +26,23 @@ import { PaginatorComponent } from '@shared/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchViewComponent {
-  public filterQuery: Signal<string | null> = this.listProvider.filterQuery;
-  public tvShows: Signal<TvShow[]> = this.listProvider.tvShows;
-  public isLoading: Signal<boolean> = this.listProvider.isLoading;
+  private readonly listProvider = inject(TvShowsListProviderService);
 
-  public totalPages = signal<number>(10);
-  public currentPage = signal<number>(1);
+  protected readonly filterQuery = this.listProvider.filterQuery;
+  protected readonly tvShows: Signal<TvShow[]> = this.listProvider.tvShows;
+  protected readonly isLoading: Signal<boolean> = this.listProvider.isLoading;
 
-  public constructor(private listProvider: TvShowsListProviderService) {}
+  protected readonly totalPages = this.listProvider.totalPages;
+  protected readonly currentPage = signal<number>(
+    this.listProvider.currentPage(),
+  );
 
-  public onSearch(query: string | null): void {
-    console.error('serczuj', query);
-    if (query) {
-      this.listProvider.filter(query);
-    } else {
-      this.listProvider.showAll();
-    }
+  protected onSearch(query: string | null): void {
+    this.listProvider.setQuery(query);
+    this.currentPage.set(1);
+  }
+
+  protected onPageChange(): void {
+    this.listProvider.setPage(this.currentPage());
   }
 }

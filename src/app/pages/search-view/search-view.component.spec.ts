@@ -21,6 +21,12 @@ describe('SearchViewComponent', () => {
       get tvShows(): Signal<TvShow[]> {
         return signal([]);
       },
+      get currentPage(): Signal<number> {
+        return signal(1);
+      },
+      get totalPages(): Signal<number> {
+        return signal(10);
+      },
     });
 
     TestBed.configureTestingModule({

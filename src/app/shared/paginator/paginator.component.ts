@@ -48,7 +48,10 @@ export class PaginatorComponent {
       this.currentPage() - Math.floor(this.MAX_PAGE_BUTTONS_COUNT / 2);
     let end: number = start + this.MAX_PAGE_BUTTONS_COUNT - 1;
 
-    if (start < 1) {
+    if (this.totalPages() <= this.MAX_PAGE_BUTTONS_COUNT) {
+      start = 1;
+      end = this.totalPages();
+    } else if (start < 1) {
       start = 1;
       end = start + this.MAX_PAGE_BUTTONS_COUNT - 1;
     } else if (end > this.totalPages()) {

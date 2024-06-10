@@ -10,6 +10,7 @@
     <app-paginator
       [totalPages]="totalPages()"
       [(currentPage)]="currentPage"
+      (currentPageChange)="onPageChange()"
     ></app-paginator>
   </div>
 
