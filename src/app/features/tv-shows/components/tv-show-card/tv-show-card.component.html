@@ -9,7 +9,11 @@
       </h2>
 
       <div class="flex flex-row">
-        <button appButton="transparent" class="!p-1" (click)="toggleFavorite()">
+        <button
+          appButton="transparent"
+          class="!p-1"
+          [appToggleFavoriteTvShow]="tvShow()"
+        >
           <app-bookmark-icon
             [ngClass]="{ highlight: isFavorite() }"
           ></app-bookmark-icon>

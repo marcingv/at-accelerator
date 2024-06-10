@@ -16,6 +16,7 @@ import { ButtonDirective } from '@shared/buttons/directives';
 import { Paths } from '@core/routing/paths';
 import { RouterLink } from '@angular/router';
 import { NextEpisodeCountdownPipe } from '@features/tv-shows/pipes';
+import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
 
 @Component({
   selector: 'app-tv-show-card',
@@ -28,6 +29,7 @@ import { NextEpisodeCountdownPipe } from '@features/tv-shows/pipes';
     ButtonDirective,
     RouterLink,
     NextEpisodeCountdownPipe,
+    ToggleFavoriteTvShowDirective,
   ],
   templateUrl: './tv-show-card.component.html',
   styleUrl: './tv-show-card.component.css',
@@ -49,8 +51,4 @@ export class TvShowCardComponent {
   protected detailsLink = computed(() => {
     return [Paths.ROOT, Paths.DETAILS, this.tvShow().id];
   });
-
-  protected toggleFavorite(): void {
-    this.favoritesService.toggle(this.tvShow());
-  }
 }

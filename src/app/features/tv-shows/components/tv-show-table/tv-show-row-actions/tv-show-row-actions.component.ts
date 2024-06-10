@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
 import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-right-on-square-icon';
+import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -26,6 +27,7 @@ import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-righ
     BookmarkIconComponent,
     InfoCircleIconComponent,
     ArrowTopRightOnSquareIconComponent,
+    ToggleFavoriteTvShowDirective,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',
@@ -42,11 +44,5 @@ export class TvShowRowActionsComponent implements OnChanges {
   public ngOnChanges(): void {
     this.isFavorite = this.favouritesService.isFavourite(this.tvShow.id);
     this.detailsLink = [Paths.ROOT, Paths.DETAILS, this.tvShow.id + ''];
-  }
-
-  protected toggleFavorite($event?: MouseEvent): void {
-    $event?.preventDefault();
-
-    this.favouritesService.toggle(this.tvShow);
   }
 }
