@@ -14,3 +14,21 @@ table tbody td {
 table tbody tr {
   @apply border-b;
 }
+
+/** Mobile **/
+table thead {
+  @apply hidden md:table-header-group
+}
+
+table tbody tr {
+  @apply flex flex-col md:table-row;
+}
+
+table tbody tr td {
+  @apply flex flex-row gap-4 md:table-cell;
+}
+
+table tbody tr td:before {
+  content: attr(data-label);
+  @apply block md:hidden font-bold w-24;
+}
