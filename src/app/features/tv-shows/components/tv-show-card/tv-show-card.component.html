@@ -34,13 +34,6 @@
   </ng-template>
 
   <ng-template #footer>
-    @if (nextEpisode()?.air_date) {
-      <span>Next episode: </span>
-      <span class="font-bold">
-        {{ nextEpisode()!.air_date | date: "short" }}
-      </span>
-    } @else {
-      <span class="text-gray-400">{{ tvShow().status }}</span>
-    }
+    {{ tvShow() | nextEpisodeCountdown }}
   </ng-template>
 </app-card>

@@ -11,7 +11,6 @@ import { forkJoin, map, Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
-import { NextEpisodePipe } from '@features/tv-shows/pipes';
 import {
   sortTvShowsByNextEpisode,
   sortTvShowsByStatus,
@@ -24,7 +23,6 @@ import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-
   imports: [
     CommonModule,
     TvShowCardComponent,
-    NextEpisodePipe,
     EmptyCollectionPlaceholderComponent,
   ],
   templateUrl: './favorite-tv-shows-list.component.html',

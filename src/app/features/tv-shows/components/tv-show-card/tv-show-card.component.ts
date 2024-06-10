@@ -6,7 +6,7 @@ import {
   input,
   InputSignal,
 } from '@angular/core';
-import { Episode, TvShow } from '@core/models';
+import { TvShowDetails } from '@core/models';
 import { CardComponent } from '@shared/cards';
 import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
@@ -15,6 +15,7 @@ import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { Paths } from '@core/routing/paths';
 import { RouterLink } from '@angular/router';
+import { NextEpisodeCountdownPipe } from '@features/tv-shows/pipes';
 
 @Component({
   selector: 'app-tv-show-card',
@@ -26,6 +27,7 @@ import { RouterLink } from '@angular/router';
     InfoCircleIconComponent,
     ButtonDirective,
     RouterLink,
+    NextEpisodeCountdownPipe,
   ],
   templateUrl: './tv-show-card.component.html',
   styleUrl: './tv-show-card.component.css',
@@ -34,10 +36,7 @@ import { RouterLink } from '@angular/router';
 export class TvShowCardComponent {
   private readonly favoritesService = inject(TvShowsFavouritesService);
 
-  public tvShow: InputSignal<TvShow> = input.required<TvShow>();
-  public nextEpisode: InputSignal<Episode | undefined> = input<
-    Episode | undefined
-  >();
+  public tvShow: InputSignal<TvShowDetails> = input.required<TvShowDetails>();
 
   protected isFavorite = computed(() => {
     return this.favoritesService.isFavourite(this.tvShow().id)();
