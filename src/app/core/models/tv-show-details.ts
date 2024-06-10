@@ -10,7 +10,7 @@ export interface TvShowDetails extends TvShow {
   image_path: string;
   rating: string;
   rating_count: string;
-  countdown?: number | null;
+  countdown?: Episode | null;
   genres: string[];
   pictures: string[];
   episodes: Episode[];
