@@ -14,10 +14,18 @@
     ></app-paginator>
   </div>
 
-  <div class="p-4 bg-white mb-8 border-b-2">
+  <div class="p-4 bg-white mb-4 border-b-2">
     <app-tv-show-table
       [shows]="tvShows()"
       [isLoading]="isLoading()"
     ></app-tv-show-table>
+  </div>
+
+  <div class="mb-4">
+    <app-paginator
+      [totalPages]="totalPages()"
+      [(currentPage)]="currentPage"
+      (currentPageChange)="onPageChange()"
+    ></app-paginator>
   </div>
 </div>

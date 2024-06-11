@@ -10,11 +10,22 @@ import {
 } from '@angular/core';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { CommonModule } from '@angular/common';
+import { ChevronLeftComponent } from '@shared/icons/chevron-left';
+import { ChevronRightComponent } from '@shared/icons/chevron-right';
+import { ChevronDoubleRightIconComponent } from '@shared/icons/chevron-double-right-icon';
+import { ChevronDoubleLeftIconComponent } from '@shared/icons/chevron-double-left-icon';
 
 @Component({
   selector: 'app-paginator',
   standalone: true,
-  imports: [CommonModule, ButtonDirective],
+  imports: [
+    CommonModule,
+    ButtonDirective,
+    ChevronLeftComponent,
+    ChevronRightComponent,
+    ChevronDoubleRightIconComponent,
+    ChevronDoubleLeftIconComponent,
+  ],
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

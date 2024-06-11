@@ -1,31 +1,39 @@
 <div class="flex flex-row justify-between">
   <div class="flex flex-row gap-1">
     <button
-      appButton="secondary"
+      appButton="white"
       title="First page"
       [disabled]="isFirstPage()"
       (click)="goToFirstPage()"
+      class="shadow"
     >
-      <<
+      <app-chevron-double-left-icon
+        cssClass="size-4"
+      ></app-chevron-double-left-icon>
     </button>
 
     <button
-      appButton="secondary"
+      appButton="white"
       title="Prev page"
       [disabled]="!hasPrevPage()"
       (click)="goToPrevPage()"
+      class="shadow"
     >
-      <
+      <app-chevron-left cssClass="size-4"></app-chevron-left>
     </button>
   </div>
 
   <div class="flex flex-row gap-1">
     @for (pageNumber of pageButtons(); track pageNumber) {
       <button
-        appButton="secondary"
+        [appButton]="pageNumber === currentPage() ? 'primary' : 'white'"
         [title]="'Go to page ' + pageNumber"
-        [ngClass]="{ 'font-bold': pageNumber === currentPage() }"
+        [ngClass]="{
+          '!inline-block font-bold': pageNumber === currentPage(),
+          '!hidden md:!inline-block': pageNumber !== currentPage()
+        }"
         (click)="goToPage(pageNumber)"
+        class="text-sm min-w-8 justify-center shadow"
       >
         {{ pageNumber }}
       </button>
@@ -34,21 +42,25 @@
 
   <div class="flex flex-row gap-1">
     <button
-      appButton="secondary"
+      appButton="white"
       title="Next page"
       [disabled]="!hasNextPage()"
       (click)="goToNextPage()"
+      class="shadow"
     >
-      >
+      <app-chevron-right cssClass="size-4"></app-chevron-right>
     </button>
 
     <button
-      appButton="secondary"
+      appButton="white"
       title="Last page"
       [disabled]="isLastPage()"
       (click)="goToLastPage()"
+      class="shadow"
     >
-      >>
+      <app-chevron-double-right-icon
+        cssClass="size-4"
+      ></app-chevron-double-right-icon>
     </button>
   </div>
 </div>
