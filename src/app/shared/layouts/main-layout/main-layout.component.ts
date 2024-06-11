@@ -12,6 +12,6 @@ import { Paths } from '@core/routing/paths';
 })
 export class MainLayoutComponent {
   protected readonly HOME_LINK: string[] = [Paths.ROOT];
-  protected readonly SEARCH_LINK: string[] = [Paths.ROOT];
+  protected readonly SEARCH_LINK: string[] = [Paths.ROOT, Paths.LIST];
   protected readonly FAVORITES_LINK: string[] = [Paths.ROOT, Paths.FAVORITES];
 }

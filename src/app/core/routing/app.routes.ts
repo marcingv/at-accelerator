@@ -11,7 +11,7 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', component: SearchPageComponent },
+      { path: Paths.LIST, component: SearchPageComponent },
       { path: Paths.FAVORITES, component: FavoritesPageComponent },
       {
         path: Paths.DETAILS,
@@ -35,7 +35,7 @@ export const routes: Routes = [
       },
       {
         path: Paths.WILDCARD,
-        redirectTo: '',
+        redirectTo: Paths.LIST,
       },
     ],
   },
