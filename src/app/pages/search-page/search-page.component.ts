@@ -13,7 +13,7 @@ import { TvShowSearchFormComponent } from 'src/app/features/tv-shows/components/
 import { PaginatorComponent } from '@shared/paginator';
 
 @Component({
-  selector: 'app-search-view',
+  selector: 'app-search-page',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,11 +21,11 @@ import { PaginatorComponent } from '@shared/paginator';
     TvShowSearchFormComponent,
     PaginatorComponent,
   ],
-  templateUrl: './search-view.component.html',
-  styleUrls: ['./search-view.component.css'],
+  templateUrl: './search-page.component.html',
+  styleUrls: ['./search-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchViewComponent {
+export class SearchPageComponent {
   private readonly listProvider = inject(TvShowsListProviderService);
 
   protected readonly filterQuery = this.listProvider.filterQuery;

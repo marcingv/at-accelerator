@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DetailsViewComponent } from './details-view.component';
+import { DetailsPageComponent } from './details-page.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ResolvedTvShowDetails } from '@features/data-access/resolvers';
 
-describe('DetailsViewComponent', () => {
-  let component: DetailsViewComponent;
-  let fixture: ComponentFixture<DetailsViewComponent>;
+describe('DetailsPageComponent', () => {
+  let component: DetailsPageComponent;
+  let fixture: ComponentFixture<DetailsPageComponent>;
 
   const data: ResolvedTvShowDetails = {
     details: null,
@@ -14,18 +14,18 @@ describe('DetailsViewComponent', () => {
   };
 
   beforeEach(async () => {
-    await TestBed.overrideComponent(DetailsViewComponent, {
+    await TestBed.overrideComponent(DetailsPageComponent, {
       set: {
         imports: [],
         schemas: [NO_ERRORS_SCHEMA],
       },
     })
       .configureTestingModule({
-        imports: [DetailsViewComponent],
+        imports: [DetailsPageComponent],
       })
       .compileComponents();
 
-    fixture = TestBed.createComponent(DetailsViewComponent);
+    fixture = TestBed.createComponent(DetailsPageComponent);
     component = fixture.componentInstance;
     component.data = data;
     fixture.detectChanges();

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchViewComponent } from './search-view.component';
+import { SearchPageComponent } from './search-page.component';
 import { TvShowsListProviderService } from 'src/app/features/data-access';
 import { Signal, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import createSpyObj = jasmine.createSpyObj;
 
-describe('SearchViewComponent', () => {
-  let component: SearchViewComponent;
-  let fixture: ComponentFixture<SearchViewComponent>;
+describe('SearchPageComponent', () => {
+  let component: SearchPageComponent;
+  let fixture: ComponentFixture<SearchPageComponent>;
   let listProvider;
 
   beforeEach(() => {
@@ -30,12 +30,12 @@ describe('SearchViewComponent', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [SearchViewComponent],
+      imports: [SearchPageComponent],
       providers: [
         { provide: TvShowsListProviderService, useValue: listProvider },
       ],
     });
-    fixture = TestBed.createComponent(SearchViewComponent);
+    fixture = TestBed.createComponent(SearchPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
