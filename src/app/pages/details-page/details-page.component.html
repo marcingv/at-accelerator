@@ -7,7 +7,11 @@
 }
 
 <div class="mt-4 flex flex-row gap-4">
-  <button appButton="primary" class="gap-4 !px-4">
+  <button
+    appButton="primary"
+    class="gap-4 !px-4"
+    [appToggleDialog]="imagesDialog"
+  >
     <app-photo-icon cssClass="size-4"></app-photo-icon>
 
     <span>Show images</span>
@@ -15,3 +19,7 @@
 
   <app-back-button></app-back-button>
 </div>
+
+<app-dialog #imagesDialog [dialogTitle]="data.details?.name">
+  <div>This is my dialog</div>
+</app-dialog>

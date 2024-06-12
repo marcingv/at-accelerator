@@ -5,6 +5,7 @@ import { TvShowDetailsComponent } from 'src/app/features/tv-shows/components/tv-
 import { BackButtonComponent } from '@shared/buttons/components/back-button';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { PhotoIconComponent } from '@shared/icons/photo-icon';
+import { DialogComponent, ToggleDialogDirective } from '@shared/dialogs';
 
 @Component({
   selector: 'app-details-page',
@@ -15,6 +16,8 @@ import { PhotoIconComponent } from '@shared/icons/photo-icon';
     BackButtonComponent,
     ButtonDirective,
     PhotoIconComponent,
+    DialogComponent,
+    ToggleDialogDirective,
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css',

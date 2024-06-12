@@ -1,0 +1,33 @@
+<dialog #dialog>
+  <app-card>
+    <ng-template #header>
+      <div class="dialog-header">
+        <div class="dialog-title">
+          @if (headerTpl) {
+            <ng-container *ngTemplateOutlet="headerTpl"></ng-container>
+          } @else if (dialogTitle) {
+            {{ dialogTitle }}
+          }
+        </div>
+
+        <button appButton="transparent" class="dialog-close" (click)="close()">
+          <app-close-icon cssClass="size-4"></app-close-icon>
+        </button>
+      </div>
+    </ng-template>
+
+    <div class="dialog-body">
+      @if (bodyTpl) {
+        <ng-container *ngTemplateOutlet="bodyTpl"></ng-container>
+      } @else {
+        <ng-content></ng-content>
+      }
+    </div>
+
+    @if (footerTpl) {
+      <div class="dialog-footer">
+        <ng-container *ngTemplateOutlet="footerTpl"></ng-container>
+      </div>
+    }
+  </app-card>
+</dialog>

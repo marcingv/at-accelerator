@@ -1,0 +1,12 @@
+.dialog-header {
+  @apply flex flex-row gap-8 items-center justify-between;
+  @apply text-gray-600;
+}
+
+.dialog-title {
+  @apply text-gray-600;
+}
+
+.dialog-close {
+  @apply shadow text-slate-600;
+}
