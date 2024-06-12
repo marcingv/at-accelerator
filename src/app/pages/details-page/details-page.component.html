@@ -1,11 +1,25 @@
-@if (data && data.details) {
-  <app-tv-show-details [details]="data.details"></app-tv-show-details>
+@if (details(); as tvShowDetails) {
+  <app-tv-show-details [details]="tvShowDetails"></app-tv-show-details>
 } @else {
   <app-error-placeholder
-    [message]="data.resolveErrorMessage"
+    [message]="data().resolveErrorMessage"
   ></app-error-placeholder>
 }
 
-<div class="mt-4">
+<div class="mt-4 flex flex-row gap-4">
+  @if (details(); as details) {
+    @if (details.pictures.length) {
+      <button
+        appButton="primary"
+        class="gap-4 !px-4"
+        [appOpenTvShowGallery]="details.id"
+      >
+        <app-photo-icon cssClass="size-4"></app-photo-icon>
+
+        <span>Show images</span>
+      </button>
+    }
+  }
+
   <app-back-button></app-back-button>
 </div>

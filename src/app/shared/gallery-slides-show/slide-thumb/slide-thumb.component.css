@@ -1,0 +1,4 @@
+
+.slide-photo {
+  @apply size-full bg-cover;
+}

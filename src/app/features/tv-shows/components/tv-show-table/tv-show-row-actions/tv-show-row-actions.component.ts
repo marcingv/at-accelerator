@@ -12,7 +12,10 @@ import { CommonModule } from '@angular/common';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
 import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-right-on-square-icon';
-import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
+import {
+  OpenTvShowGalleryDirective,
+  ToggleFavoriteTvShowDirective,
+} from '@features/tv-shows/directives';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -25,6 +28,7 @@ import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
     InfoCircleIconComponent,
     ArrowTopRightOnSquareIconComponent,
     ToggleFavoriteTvShowDirective,
+    OpenTvShowGalleryDirective,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',

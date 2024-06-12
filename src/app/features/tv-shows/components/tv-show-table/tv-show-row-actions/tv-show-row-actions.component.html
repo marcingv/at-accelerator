@@ -1,7 +1,12 @@
 <div class="flex gap-1 items-center row-actions text-gray-500">
-  <button appButton="transparent" class="!p-1">
+  <a
+    appButton="transparent"
+    class="!p-1"
+    [routerLink]="detailsLink"
+    [title]="tvShow.name"
+  >
     <app-info-circle-icon cssClass="size-5"></app-info-circle-icon>
-  </button>
+  </a>
 
   <button
     appButton="transparent"
@@ -12,14 +17,14 @@
     <app-bookmark-icon cssClass="size-5"></app-bookmark-icon>
   </button>
 
-  <a
+  <button
     appButton="transparent"
     class="!p-1"
-    [routerLink]="detailsLink"
-    [title]="tvShow.name"
+    [appOpenTvShowGallery]="tvShow.id"
+    [attr.data-test-id]="'action-gallery-' + tvShow.id"
   >
     <app-arrow-top-right-on-square-icon
       cssClass="size-5"
     ></app-arrow-top-right-on-square-icon>
-  </a>
+  </button>
 </div>

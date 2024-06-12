@@ -1,5 +1,5 @@
 import { Episode, TvShowDetails } from '@core/models';
-import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../../testing';
+import { TvShowDetailsFactory, TvShowEpisodeFactory } from '@testing/factories';
 import {
   getNextEpisode,
   sortEpisodes,

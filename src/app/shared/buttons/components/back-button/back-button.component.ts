@@ -8,11 +8,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Location } from '@angular/common';
 import { GoBackNavigationStrategy } from './types/go-back-navigation-strategy';
 import { ButtonDirective } from '@shared/buttons/directives';
+import { ChevronLeftComponent } from '@shared/icons/chevron-left';
 
 @Component({
   selector: 'app-back-button',
   standalone: true,
-  imports: [ButtonDirective, RouterLink, ButtonDirective],
+  imports: [ButtonDirective, RouterLink, ButtonDirective, ChevronLeftComponent],
   templateUrl: './back-button.component.html',
   styleUrl: './back-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

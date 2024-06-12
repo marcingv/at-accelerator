@@ -1,7 +1,7 @@
 import { ToggleFavoriteTvShowDirective } from './toggle-favorite-tv-show.directive';
 import { Component, DebugElement, signal } from '@angular/core';
 import { TvShow } from '@core/models';
-import { TvShowDetailsFactory } from '../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowsFavouritesService } from '@features/data-access';
 import { By } from '@angular/platform-browser';

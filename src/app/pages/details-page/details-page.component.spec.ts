@@ -27,7 +27,7 @@ describe('DetailsPageComponent', () => {
 
     fixture = TestBed.createComponent(DetailsPageComponent);
     component = fixture.componentInstance;
-    component.data = data;
+    fixture.componentRef.setInput('data', data);
     fixture.detectChanges();
   });
 

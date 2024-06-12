@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowCardComponent } from './tv-show-card.component';
 import { TvShow } from '@core/models';
-import { TvShowDetailsFactory } from '../../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import { provideRouter } from '@angular/router';
 
 describe('TvShowCardComponent', () => {

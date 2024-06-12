@@ -1,0 +1,3 @@
+<app-dialog #dialog [dialogTitle]="tvShow().name" (closed)="closed.emit()">
+  <app-gallery-slides-show [photos]="gallerySlides()"></app-gallery-slides-show>
+</app-dialog>
