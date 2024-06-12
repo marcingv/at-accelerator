@@ -5,7 +5,7 @@ import {
   input,
   InputSignal,
 } from '@angular/core';
-import { TvShowGalleryService } from '../services/tv-show-gallery.service';
+import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowId } from '@core/models';
 
 @Directive({

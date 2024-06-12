@@ -13,7 +13,7 @@ import { BackButtonComponent } from '@shared/buttons/components/back-button';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { PhotoIconComponent } from '@shared/icons/photo-icon';
 import { TvShowDetails } from '@core/models';
-import { OpenTvShowGalleryDirective } from '@features/tv-shows/components/tv-show-gallery-dialog';
+import { OpenTvShowGalleryDirective } from '@features/tv-shows/directives';
 
 @Component({
   selector: 'app-details-page',
