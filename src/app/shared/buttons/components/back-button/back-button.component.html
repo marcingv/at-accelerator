@@ -1,8 +1,9 @@
 <button
-  appButton="primary"
-  class="items-center"
+  appButton="secondary"
+  class="items-center gap-2 !pe-4"
   [title]="label ?? DEFAULT_LABEL"
   (click)="onClicked()"
 >
+  <app-chevron-left cssClass="size-4"></app-chevron-left>
   {{ label ?? DEFAULT_LABEL }}
 </button>
