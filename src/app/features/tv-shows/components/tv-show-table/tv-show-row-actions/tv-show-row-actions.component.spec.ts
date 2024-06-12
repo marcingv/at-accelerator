@@ -6,7 +6,7 @@ import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
-import { TvShowDetailsFactory } from '../../../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {

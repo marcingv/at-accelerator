@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { TvShowGalleryService } from './tv-show-gallery.service';
 import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { firstValueFrom, of } from 'rxjs';
-import { TvShowDetailsFactory } from '../../../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import { TvShowDetails } from '@core/models';
 import { DOCUMENT } from '@angular/common';
 import { TvShowGalleryDialogComponent } from '@features/tv-shows/components/tv-show-gallery-dialog';

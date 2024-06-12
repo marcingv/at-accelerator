@@ -1,5 +1,5 @@
 import { NextEpisodeCountdownPipe } from './next-episode-countdown.pipe';
-import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../../testing';
+import { TvShowDetailsFactory, TvShowEpisodeFactory } from '@testing/factories';
 import { Status } from '@core/models';
 
 describe('NextEpisodeCountdownPipe', (): void => {

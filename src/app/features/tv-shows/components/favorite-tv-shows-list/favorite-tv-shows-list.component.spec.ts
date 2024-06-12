@@ -3,7 +3,7 @@ import { FavoriteTvShowsListComponent } from './favorite-tv-shows-list.component
 import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { TvShowId } from '@core/models';
-import { TvShowDetailsFactory } from '../../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import { of } from 'rxjs';
 import { DebugElement, signal } from '@angular/core';
 import SpyObj = jasmine.SpyObj;

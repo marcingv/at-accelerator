@@ -3,7 +3,7 @@ import { TvShowDetailsService } from './tv-show-details.service';
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { firstValueFrom, of } from 'rxjs';
-import { TvShowDetailsFactory } from '../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import SpyObj = jasmine.SpyObj;
 import createSpyObj = jasmine.createSpyObj;
 

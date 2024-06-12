@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowGalleryDialogComponent } from './tv-show-gallery-dialog.component';
 import { TvShowDetails } from '@core/models';
-import { TvShowDetailsFactory } from '../../../../testing';
+import { TvShowDetailsFactory } from '@testing/factories';
 import { By } from '@angular/platform-browser';
 import { DialogComponent } from '@shared/dialogs';
 import { DebugElement } from '@angular/core';

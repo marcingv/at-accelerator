@@ -1,5 +1,5 @@
 import { NextEpisodePipe } from './next-episode.pipe';
-import { TvShowDetailsFactory, TvShowEpisodeFactory } from '../../../testing';
+import { TvShowDetailsFactory, TvShowEpisodeFactory } from '@testing/factories';
 import { Episode } from '@core/models';
 
 describe('NextEpisodePipe', () => {
