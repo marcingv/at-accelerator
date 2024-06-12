@@ -12,12 +12,9 @@ import { TvShowDetailsComponent } from 'src/app/features/tv-shows/components/tv-
 import { BackButtonComponent } from '@shared/buttons/components/back-button';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { PhotoIconComponent } from '@shared/icons/photo-icon';
-import { DialogComponent, ToggleDialogDirective } from '@shared/dialogs';
-import {
-  GalleryPhoto,
-  GallerySlidesShowComponent,
-} from '@shared/gallery-slides-show';
+import { ToggleDialogDirective } from '@shared/dialogs';
 import { TvShowDetails } from '@core/models';
+import { TvShowGalleryDialogComponent } from '@features/tv-shows/components/tv-show-gallery-dialog';
 
 @Component({
   selector: 'app-details-page',
@@ -28,9 +25,8 @@ import { TvShowDetails } from '@core/models';
     BackButtonComponent,
     ButtonDirective,
     PhotoIconComponent,
-    DialogComponent,
     ToggleDialogDirective,
-    GallerySlidesShowComponent,
+    TvShowGalleryDialogComponent,
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css',
@@ -42,22 +38,5 @@ export class DetailsPageComponent {
 
   public details: Signal<TvShowDetails | null> = computed(() => {
     return this.data().details;
-  });
-
-  public gallerySlides: Signal<GalleryPhoto[]> = computed(() => {
-    const details: TvShowDetails | null = this.details();
-    if (!details) {
-      return [];
-    }
-
-    const photos: GalleryPhoto[] = [{ url: details.image_path }];
-
-    details.pictures.forEach((onePictureUrl: string) =>
-      photos.push({
-        url: onePictureUrl,
-      }),
-    );
-
-    return photos;
   });
 }

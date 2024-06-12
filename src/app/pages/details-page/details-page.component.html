@@ -7,19 +7,26 @@
 }
 
 <div class="mt-4 flex flex-row gap-4">
-  <button
-    appButton="primary"
-    class="gap-4 !px-4"
-    [appToggleDialog]="imagesDialog"
-  >
-    <app-photo-icon cssClass="size-4"></app-photo-icon>
+  @if (details(); as details) {
+    @if (details.pictures.length) {
+      <div>
+        <button
+          appButton="primary"
+          class="gap-4 !px-4"
+          [appToggleDialog]="galleryDialog.dialog"
+        >
+          <app-photo-icon cssClass="size-4"></app-photo-icon>
 
-    <span>Show images</span>
-  </button>
+          <span>Show images</span>
+        </button>
+
+        <app-tv-show-gallery-dialog
+          #galleryDialog
+          [tvShow]="details"
+        ></app-tv-show-gallery-dialog>
+      </div>
+    }
+  }
 
   <app-back-button></app-back-button>
 </div>
-
-<app-dialog #imagesDialog [dialogTitle]="details()?.name">
-  <app-gallery-slides-show [photos]="gallerySlides()"></app-gallery-slides-show>
-</app-dialog>
