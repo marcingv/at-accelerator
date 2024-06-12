@@ -1,5 +1,6 @@
 import {
   Directive,
+  HostBinding,
   HostListener,
   inject,
   input,
@@ -26,4 +27,6 @@ export class OpenTvShowGalleryDirective {
 
     this.tvShowGalleryService.showDialog(tvShowId);
   }
+
+  @HostBinding('attr.title') private title: string = 'Open gallery';
 }
