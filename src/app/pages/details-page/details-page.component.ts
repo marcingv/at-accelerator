@@ -5,17 +5,17 @@ import { TvShowDetailsComponent } from 'src/app/features/tv-shows/components/tv-
 import { BackButtonComponent } from '@shared/buttons/components/back-button';
 
 @Component({
-  selector: 'app-details-view',
+  selector: 'app-details-page',
   standalone: true,
   imports: [
     ErrorPlaceholderComponent,
     TvShowDetailsComponent,
     BackButtonComponent,
   ],
-  templateUrl: './details-view.component.html',
-  styleUrl: './details-view.component.css',
+  templateUrl: './details-page.component.html',
+  styleUrl: './details-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsViewComponent {
+export class DetailsPageComponent {
   @Input() public data!: ResolvedTvShowDetails;
 }

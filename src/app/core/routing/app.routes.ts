@@ -1,33 +1,42 @@
 import { Routes } from '@angular/router';
-import { SearchViewComponent } from '@pages/search-view';
+import { SearchPageComponent } from 'src/app/pages/search-page';
 import { Paths } from './paths';
-import { FavoritesViewComponent } from '@pages/favorites-view';
+import { FavoritesPageComponent } from 'src/app/pages/favorites-page';
 import { PathParams } from './path-params';
 import { tvShowDetailsResolver } from '@features/data-access/resolvers';
+import { MainLayoutComponent } from '@shared/layouts/main-layout';
 
 export const routes: Routes = [
-  { path: '', component: SearchViewComponent },
-  { path: Paths.FAVORITES, component: FavoritesViewComponent },
   {
-    path: Paths.DETAILS,
+    path: '',
+    component: MainLayoutComponent,
     children: [
+      { path: Paths.LIST, component: SearchPageComponent },
+      { path: Paths.FAVORITES, component: FavoritesPageComponent },
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/',
+        path: Paths.DETAILS,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: '/',
+          },
+          {
+            path: `:${PathParams.ID}`,
+            loadComponent: () =>
+              import('src/app/pages/details-page').then(
+                (m) => m.DetailsPageComponent,
+              ),
+            resolve: {
+              data: tvShowDetailsResolver,
+            },
+          },
+        ],
       },
       {
-        path: `:${PathParams.ID}`,
-        loadComponent: () =>
-          import('@pages/details-view').then((m) => m.DetailsViewComponent),
-        resolve: {
-          data: tvShowDetailsResolver,
-        },
+        path: Paths.WILDCARD,
+        redirectTo: Paths.LIST,
       },
     ],
-  },
-  {
-    path: Paths.WILDCARD,
-    redirectTo: '',
   },
 ];

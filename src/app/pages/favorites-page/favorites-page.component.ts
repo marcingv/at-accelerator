@@ -4,11 +4,11 @@ import { TvShowCardComponent } from 'src/app/features/tv-shows/components/tv-sho
 import { FavoriteTvShowsListComponent } from 'src/app/features/tv-shows/components/favorite-tv-shows-list';
 
 @Component({
-  selector: 'app-favorites-view',
+  selector: 'app-favorites-page',
   standalone: true,
-  templateUrl: './favorites-view.component.html',
-  styleUrls: ['./favorites-view.component.css'],
+  templateUrl: './favorites-page.component.html',
+  styleUrls: ['./favorites-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CardComponent, TvShowCardComponent, FavoriteTvShowsListComponent],
 })
-export class FavoritesViewComponent {}
+export class FavoritesPageComponent {}

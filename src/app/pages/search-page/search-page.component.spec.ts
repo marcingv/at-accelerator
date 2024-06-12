@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchViewComponent } from './search-view.component';
+import { SearchPageComponent } from './search-page.component';
 import { TvShowsListProviderService } from 'src/app/features/data-access';
 import { Signal, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import createSpyObj = jasmine.createSpyObj;
+import { provideRouter } from '@angular/router';
 
-describe('SearchViewComponent', () => {
-  let component: SearchViewComponent;
-  let fixture: ComponentFixture<SearchViewComponent>;
+describe('SearchPageComponent', () => {
+  let component: SearchPageComponent;
+  let fixture: ComponentFixture<SearchPageComponent>;
   let listProvider;
 
   beforeEach(() => {
@@ -21,15 +22,22 @@ describe('SearchViewComponent', () => {
       get tvShows(): Signal<TvShow[]> {
         return signal([]);
       },
+      get currentPage(): Signal<number> {
+        return signal(1);
+      },
+      get totalPages(): Signal<number> {
+        return signal(10);
+      },
     });
 
     TestBed.configureTestingModule({
-      imports: [SearchViewComponent],
+      imports: [SearchPageComponent],
       providers: [
+        provideRouter([]),
         { provide: TvShowsListProviderService, useValue: listProvider },
       ],
     });
-    fixture = TestBed.createComponent(SearchViewComponent);
+    fixture = TestBed.createComponent(SearchPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

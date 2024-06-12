@@ -11,6 +11,7 @@ body {
   @apply font-normal text-base bg-gray-50 text-gray-700;
 }
 
+/* App button styles */
 .app-button {
   @apply p-2 inline-flex items-center rounded disabled:opacity-25 transition-colors duration-75;
 }
@@ -25,6 +26,10 @@ body {
 
 .app-button-transparent {
   @apply hover:bg-gray-100 active:bg-gray-200;
+}
+
+.app-button-white {
+  @apply bg-white hover:bg-gray-50 active:bg-gray-100;
 }
 
 /* App form styles */
