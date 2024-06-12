@@ -13,10 +13,7 @@
           (click)="setActivePhoto(onePhoto)"
           [ngClass]="{ active: onePhoto === activePhoto() }"
         >
-          <div
-            class="slide-photo"
-            [style.background-image]="'url(' + onePhoto.url + ')'"
-          ></div>
+          <app-slide-thumb [photo]="onePhoto"></app-slide-thumb>
         </li>
       }
     </ul>

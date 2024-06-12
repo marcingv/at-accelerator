@@ -24,6 +24,3 @@ li.slide.active {
   @apply grayscale-0 opacity-100 border-slate-600 shadow;
 }
 
-.slide-photo {
-  @apply size-full bg-cover;
-}
