@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   Input,
   OnChanges,
 } from '@angular/core';
@@ -14,7 +13,7 @@ import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
 import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-right-on-square-icon';
 import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
-import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
+import { OpenTvShowGalleryDirective } from '@features/tv-shows/components/tv-show-gallery-dialog';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -27,23 +26,18 @@ import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gall
     InfoCircleIconComponent,
     ArrowTopRightOnSquareIconComponent,
     ToggleFavoriteTvShowDirective,
+    OpenTvShowGalleryDirective,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowRowActionsComponent implements OnChanges {
-  protected readonly tvShowGalleryService = inject(TvShowGalleryService);
-
   @Input({ required: true }) public tvShow!: TvShow;
 
   protected detailsLink: string[] = [];
 
   public ngOnChanges(): void {
     this.detailsLink = [Paths.ROOT, Paths.DETAILS, this.tvShow.id + ''];
-  }
-
-  public showGalleryDialog(): void {
-    this.tvShowGalleryService.showDialog(this.tvShow.id);
   }
 }

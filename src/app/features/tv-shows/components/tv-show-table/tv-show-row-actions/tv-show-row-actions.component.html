@@ -20,7 +20,7 @@
   <button
     appButton="transparent"
     class="!p-1"
-    (click)="showGalleryDialog()"
+    [appOpenTvShowGallery]="tvShow.id"
     [attr.data-test-id]="'action-gallery-' + tvShow.id"
   >
     <app-arrow-top-right-on-square-icon

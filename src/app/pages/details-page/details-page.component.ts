@@ -12,9 +12,8 @@ import { TvShowDetailsComponent } from 'src/app/features/tv-shows/components/tv-
 import { BackButtonComponent } from '@shared/buttons/components/back-button';
 import { ButtonDirective } from '@shared/buttons/directives';
 import { PhotoIconComponent } from '@shared/icons/photo-icon';
-import { ToggleDialogDirective } from '@shared/dialogs';
 import { TvShowDetails } from '@core/models';
-import { TvShowGalleryDialogComponent } from '@features/tv-shows/components/tv-show-gallery-dialog';
+import { OpenTvShowGalleryDirective } from '@features/tv-shows/components/tv-show-gallery-dialog';
 
 @Component({
   selector: 'app-details-page',
@@ -25,8 +24,7 @@ import { TvShowGalleryDialogComponent } from '@features/tv-shows/components/tv-s
     BackButtonComponent,
     ButtonDirective,
     PhotoIconComponent,
-    ToggleDialogDirective,
-    TvShowGalleryDialogComponent,
+    OpenTvShowGalleryDirective,
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css',
