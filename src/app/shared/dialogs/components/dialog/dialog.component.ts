@@ -3,8 +3,10 @@ import {
   Component,
   ContentChild,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -33,6 +35,7 @@ export class DialogComponent implements OnInit {
   private dialog!: HTMLDialogElement;
 
   @Input() public dialogTitle?: string;
+  @Output() public closed: EventEmitter<void> = new EventEmitter<void>();
 
   @ContentChild('header', { read: TemplateRef, static: true })
   protected readonly headerTpl?: TemplateRef<unknown>;
@@ -45,6 +48,9 @@ export class DialogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.dialog = this.dialogEl.nativeElement;
+    this.dialog.onclose = (): void => {
+      this.closed.next();
+    };
   }
 
   public toggle(): void {

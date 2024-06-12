@@ -4,6 +4,8 @@ import {
   computed,
   input,
   InputSignal,
+  output,
+  OutputEmitterRef,
   Signal,
   ViewChild,
 } from '@angular/core';
@@ -24,6 +26,7 @@ import {
 })
 export class TvShowGalleryDialogComponent {
   public tvShow: InputSignal<TvShowDetails> = input.required<TvShowDetails>();
+  public closed: OutputEmitterRef<void> = output<void>();
 
   public gallerySlides: Signal<GalleryPhoto[]> = computed(() => {
     const details: TvShowDetails | null = this.tvShow();

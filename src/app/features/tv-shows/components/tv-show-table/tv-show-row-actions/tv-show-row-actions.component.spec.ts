@@ -1,20 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowRowActionsComponent } from './tv-show-row-actions.component';
-import { TvShow } from '@core/models';
+import { TvShowDetails } from '@core/models';
 import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
+import { TvShowDetailsFactory } from '../../../../../testing';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {
   let component: TvShowRowActionsComponent;
   let fixture: ComponentFixture<TvShowRowActionsComponent>;
   let favouritesService: jasmine.SpyObj<TvShowsFavouritesService>;
+  let tvShowGalleryService: jasmine.SpyObj<TvShowGalleryService>;
 
   let isFavoriteSignal: WritableSignal<boolean>;
 
-  const tvShow: TvShow = {
+  const tvShow: TvShowDetails = TvShowDetailsFactory.createInstance({
     id: 1,
     status: 'Running',
     start_date: '2024-01-01',
@@ -23,7 +26,7 @@ describe('TvShowRowActionsComponent', () => {
     network: 'Network',
     permalink: 'http://localhost',
     image_thumbnail_path: 'http://localhost',
-  };
+  });
 
   beforeEach(async () => {
     isFavoriteSignal = signal<boolean>(false);
@@ -34,11 +37,14 @@ describe('TvShowRowActionsComponent', () => {
     ]);
     favouritesService.isFavourite.and.returnValue(isFavoriteSignal);
 
+    tvShowGalleryService = createSpyObj<TvShowGalleryService>(['showDialog']);
+
     await TestBed.configureTestingModule({
       imports: [TvShowRowActionsComponent],
       providers: [
         provideRouter([]),
         { provide: TvShowsFavouritesService, useValue: favouritesService },
+        { provide: TvShowGalleryService, useValue: tvShowGalleryService },
       ],
     }).compileComponents();
 
@@ -74,5 +80,15 @@ describe('TvShowRowActionsComponent', () => {
 
     bookmarkAction.triggerEventHandler('click');
     expect(favouritesService.toggle).toHaveBeenCalled();
+  });
+
+  it('should display slideshow gallery', () => {
+    const galleryAction = fixture.debugElement.query(
+      By.css(`[data-test-id="action-gallery-${tvShow.id}"]`),
+    );
+    expect(galleryAction).toBeTruthy();
+
+    galleryAction.triggerEventHandler('click');
+    expect(tvShowGalleryService.showDialog).toHaveBeenCalled();
   });
 });
