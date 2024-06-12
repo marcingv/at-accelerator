@@ -4,6 +4,7 @@ import { TvShowsListProviderService } from 'src/app/features/data-access';
 import { Signal, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import createSpyObj = jasmine.createSpyObj;
+import { provideRouter } from '@angular/router';
 
 describe('SearchPageComponent', () => {
   let component: SearchPageComponent;
@@ -32,6 +33,7 @@ describe('SearchPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [SearchPageComponent],
       providers: [
+        provideRouter([]),
         { provide: TvShowsListProviderService, useValue: listProvider },
       ],
     });

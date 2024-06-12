@@ -8,8 +8,8 @@
 <div class="mb-4">
   <app-paginator
     [totalPages]="totalPages()"
-    [(currentPage)]="currentPage"
-    (currentPageChange)="onPageChange()"
+    [currentPage]="currentPage()"
+    (currentPageChange)="onPageChange($event)"
   ></app-paginator>
 </div>
 
@@ -23,7 +23,7 @@
 <div class="mb-4">
   <app-paginator
     [totalPages]="totalPages()"
-    [(currentPage)]="currentPage"
-    (currentPageChange)="onPageChange()"
+    [currentPage]="currentPage()"
+    (currentPageChange)="onPageChange($event)"
   ></app-paginator>
 </div>
