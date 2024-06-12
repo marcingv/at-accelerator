@@ -1,3 +1,11 @@
+dialog {
+  @apply rounded shadow-xl;
+}
+
+dialog::backdrop {
+  @apply bg-gray-600 bg-opacity-25 backdrop-blur-sm;
+}
+
 .dialog-header {
   @apply flex flex-row gap-8 items-center justify-between;
   @apply text-gray-600;
