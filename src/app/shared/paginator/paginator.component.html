@@ -23,20 +23,32 @@
     </button>
   </div>
 
-  <div class="flex flex-row gap-1">
+  <div class="flex flex-row gap-1 items-center">
     @for (pageNumber of pageButtons(); track pageNumber) {
-      <button
-        [appButton]="pageNumber === currentPage() ? 'primary' : 'white'"
-        [title]="'Go to page ' + pageNumber"
-        [ngClass]="{
-          '!inline-block font-bold': pageNumber === currentPage(),
-          '!hidden md:!inline-block': pageNumber !== currentPage()
-        }"
-        (click)="goToPage(pageNumber)"
-        class="text-sm min-w-8 justify-center shadow"
-      >
-        {{ pageNumber }}
-      </button>
+      @if (pageNumber === currentPage()) {
+        <button
+          appButton="primary"
+          [title]="'Go to page ' + pageNumber"
+          (click)="goToPage(pageNumber)"
+          class="!hidden md:!inline-block font-bold text-sm min-w-8 justify-center shadow"
+        >
+          {{ pageNumber }}
+        </button>
+
+        <span class="md:hidden">
+          <span class="font-bold">{{ pageNumber }}</span>
+          of {{ totalPages() }}
+        </span>
+      } @else {
+        <button
+          appButton="white"
+          [title]="'Go to page ' + pageNumber"
+          (click)="goToPage(pageNumber)"
+          class="!hidden md:!inline-block text-sm min-w-8 justify-center shadow"
+        >
+          {{ pageNumber }}
+        </button>
+      }
     }
   </div>
 
