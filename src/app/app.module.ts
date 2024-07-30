@@ -10,9 +10,19 @@ import {
   withComponentInputBinding,
 } from '@angular/router';
 import { routes } from '@core/routing/app.routes';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from '@core/+state/reducers';
 
 @NgModule({
-  imports: [BrowserModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [
+    BrowserModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
+  ],
   declarations: [AppComponent],
   providers: [
     provideRouter(routes, withComponentInputBinding()),
