@@ -16,10 +16,9 @@ export class TvShowsListEffects {
           action.query && action.query.length
             ? this.api.search(action.query, action.page)
             : this.api.popularList(action.page);
-        console.warn('helo');
+
         return source$.pipe(
           switchMap((response) => {
-            console.warn(response);
             return concat(
               of(TvShowActions.addTvShows({ tvShows: response.tv_shows })),
               of(

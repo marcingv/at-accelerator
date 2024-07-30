@@ -1,64 +1,37 @@
+import { inject, Injectable } from '@angular/core';
+import { TvShow } from '@core/models';
+import { filter, first, Observable, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
 import {
-  effect,
-  inject,
-  Injectable,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
-import { TvShowsApiService } from '@core/api/tv-shows-api.service';
-import { TvShow, TvShowsPagedCollectionResponse } from '@core/models';
-import {
-  catchError,
-  finalize,
-  map,
-  Observable,
-  of,
-  Subscription,
-  tap,
-} from 'rxjs';
-import { Action, Store } from '@ngrx/store';
-import { TvShowActions } from '@features/data-access/+state/tv-shows';
-import { TvShowsListActions } from '@features/data-access/+state/tv-shows-list';
+  TvShowsListActions,
+  TvShowsListSelectors,
+} from '@features/data-access/+state/tv-shows-list';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TvShowsListProviderService {
-  public static readonly FIRST_PAGE: number = 1;
-
-  private api: TvShowsApiService = inject(TvShowsApiService);
   private store: Store = inject(Store);
 
-  private pageSignal: WritableSignal<number> = signal<number>(
-    TvShowsListProviderService.FIRST_PAGE,
+  public filterQuery = this.store.selectSignal(
+    TvShowsListSelectors.selectCurrentQuery,
   );
-  private filterQuerySignal: WritableSignal<string | null> = signal(null);
-  private totalPageSignal: WritableSignal<number> = signal<number>(0);
-  private isLoadingSignal: WritableSignal<boolean> = signal<boolean>(false);
-  private tvShowsSignal: WritableSignal<TvShow[]> = signal<TvShow[]>([]);
 
-  private currentLoadingTask?: Subscription;
+  public currentPage = this.store.selectSignal(
+    TvShowsListSelectors.selectCurrentPage,
+  );
 
-  public get filterQuery(): Signal<string | null> {
-    return this.filterQuerySignal.asReadonly();
-  }
+  public totalPages = this.store.selectSignal(
+    TvShowsListSelectors.selectPagesCount,
+  );
 
-  public get currentPage(): Signal<number> {
-    return this.pageSignal.asReadonly();
-  }
+  public tvShows = this.store.selectSignal(
+    TvShowsListSelectors.selectCurrentPageEntities,
+  );
 
-  public get totalPages(): Signal<number> {
-    return this.totalPageSignal.asReadonly();
-  }
-
-  public get tvShows(): Signal<TvShow[]> {
-    return this.tvShowsSignal;
-  }
-
-  public get isLoading(): Signal<boolean> {
-    return this.isLoadingSignal.asReadonly();
-  }
+  public isLoading = this.store.selectSignal(
+    TvShowsListSelectors.selectIsLoading,
+  );
 
   private loadData(query: string | null, page: number): Observable<TvShow[]> {
     this.store.dispatch(
@@ -68,50 +41,16 @@ export class TvShowsListProviderService {
       }),
     );
 
-    const source$: Observable<TvShowsPagedCollectionResponse> =
-      query && query.length
-        ? this.api.search(query, page)
-        : this.api.popularList(page);
-
-    this.isLoadingSignal.set(true);
-
-    return source$.pipe(
-      catchError(() =>
-        of({
-          tv_shows: [],
-          page: TvShowsListProviderService.FIRST_PAGE,
-          pages: 1,
-          total: '0',
-        } satisfies TvShowsPagedCollectionResponse),
+    return this.store.select(TvShowsListSelectors.selectTvShowsListState).pipe(
+      filter((state) => state.query === query && state.page === page),
+      switchMap(() =>
+        this.store.select(TvShowsListSelectors.selectCurrentPageEntities),
       ),
-      tap((response: TvShowsPagedCollectionResponse): void => {
-        this.tvShowsSignal.set(response.tv_shows);
-        this.totalPageSignal.set(response.pages);
-      }),
-      map((response: TvShowsPagedCollectionResponse) => response.tv_shows),
-      finalize(() => this.isLoadingSignal.set(false)),
-    );
-  }
-
-  public constructor() {
-    effect(
-      (): void => {
-        if (this.currentLoadingTask) {
-          this.currentLoadingTask.unsubscribe();
-          this.currentLoadingTask = undefined;
-        }
-
-        this.currentLoadingTask = this.loadData(
-          this.filterQuery(),
-          this.currentPage(),
-        ).subscribe();
-      },
-      { allowSignalWrites: true },
+      first(),
     );
   }
 
   public search(q: string | null, page: number): void {
-    this.filterQuerySignal.set(q);
-    this.pageSignal.set(page);
+    this.loadData(q, page);
   }
 }

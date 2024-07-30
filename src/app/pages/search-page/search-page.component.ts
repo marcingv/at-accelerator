@@ -51,8 +51,8 @@ export class SearchPageComponent {
         const page: string | null = params.get(QueryParams.PAGE);
 
         const routeParams: RouteQueryParams = {
-          q: q ?? this.filterQuery(),
-          page: (page ? +page : null) ?? this.currentPage(),
+          q: q,
+          page: page ? +page : null,
         };
 
         return routeParams;
@@ -76,6 +76,9 @@ export class SearchPageComponent {
     effect(() => {
       const query = this.filterQuery();
       const page = this.currentPage();
+      if (!page) {
+        return;
+      }
 
       const params: Params = {};
       if (page) {
