@@ -17,6 +17,9 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
+import { Action, Store } from '@ngrx/store';
+import { TvShowActions } from '@features/data-access/+state/tv-shows';
+import { TvShowsListActions } from '@features/data-access/+state/tv-shows-list';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +28,7 @@ export class TvShowsListProviderService {
   public static readonly FIRST_PAGE: number = 1;
 
   private api: TvShowsApiService = inject(TvShowsApiService);
+  private store: Store = inject(Store);
 
   private pageSignal: WritableSignal<number> = signal<number>(
     TvShowsListProviderService.FIRST_PAGE,
@@ -57,6 +61,13 @@ export class TvShowsListProviderService {
   }
 
   private loadData(query: string | null, page: number): Observable<TvShow[]> {
+    this.store.dispatch(
+      TvShowsListActions.loadPage({
+        query: query ?? undefined,
+        page: page,
+      }),
+    );
+
     const source$: Observable<TvShowsPagedCollectionResponse> =
       query && query.length
         ? this.api.search(query, page)

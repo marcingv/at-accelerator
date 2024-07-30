@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { TvShowActions } from './tv-show.actions';
 import { TvShow } from '@core/models';
 
@@ -42,9 +42,6 @@ export const reducer = createReducer(
   ),
   on(TvShowActions.deleteTvShows, (state, action) =>
     adapter.removeMany(action.ids, state),
-  ),
-  on(TvShowActions.loadTvShows, (state, action) =>
-    adapter.setAll(action.tvShows, state),
   ),
   on(TvShowActions.clearTvShows, (state) => adapter.removeAll(state)),
 );

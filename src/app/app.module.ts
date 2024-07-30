@@ -13,6 +13,9 @@ import { routes } from '@core/routing/app.routes';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from '@core/+state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { TvShowEffects } from '@features/data-access/+state/tv-shows';
+import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
 
 @NgModule({
   imports: [
@@ -23,6 +26,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
+    EffectsModule.forRoot(TvShowEffects, TvShowsListEffects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

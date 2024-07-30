@@ -5,7 +5,6 @@ import { TvShow } from '@core/models';
 export const TvShowActions = createActionGroup({
   source: 'TvShow/API',
   events: {
-    'Load TvShows': props<{ tvShows: TvShow[] }>(),
     'Add TvShow': props<{ tvShow: TvShow }>(),
     'Upsert TvShow': props<{ tvShow: TvShow }>(),
     'Add TvShows': props<{ tvShows: TvShow[] }>(),
