@@ -23,3 +23,6 @@ export const selectAll = createSelector(
       .filter((oneTvShow: TvShow) => !!oneTvShow);
   },
 );
+
+export const selectIsFavorite = (id: TvShowId) =>
+  createSelector(selectIds, (ids: TvShowId[]) => ids.includes(id));

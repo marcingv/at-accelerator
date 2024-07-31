@@ -8,6 +8,7 @@ export const TvShowsFavoritesActions = createActionGroup({
     'Load Favorites': emptyProps(),
     'Load Favorites Success': props<{ tvShows: TvShow[] }>(),
     'Load Favorites Failure': props<{ error: HttpErrorResponse }>(),
+    Set: props<{ ids: TvShowId[] }>(),
     Toggle: props<{ id: TvShowId }>(),
     Clear: emptyProps(),
     'Persist User Preferences': emptyProps(),

@@ -14,7 +14,14 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(TvShowsFavoritesActions.toggle, (state, action) => {
+  on(
+    TvShowsFavoritesActions.set,
+    (state, action): State => ({
+      ...state,
+      tvShowsIds: action.ids,
+    }),
+  ),
+  on(TvShowsFavoritesActions.toggle, (state, action): State => {
     const tvShowsIds: TvShowId[] = state.tvShowsIds.slice();
     if (tvShowsIds.includes(action.id)) {
       tvShowsIds.splice(tvShowsIds.indexOf(action.id), 1);
@@ -27,7 +34,7 @@ export const reducer = createReducer(
       tvShowsIds: tvShowsIds,
     };
   }),
-  on(TvShowsFavoritesActions.clear, (state) => {
+  on(TvShowsFavoritesActions.clear, (state): State => {
     return {
       ...state,
       tvShowsIds: [],
