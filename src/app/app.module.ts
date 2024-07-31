@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { TvShowEffects } from '@features/data-access/+state/tv-shows';
 import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
+import { TvShowsFavoritesEffects } from '@features/data-access/+state/tv-shows-favorites/tv-shows-favorites.effects';
 
 @NgModule({
   imports: [
@@ -26,7 +27,11 @@ import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot(TvShowEffects, TvShowsListEffects),
+    EffectsModule.forRoot(
+      TvShowEffects,
+      TvShowsListEffects,
+      TvShowsFavoritesEffects,
+    ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),
