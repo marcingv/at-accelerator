@@ -12,8 +12,12 @@ import {
 export class TvShowsFavouritesService {
   private store: Store = inject(Store);
 
-  public idsSignal: Signal<TvShowId[]> = this.store.selectSignal(
+  public readonly idsSignal: Signal<TvShowId[]> = this.store.selectSignal(
     TvShowsFavoritesSelectors.selectIds,
+  );
+
+  public readonly favorites = this.store.selectSignal(
+    TvShowsFavoritesSelectors.selectAll,
   );
 
   public clearAll(): void {

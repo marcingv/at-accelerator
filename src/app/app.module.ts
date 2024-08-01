@@ -16,8 +16,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { TvShowEffects } from '@features/data-access/+state/tv-shows';
 import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
-import { TvShowsFavoritesEffects } from '@features/data-access/+state/tv-shows-favorites/tv-shows-favorites.effects';
-import { TvShowsFavoritesPersistenceEffects } from '@features/data-access/+state/tv-shows-favorites/tv-shows-favorites-persistence.effects';
+import {
+  TvShowsFavoritesEffects,
+  TvShowsFavoritesPersistenceEffects,
+} from '@features/data-access/+state/tv-shows-favorites';
+import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-details';
 
 @NgModule({
   imports: [
@@ -33,6 +36,7 @@ import { TvShowsFavoritesPersistenceEffects } from '@features/data-access/+state
       TvShowsListEffects,
       TvShowsFavoritesEffects,
       TvShowsFavoritesPersistenceEffects,
+      TvShowsDetailsEffects,
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

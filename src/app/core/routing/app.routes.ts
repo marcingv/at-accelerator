@@ -5,6 +5,7 @@ import { FavoritesPageComponent } from 'src/app/pages/favorites-page';
 import { PathParams } from './path-params';
 import { tvShowDetailsResolver } from '@features/data-access/resolvers';
 import { MainLayoutComponent } from '@shared/layouts/main-layout';
+import { favoritesLoadedGuard } from '@features/data-access/guards/favorites-loaded.guard';
 
 export const routes: Routes = [
   {
@@ -12,7 +13,11 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: Paths.LIST, component: SearchPageComponent },
-      { path: Paths.FAVORITES, component: FavoritesPageComponent },
+      {
+        path: Paths.FAVORITES,
+        component: FavoritesPageComponent,
+        canActivate: [favoritesLoadedGuard],
+      },
       {
         path: Paths.DETAILS,
         children: [

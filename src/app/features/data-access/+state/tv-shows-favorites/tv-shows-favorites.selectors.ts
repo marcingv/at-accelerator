@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromTvShowsFavorites from './tv-shows-favorites.reducer';
-import { TvShow, TvShowId } from '@core/models';
-import { fromTvShows } from '@features/data-access/+state/tv-shows';
+import { TvShowDetails, TvShowId } from '@core/models';
 import { Dictionary } from '@ngrx/entity';
+import { fromTvShowsDetails } from '@features/data-access/+state/tv-shows-details';
 
 export const selectTvShowsFavoritesState =
   createFeatureSelector<fromTvShowsFavorites.State>(
@@ -15,14 +15,32 @@ export const selectIds = createSelector(
 );
 
 export const selectAll = createSelector(
-  fromTvShows.selectEntities,
+  fromTvShowsDetails.selectEntities,
   selectIds,
-  (entities: Dictionary<TvShow>, ids: TvShowId[]) => {
+  (entities: Dictionary<TvShowDetails>, ids: TvShowId[]): TvShowDetails[] => {
     return ids
       .map((oneId: TvShowId) => entities[oneId]!)
-      .filter((oneTvShow: TvShow) => !!oneTvShow);
+      .filter((oneTvShow: TvShowDetails) => !!oneTvShow);
   },
 );
 
 export const selectIsFavorite = (id: TvShowId) =>
   createSelector(selectIds, (ids: TvShowId[]) => ids.includes(id));
+
+export const selectAreAllLoaded = createSelector(
+  selectAll,
+  selectIds,
+  (entities: TvShowDetails[], ids: TvShowId[]) =>
+    entities.length === ids.length,
+);
+
+export const selectNotLoadedIds = createSelector(
+  selectAll,
+  selectIds,
+  (entities: TvShowDetails[], ids: TvShowId[]): TvShowId[] => {
+    return ids.filter(
+      (oneId: TvShowId) =>
+        !entities.find((oneShow: TvShowDetails) => oneShow.id === oneId),
+    );
+  },
+);
