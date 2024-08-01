@@ -98,6 +98,15 @@ export class SearchPageComponent {
     this.queryParams$
       .pipe(
         tap((params: RouteQueryParams): void => {
+          if (!params.q && !params.page) {
+            this.listProvider.search(
+              this.filterQuery(),
+              this.currentPage() ?? 1,
+            );
+
+            return;
+          }
+
           if (
             params.q !== this.filterQuery() ||
             params.page !== this.currentPage()
