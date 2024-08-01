@@ -1,51 +1,52 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
-import { TvShowsDetailsDictionary } from 'src/app/features/data-access';
-import { TvShowsApiService } from '@core/api/tv-shows-api.service';
-import { TvShowDetails, TvShowDetailsResponse, TvShowId } from '@core/models';
+import { filter, first, Observable, of, shareReplay, switchMap } from 'rxjs';
+import { TvShowDetails, TvShowId } from '@core/models';
+import { Store } from '@ngrx/store';
+import {
+  fromTvShowsDetails,
+  TvShowsDetailsActions,
+} from '@features/data-access/+state/tv-shows-details';
+import { Actions, ofType } from '@ngrx/effects';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TvShowDetailsService {
-  private readonly api: TvShowsApiService = inject(TvShowsApiService);
-
-  private readonly data$: BehaviorSubject<TvShowsDetailsDictionary> =
-    new BehaviorSubject<TvShowsDetailsDictionary>({});
+  private readonly store: Store = inject(Store);
+  private readonly actions$: Actions = inject(Actions);
 
   public getDetails(id: TvShowId): Observable<TvShowDetails | null> {
-    if (this.data$.value[id]) {
-      return of(this.data$.value[id]);
-    }
+    return this.store.select(fromTvShowsDetails.selectById(id)).pipe(
+      switchMap((model: TvShowDetails | null) => {
+        if (model) {
+          return of(model);
+        }
 
-    // We have to load data from api
-    return this.loadDetails(id);
-  }
-
-  public getAll(): Observable<TvShowDetails[]> {
-    return this.data$.pipe(
-      map((dict: TvShowsDetailsDictionary) => {
-        return Object.values(dict);
+        return this.loadDetails(id);
       }),
     );
   }
 
+  public getAll(): Observable<TvShowDetails[]> {
+    return this.store.select(fromTvShowsDetails.selectAll);
+  }
+
   public loadDetails(id: TvShowId): Observable<TvShowDetails | null> {
-    return this.api.details(id).pipe(
-      catchError(() => of(null)),
-      tap((response: TvShowDetailsResponse | null): void => {
-        if (!response) {
-          return;
-        }
+    const result$ = this.actions$.pipe(
+      ofType(
+        TvShowsDetailsActions.loadSuccess,
+        TvShowsDetailsActions.loadFailure,
+      ),
+      filter((action) => action.id === id),
+      first(),
+      shareReplay(1),
+    );
 
-        const updatedDict: TvShowsDetailsDictionary = { ...this.data$.value };
-        updatedDict[response.tvShow.id] = response.tvShow;
+    result$.subscribe();
+    this.store.dispatch(TvShowsDetailsActions.load({ id: id }));
 
-        this.data$.next(updatedDict);
-      }),
-      map(() => {
-        return this.data$.value[id] ?? null;
-      }),
+    return result$.pipe(
+      switchMap(() => this.store.select(fromTvShowsDetails.selectById(id))),
     );
   }
 }

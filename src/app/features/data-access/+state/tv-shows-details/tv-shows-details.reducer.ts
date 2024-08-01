@@ -1,7 +1,7 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { TvShowsDetailsActions } from './tv-shows-details.actions';
-import { TvShowDetails } from '@core/models';
+import { TvShowDetails, TvShowId } from '@core/models';
 
 export const tvShowsDetailsFeatureKey = 'tvShowsDetails';
 
@@ -42,9 +42,6 @@ export const reducer = createReducer(
   on(TvShowsDetailsActions.deleteMany, (state, action) =>
     adapter.removeMany(action.ids, state),
   ),
-  on(TvShowsDetailsActions.load, (state, action) =>
-    adapter.setAll(action.models, state),
-  ),
   on(TvShowsDetailsActions.clear, (state) => adapter.removeAll(state)),
 );
 
@@ -58,3 +55,15 @@ export const tvShowsDetailsFeature = createFeature({
 
 export const { selectIds, selectEntities, selectAll, selectTotal } =
   tvShowsDetailsFeature;
+
+export const selectExists = (id: TvShowId) =>
+  createSelector(
+    tvShowsDetailsFeature.selectEntities,
+    (entities) => !!entities[id],
+  );
+
+export const selectById = (id: TvShowId) =>
+  createSelector(
+    tvShowsDetailsFeature.selectEntities,
+    (entities): TvShowDetails | null => entities[id] ?? null,
+  );
