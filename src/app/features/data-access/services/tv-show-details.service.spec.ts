@@ -1,23 +1,49 @@
 import { TestBed } from '@angular/core/testing';
 import { TvShowDetailsService } from './tv-show-details.service';
-import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { TvShowDetails, TvShowId } from '@core/models';
-import { firstValueFrom, of } from 'rxjs';
+import {
+  catchError,
+  first,
+  firstValueFrom,
+  lastValueFrom,
+  Subject,
+  tap,
+} from 'rxjs';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Action } from '@ngrx/store';
+import {
+  fromTvShowsDetails,
+  TvShowsDetailsActions,
+} from '@features/data-access/+state/tv-shows-details';
+import { TvShowsDetailsStateFactory } from '@testing/store/tv-shows-details-state.factory';
 import { TvShowDetailsFactory } from '@testing/factories';
-import SpyObj = jasmine.SpyObj;
-import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowDetailsService', () => {
   let service: TvShowDetailsService;
-  let api: SpyObj<TvShowsApiService>;
+  let store: MockStore;
+  let actions$: Subject<Action>;
+
+  const INITIAL_STATE: {
+    [fromTvShowsDetails.tvShowsDetailsFeatureKey]: fromTvShowsDetails.State;
+  } = {
+    tvShowsDetails: TvShowsDetailsStateFactory.createInstance({
+      ids: [],
+      entities: {},
+    }),
+  };
 
   beforeEach(() => {
-    api = createSpyObj<TvShowsApiService>(['details']);
+    actions$ = new Subject<Action>();
 
     TestBed.configureTestingModule({
-      providers: [{ provide: TvShowsApiService, useValue: api }],
+      providers: [
+        provideMockStore({ initialState: INITIAL_STATE }),
+        provideMockActions(() => actions$),
+      ],
     });
 
+    store = TestBed.inject(MockStore);
     service = TestBed.inject(TvShowDetailsService);
   });
 
@@ -31,49 +57,71 @@ describe('TvShowDetailsService', () => {
     expect(details.length).toEqual(0);
   });
 
-  describe('Loading details from api', () => {
-    it('should load details from api', async () => {
-      api.details.and.callFake((id: TvShowId) => {
-        return of({
-          tvShow: TvShowDetailsFactory.createInstance({ id: id }),
-        });
+  describe('Loading details', () => {
+    it('should dispatch load action when details are not yet loaded', (done) => {
+      const id: TvShowId = 123;
+      const loadedDetailsAction = TvShowsDetailsActions.loadSuccess({
+        id: id,
+        model: TvShowDetailsFactory.createInstance({ id: id }),
       });
+      const dispatchSpy = spyOn(store, 'dispatch');
 
-      const details: TvShowDetails | null = await firstValueFrom(
-        service.loadDetails(123),
-      );
+      let details: TvShowDetails | null = null;
+      service
+        .getDetails(id)
+        .pipe(
+          first(),
+          tap((model) => {
+            details = model;
+
+            expect(details).toBeTruthy();
+            expect(details?.id).toEqual(id);
+            expect(dispatchSpy).toHaveBeenCalledWith(
+              TvShowsDetailsActions.load({
+                id: id,
+              }),
+            );
+
+            done();
+          }),
+          catchError(() => {
+            done.fail();
+
+            throw new Error('Load details failed');
+          }),
+        )
+        .subscribe();
+
+      const state: {
+        [fromTvShowsDetails.tvShowsDetailsFeatureKey]: fromTvShowsDetails.State;
+      } = {
+        tvShowsDetails: TvShowsDetailsStateFactory.createInstance({
+          ids: [id],
+          entities: { [id]: loadedDetailsAction.model },
+        }),
+      };
+      store.setState(state);
+      actions$.next(loadedDetailsAction);
+    });
+
+    it('should not dispatch load action when details are already loaded', async () => {
+      const id: TvShowId = 123;
+      const state: {
+        [fromTvShowsDetails.tvShowsDetailsFeatureKey]: fromTvShowsDetails.State;
+      } = {
+        tvShowsDetails: TvShowsDetailsStateFactory.createInstance({
+          ids: [id],
+          entities: { [id]: TvShowDetailsFactory.createInstance({ id: id }) },
+        }),
+      };
+      store.setState(state);
+
+      const dispatchSpy = spyOn(store, 'dispatch');
+      const details = await lastValueFrom(service.getDetails(id).pipe(first()));
 
       expect(details).toBeTruthy();
-      expect(api.details).toHaveBeenCalledOnceWith(123);
-
-      const allDetails: TvShowDetails[] = await firstValueFrom(
-        service.getAll(),
-      );
-
-      expect(allDetails.length).toEqual(1);
-    });
-  });
-
-  describe('Getting details', () => {
-    it('should cache details', async () => {
-      api.details.and.callFake((id: TvShowId) => {
-        return of({
-          tvShow: TvShowDetailsFactory.createInstance({ id: id }),
-        });
-      });
-
-      const details1: TvShowDetails | null = await firstValueFrom(
-        service.getDetails(123),
-      );
-
-      const details2: TvShowDetails | null = await firstValueFrom(
-        service.getDetails(123),
-      );
-
-      expect(details1).toBeTruthy();
-      expect(details2).toBeTruthy();
-      expect(details1).toBe(details2);
-      expect(api.details).toHaveBeenCalledOnceWith(123);
+      expect(details!.id).toEqual(id);
+      expect(dispatchSpy).not.toHaveBeenCalled();
     });
   });
 });

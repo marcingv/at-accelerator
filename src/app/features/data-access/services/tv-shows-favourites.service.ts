@@ -1,69 +1,36 @@
-import { computed, inject, Injectable, Signal } from '@angular/core';
-import { BrowserStorage, LocalStorageService } from '@core/storage';
-import { FavouriteTvShowsDictionary } from 'src/app/features/data-access';
+import { inject, Injectable, Signal } from '@angular/core';
 import { TvShow, TvShowId } from '@core/models';
+import { Store } from '@ngrx/store';
+import {
+  TvShowsFavoritesActions,
+  TvShowsFavoritesSelectors,
+} from '@features/data-access/+state/tv-shows-favorites';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TvShowsFavouritesService {
-  private readonly STORAGE_KEY = 'favourites-tv-shows';
+  private store: Store = inject(Store);
 
-  private storage: BrowserStorage = inject(LocalStorageService);
+  public readonly idsSignal: Signal<TvShowId[]> = this.store.selectSignal(
+    TvShowsFavoritesSelectors.selectIds,
+  );
 
-  private favouritesDictSignal =
-    this.storage.getItemSignal<FavouriteTvShowsDictionary>(this.STORAGE_KEY);
-
-  public listSignal: Signal<TvShow[]> = computed(() => {
-    const dictionary = this.favouritesDictSignal();
-    if (!dictionary) {
-      return [];
-    }
-
-    return Object.values(dictionary);
-  });
-
-  public idsSignal: Signal<number[]> = computed(() => {
-    return this.listSignal().map((oneTvShow: TvShow) => oneTvShow.id);
-  });
+  public readonly favorites = this.store.selectSignal(
+    TvShowsFavoritesSelectors.selectAll,
+  );
 
   public clearAll(): void {
-    this.storage.clearItem(this.STORAGE_KEY);
+    this.store.dispatch(TvShowsFavoritesActions.clear());
   }
 
   public toggle(tvShow: TvShow): void {
-    this.isFavourite(tvShow.id)() ? this.remove(tvShow.id) : this.add(tvShow);
-  }
-
-  public add(tvShow: TvShow): void {
-    let dictionary = this.favouritesDictSignal();
-    if (!dictionary) {
-      dictionary = {};
-    }
-
-    this.storage.setItem(this.STORAGE_KEY, {
-      ...dictionary,
-      [tvShow.id]: tvShow,
-    });
-  }
-
-  public remove(tvShowId: TvShowId): void {
-    let dictionary = this.favouritesDictSignal();
-    if (!dictionary) {
-      dictionary = {};
-    }
-    if (dictionary[tvShowId]) {
-      delete dictionary[tvShowId];
-    }
-
-    this.storage.setItem(this.STORAGE_KEY, { ...dictionary });
+    this.store.dispatch(TvShowsFavoritesActions.toggle({ id: tvShow.id }));
   }
 
   public isFavourite(tvShowId: TvShowId): Signal<boolean> {
-    return computed<boolean>(() => {
-      const dict = this.favouritesDictSignal();
-
-      return !!dict && !!dict[tvShowId];
-    });
+    return this.store.selectSignal(
+      TvShowsFavoritesSelectors.selectIsFavorite(tvShowId),
+    );
   }
 }
