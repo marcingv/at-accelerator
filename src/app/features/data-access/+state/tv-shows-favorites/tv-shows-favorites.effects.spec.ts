@@ -3,12 +3,11 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Subject } from 'rxjs';
 import { TvShowsFavoritesEffects } from './tv-shows-favorites.effects';
 import { Action } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 
 describe('TvShowsFavoritesEffects', () => {
   let actions$: Subject<Action>;
-  let store: MockStore;
   let effects: TvShowsFavoritesEffects;
   let api: jasmine.SpyObj<TvShowsApiService>;
 
@@ -24,7 +23,6 @@ describe('TvShowsFavoritesEffects', () => {
       ],
     });
 
-    store = TestBed.inject(MockStore);
     effects = TestBed.inject(TvShowsFavoritesEffects);
   });
 

@@ -1,8 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
@@ -21,10 +17,7 @@ import {
 } from '@features/data-access/+state/tv-shows-favorites';
 import { Actions, ofType } from '@ngrx/effects';
 
-export const favoritesLoadedGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot,
-): Observable<boolean> => {
+export const favoritesLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const store = inject(Store);
   const actions$ = inject(Actions);
 

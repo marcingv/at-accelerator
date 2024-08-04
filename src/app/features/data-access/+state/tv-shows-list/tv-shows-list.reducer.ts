@@ -24,23 +24,32 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(TvShowsListActions.loadPage, (state, action) => ({
-    ...state,
-    isLoading: true,
-  })),
-  on(TvShowsListActions.loadPageSuccess, (state, action) => ({
-    ...state,
-    ids: action.ids,
-    page: action.page,
-    pages: action.pages,
-    total: action.total,
-    query: action.query,
-    isLoading: false,
-  })),
-  on(TvShowsListActions.loadPageFailure, (state) => ({
-    ...state,
-    isLoading: false,
-  })),
+  on(
+    TvShowsListActions.loadPage,
+    (state): State => ({
+      ...state,
+      isLoading: true,
+    }),
+  ),
+  on(
+    TvShowsListActions.loadPageSuccess,
+    (state, action): State => ({
+      ...state,
+      ids: action.ids,
+      page: action.page,
+      pages: action.pages,
+      total: action.total,
+      query: action.query,
+      isLoading: false,
+    }),
+  ),
+  on(
+    TvShowsListActions.loadPageFailure,
+    (state): State => ({
+      ...state,
+      isLoading: false,
+    }),
+  ),
 );
 
 export const tvShowsListFeature = createFeature({

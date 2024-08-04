@@ -4,8 +4,10 @@ import { CanActivateFn } from '@angular/router';
 import { favoritesLoadedGuard } from './favorites-loaded.guard';
 
 describe('favoritesLoadedGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => favoritesLoadedGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() =>
+      favoritesLoadedGuard(...guardParameters),
+    );
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
