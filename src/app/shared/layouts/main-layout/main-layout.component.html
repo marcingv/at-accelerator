@@ -12,18 +12,27 @@
         [routerLink]="SEARCH_LINK"
         routerLinkActive="active"
         class="menu-link"
-        title="Search"
+        [title]="SEARCH_LABEL | transloco"
       >
-        Search
+        {{ SEARCH_LABEL | transloco }}
       </a>
 
       <a
         [routerLink]="FAVORITES_LINK"
         routerLinkActive="active"
         class="menu-link"
-        title="My favorites"
+        [title]="FAVORITES_LABEL | transloco"
       >
-        My favorites
+        {{ FAVORITES_LABEL | transloco }}
+      </a>
+
+      <a
+        [routerLink]="WISHLIST_LINK"
+        routerLinkActive="active"
+        class="menu-link"
+        [title]="WISHLIST_LABEL | transloco"
+      >
+        {{ WISHLIST_LABEL | transloco }}
       </a>
     </div>
   </div>

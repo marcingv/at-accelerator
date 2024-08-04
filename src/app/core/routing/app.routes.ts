@@ -6,6 +6,7 @@ import { PathParams } from './path-params';
 import { tvShowDetailsResolver } from '@features/data-access/resolvers';
 import { MainLayoutComponent } from '@shared/layouts/main-layout';
 import { favoritesLoadedGuard } from '@features/data-access/guards/favorites-loaded.guard';
+import { WishlistPageComponent } from '@pages/wishlist-page';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,10 @@ export const routes: Routes = [
         path: Paths.FAVORITES,
         component: FavoritesPageComponent,
         canActivate: [favoritesLoadedGuard],
+      },
+      {
+        path: Paths.WISHLIST,
+        component: WishlistPageComponent,
       },
       {
         path: Paths.DETAILS,

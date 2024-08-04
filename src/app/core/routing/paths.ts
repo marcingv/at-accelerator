@@ -4,4 +4,5 @@ export enum Paths {
   LIST = 'list',
   FAVORITES = 'favorites',
   DETAILS = 'details',
+  WISHLIST = 'wishlist',
 }

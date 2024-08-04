@@ -1,4 +1,11 @@
 {
+  "header": {
+    "menu": {
+      "search": "Search",
+      "favorites": "My favorites",
+      "wishlist": "My wishlist"
+    }
+  },
   "showsTable": {
     "actions": {
       "details": "Details",
