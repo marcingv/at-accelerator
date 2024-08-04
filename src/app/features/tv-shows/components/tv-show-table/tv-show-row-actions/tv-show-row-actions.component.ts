@@ -16,6 +16,7 @@ import {
   OpenTvShowGalleryDirective,
   ToggleFavoriteTvShowDirective,
 } from '@features/tv-shows/directives';
+import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -29,6 +30,7 @@ import {
     ArrowTopRightOnSquareIconComponent,
     ToggleFavoriteTvShowDirective,
     OpenTvShowGalleryDirective,
+    ClipboardDocumentListIconComponent,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',

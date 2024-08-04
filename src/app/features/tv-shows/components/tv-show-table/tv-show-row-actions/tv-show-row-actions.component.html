@@ -20,6 +20,16 @@
   <button
     appButton="transparent"
     class="!p-1"
+    [attr.data-test-id]="'action-wishlist-' + tvShow.id"
+  >
+    <app-clipboard-document-list-icon
+      cssClass="size-5"
+    ></app-clipboard-document-list-icon>
+  </button>
+
+  <button
+    appButton="transparent"
+    class="!p-1"
     [appOpenTvShowGallery]="tvShow.id"
     [attr.data-test-id]="'action-gallery-' + tvShow.id"
   >
