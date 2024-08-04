@@ -25,3 +25,11 @@ export const selectWishlistEntities = createSelector(
 
 export const selectIsOnWishlist = (id: TvShowId) =>
   createSelector(selectWishlistIds, (ids: TvShowId[]) => ids.includes(id));
+
+export const selectAreWishlistEntitiesLoaded = createSelector(
+  selectWishlistIds,
+  fromTvShows.selectEntities,
+  (ids: TvShowId[], entities: Dictionary<TvShow>) => {
+    return ids.every((oneId) => !!entities[oneId]);
+  },
+);
