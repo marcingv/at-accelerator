@@ -21,6 +21,7 @@ import {
   TvShowsFavoritesPersistenceEffects,
 } from '@features/data-access/+state/tv-shows-favorites';
 import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-details';
+import { TranslocoRootModule } from '@core/translations';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-det
       maxAge: 25,
       logOnly: !isDevMode(),
     }),
+    TranslocoRootModule,
   ],
   declarations: [AppComponent],
   providers: [
