@@ -19,6 +19,7 @@ import {
 import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
 import { TranslationKey } from '@core/translations';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { ToggleWishlistDirective } from '@features/wishlist/directives';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -34,6 +35,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
     OpenTvShowGalleryDirective,
     ClipboardDocumentListIconComponent,
     TranslocoPipe,
+    ToggleWishlistDirective,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',

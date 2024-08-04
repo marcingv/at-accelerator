@@ -35,7 +35,9 @@
     </div>
   </ng-template>
 
-  <ng-template #footer>
-    {{ tvShow() | nextEpisodeCountdown }}
-  </ng-template>
+  @if (tvShowDetails(); as details) {
+    <ng-template #footer>
+      {{ details | nextEpisodeCountdown }}
+    </ng-template>
+  }
 </app-card>

@@ -4,8 +4,9 @@ import {
   computed,
   input,
   InputSignal,
+  Signal,
 } from '@angular/core';
-import { TvShowDetails } from '@core/models';
+import { isTvShowDetails, TvShow, TvShowDetails } from '@core/models';
 import { CardComponent } from '@shared/cards';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { CommonModule } from '@angular/common';
@@ -34,7 +35,15 @@ import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowCardComponent {
-  public tvShow: InputSignal<TvShowDetails> = input.required<TvShowDetails>();
+  public tvShow: InputSignal<TvShow | TvShowDetails> = input.required<
+    TvShow | TvShowDetails
+  >();
+
+  public tvShowDetails: Signal<TvShowDetails | undefined> = computed(() => {
+    const tvShow = this.tvShow();
+
+    return isTvShowDetails(tvShow) ? tvShow : undefined;
+  });
 
   protected cssBackgroundImage = computed(() => {
     return `url('${this.tvShow().image_thumbnail_path}')`;

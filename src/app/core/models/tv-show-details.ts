@@ -1,6 +1,12 @@
 import { Episode } from './episode';
 import { TvShow } from './tv-show';
 
+export function isTvShowDetails(obj: unknown): obj is TvShowDetails {
+  return (
+    !!obj && Object.hasOwn(obj, 'url') && Object.hasOwn(obj, 'description')
+  );
+}
+
 export interface TvShowDetails extends TvShow {
   url: string;
   description: string;

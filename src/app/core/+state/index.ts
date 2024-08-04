@@ -11,7 +11,7 @@ export interface State {
   [fromTvShowsList.tvShowsListFeatureKey]: fromTvShowsList.State;
   [fromTvShowsFavorites.tvShowsFavoritesFeatureKey]: fromTvShowsFavorites.State;
   [fromTvShowsDetails.tvShowsDetailsFeatureKey]: fromTvShowsDetails.State;
-  [fromWishlist.wishlistFeatureKey]?: fromWishlist.State;
+  [fromWishlist.wishlistFeatureKey]: fromWishlist.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -20,6 +20,7 @@ export const reducers: ActionReducerMap<State> = {
   [fromTvShowsFavorites.tvShowsFavoritesFeatureKey]:
     fromTvShowsFavorites.reducer,
   [fromTvShowsDetails.tvShowsDetailsFeatureKey]: fromTvShowsDetails.reducer,
+  [fromWishlist.wishlistFeatureKey]: fromWishlist.reducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];

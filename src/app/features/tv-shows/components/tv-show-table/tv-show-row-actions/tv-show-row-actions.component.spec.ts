@@ -9,12 +9,14 @@ import { TvShowDetailsFactory } from '@testing/factories';
 import { provideTranslationsTestingModule } from '@testing/translations';
 import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import createSpyObj = jasmine.createSpyObj;
+import { WishlistShowsService } from '@features/wishlist/data-access/services';
 
 describe('TvShowRowActionsComponent', () => {
   let component: TvShowRowActionsComponent;
   let fixture: ComponentFixture<TvShowRowActionsComponent>;
   let favouritesService: jasmine.SpyObj<TvShowsFavouritesService>;
   let tvShowGalleryService: jasmine.SpyObj<TvShowGalleryService>;
+  let wishlistService: jasmine.SpyObj<WishlistShowsService>;
 
   let isFavoriteSignal: WritableSignal<boolean>;
 
@@ -40,6 +42,12 @@ describe('TvShowRowActionsComponent', () => {
 
     tvShowGalleryService = createSpyObj<TvShowGalleryService>(['showDialog']);
 
+    wishlistService = createSpyObj<WishlistShowsService>([
+      'isOnWishlist',
+      'toggle',
+    ]);
+    wishlistService.isOnWishlist.and.returnValue(signal(false));
+
     await TestBed.configureTestingModule({
       imports: [TvShowRowActionsComponent],
       providers: [
@@ -47,6 +55,7 @@ describe('TvShowRowActionsComponent', () => {
         provideTranslationsTestingModule(),
         { provide: TvShowsFavouritesService, useValue: favouritesService },
         { provide: TvShowGalleryService, useValue: tvShowGalleryService },
+        { provide: WishlistShowsService, useValue: wishlistService },
       ],
     }).compileComponents();
 

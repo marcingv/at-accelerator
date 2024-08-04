@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
 import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-collection-placeholder';
 import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
+import { TranslationKey } from '@core/translations';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',
@@ -11,6 +13,7 @@ import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
     CommonModule,
     TvShowCardComponent,
     EmptyCollectionPlaceholderComponent,
+    TranslocoPipe,
   ],
   templateUrl: './favorite-tv-shows-list.component.html',
   styleUrl: './favorite-tv-shows-list.component.css',
@@ -18,6 +21,9 @@ import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 })
 export class FavoriteTvShowsListComponent {
   private readonly favoritesService = inject(TvShowsFavouritesService);
+
+  protected readonly EMPTY_MESSAGE: TranslationKey =
+    'favoritesShows.emptyMessage';
 
   public readonly favorites = this.favoritesService.favorites;
 }

@@ -22,3 +22,6 @@ export const selectWishlistEntities = createSelector(
       .filter((oneShow: TvShow) => !!oneShow);
   },
 );
+
+export const selectIsOnWishlist = (id: TvShowId) =>
+  createSelector(selectWishlistIds, (ids: TvShowId[]) => ids.includes(id));

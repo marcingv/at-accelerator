@@ -15,5 +15,11 @@
       "addToFavorites": "Add to favorites",
       "removeFromFavorites": "Remove from favorites"
     }
+  },
+  "favoritesShows": {
+    "emptyMessage": "You have no favorite tv shows."
+  },
+  "wishlistShows": {
+    "emptyMessage": "You have no wishlist shows."
   }
 }

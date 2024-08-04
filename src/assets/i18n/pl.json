@@ -15,5 +15,11 @@
       "addToFavorites": "Dodaj do ulubionych",
       "removeFromFavorites": "Usuń z ulubionych"
     }
+  },
+  "favoritesShows": {
+    "emptyMessage": "Nie masz ulubionych seriali."
+  },
+  "wishlistShows": {
+    "emptyMessage": "Twoja lista życzeń jest pusta."
   }
 }
