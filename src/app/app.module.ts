@@ -16,7 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslocoRootModule } from '@core/translations';
 import { TvShowEffects } from '@features/tv-shows/data-access/+state/tv-shows';
-import { TvShowsListEffects } from '@features/tv-shows/data-access/+state/tv-shows-list';
+import { TvShowsListEffects } from '@features/search/data-access/+state';
 import {
   TvShowsFavoritesEffects,
   TvShowsFavoritesPersistenceEffects,

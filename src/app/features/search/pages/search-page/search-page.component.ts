@@ -6,14 +6,14 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShowTableComponent } from '@features/tv-shows/components/tv-show-table';
-import { TvShowSearchFormComponent } from '@features/tv-shows/components/tv-show-search-form';
+import { TvShowSearchFormComponent } from '@features/search/components/tv-show-search-form';
 import { PaginatorComponent } from '@shared/paginator';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { map, Observable, tap } from 'rxjs';
 import { QueryParams } from '@core/routing/query-params';
 import { Paths } from '@core/routing/paths';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TvShowsListProviderService } from '@features/tv-shows/data-access';
+import { TvShowsListProviderService } from '@features/search/data-access/services';
 
 interface RouteQueryParams {
   q: string | null;

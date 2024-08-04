@@ -3,7 +3,7 @@ import { SearchPageComponent } from './search-page.component';
 import { Signal, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import { provideRouter } from '@angular/router';
-import { TvShowsListProviderService } from '@features/tv-shows/data-access';
+import { TvShowsListProviderService } from '@features/search/data-access/services';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('SearchPageComponent', () => {

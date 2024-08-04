@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import {
   TvShowsListActions,
   TvShowsListSelectors,
-} from '@features/tv-shows/data-access/+state/tv-shows-list';
+} from '@features/search/data-access/+state';
 
 @Injectable({
   providedIn: 'root',

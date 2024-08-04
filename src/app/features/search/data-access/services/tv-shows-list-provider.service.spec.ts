@@ -7,8 +7,8 @@ import { fromTvShows } from '@features/tv-shows/data-access/+state/tv-shows';
 import {
   fromTvShowsList,
   TvShowsListActions,
-} from '@features/tv-shows/data-access/+state/tv-shows-list';
-import { tvShowsListFeatureKey } from '@features/tv-shows/data-access/+state/tv-shows-list/tv-shows-list.reducer';
+} from '@features/search/data-access/+state';
+import { tvShowsListFeatureKey } from '@features/search/data-access/+state/tv-shows-list.reducer';
 
 describe('TvShowsListProviderService', () => {
   let service: TvShowsListProviderService;
