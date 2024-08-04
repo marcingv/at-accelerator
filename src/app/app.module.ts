@@ -25,6 +25,7 @@ import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { MockTvShowsApiService } from '@testing/api';
 import { WishlistEffects } from '@features/wishlist/data-access/+state';
+import { WishlistPersistenceEffects } from '@features/wishlist/data-access/+state/wishlist-persistence.effects';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { WishlistEffects } from '@features/wishlist/data-access/+state';
       TvShowsFavoritesPersistenceEffects,
       TvShowsDetailsEffects,
       WishlistEffects,
+      WishlistPersistenceEffects,
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

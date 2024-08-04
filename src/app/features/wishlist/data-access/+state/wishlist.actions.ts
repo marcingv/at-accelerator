@@ -10,5 +10,8 @@ export const WishlistActions = createActionGroup({
     'Load Failure': props<{ error: HttpErrorResponse }>(),
     Set: props<{ ids: TvShowId[] }>(),
     Toggle: props<{ id: TvShowId }>(),
+    Clear: emptyProps(),
+    'Persist User Preferences': emptyProps(),
+    'Restore User Preferences': emptyProps(),
   },
 });

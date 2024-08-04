@@ -34,6 +34,13 @@ export const reducer = createReducer(
       tvShowsIds: ids,
     };
   }),
+  on(
+    WishlistActions.clear,
+    (state): State => ({
+      ...state,
+      tvShowsIds: [],
+    }),
+  ),
 );
 
 export const wishlistFeature = createFeature({
