@@ -1,4 +1,7 @@
 {
+  "common": {
+    "emptyCollection": "Collection is empty"
+  },
   "header": {
     "menu": {
       "search": "Search",

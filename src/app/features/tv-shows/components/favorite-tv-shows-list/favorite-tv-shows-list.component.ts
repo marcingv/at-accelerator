@@ -1,29 +1,26 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  InputSignal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
-import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-collection-placeholder';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import { TranslationKey } from '@core/translations';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TvShowDetails } from '@core/models';
+import { TvShowsListComponent } from '@features/tv-shows/components/tv-shows-list';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    TvShowCardComponent,
-    EmptyCollectionPlaceholderComponent,
-    TranslocoPipe,
-  ],
+  imports: [CommonModule, TvShowsListComponent],
   templateUrl: './favorite-tv-shows-list.component.html',
   styleUrl: './favorite-tv-shows-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoriteTvShowsListComponent {
-  private readonly favoritesService = inject(TvShowsFavouritesService);
-
   protected readonly EMPTY_MESSAGE: TranslationKey =
     'favoritesShows.emptyMessage';
 
-  public readonly favorites = this.favoritesService.favorites;
+  public readonly favorites: InputSignal<TvShowDetails[]> =
+    input.required<TvShowDetails[]>();
 }

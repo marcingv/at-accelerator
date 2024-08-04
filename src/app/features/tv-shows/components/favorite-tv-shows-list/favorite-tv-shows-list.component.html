@@ -1,12 +1,4 @@
-@if (favorites().length) {
-  <div
-    class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
-  >
-    @for (oneTvShow of favorites(); track oneTvShow.id) {
-      <app-tv-show-card [tvShow]="oneTvShow"></app-tv-show-card>
-    }
-  </div>
-} @else {
-  <app-empty-collection-placeholder [message]="EMPTY_MESSAGE | transloco">
-  </app-empty-collection-placeholder>
-}
+<app-tv-shows-list
+  [shows]="favorites()"
+  [emptyMessage]="EMPTY_MESSAGE"
+></app-tv-shows-list>

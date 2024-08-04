@@ -39,6 +39,7 @@ describe('WishlistShowsComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(WishlistShowsComponent);
+    fixture.componentRef.setInput('shows', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
