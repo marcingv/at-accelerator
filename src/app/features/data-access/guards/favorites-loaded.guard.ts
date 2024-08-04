@@ -9,7 +9,6 @@ import {
   of,
   shareReplay,
   switchMap,
-  tap,
 } from 'rxjs';
 import {
   TvShowsFavoritesActions,
@@ -22,7 +21,6 @@ export const favoritesLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const actions$ = inject(Actions);
 
   return store.select(TvShowsFavoritesSelectors.selectAreAllLoaded).pipe(
-    tap((areLoaded) => console.warn(areLoaded)),
     switchMap((areLoaded) => {
       if (areLoaded) {
         return of(true);
