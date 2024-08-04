@@ -20,7 +20,7 @@ import { TvShowsListEffects } from '@features/tv-shows/data-access/+state/tv-sho
 import {
   TvShowsFavoritesEffects,
   TvShowsFavoritesPersistenceEffects,
-} from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+} from '@features/favorites/data-access/+state';
 import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-shows-details';
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { MockTvShowsApiService } from '@testing/api';

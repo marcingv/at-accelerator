@@ -14,8 +14,8 @@ import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { Action, Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/operators';
 import { TvShowDetails, TvShowDetailsResponse, TvShowId } from '@core/models';
-import { TvShowsFavoritesActions } from '@features/tv-shows/data-access/+state/tv-shows-favorites/tv-shows-favorites.actions';
-import { TvShowsFavoritesSelectors } from '@features/tv-shows/data-access/+state/tv-shows-favorites/index';
+import { TvShowsFavoritesActions } from '@features/favorites/data-access/+state/tv-shows-favorites.actions';
+import { TvShowsFavoritesSelectors } from '@features/favorites/data-access/+state/index';
 import { TvShowsDetailsActions } from '@features/tv-shows/data-access/+state/tv-shows-details';
 
 @Injectable()

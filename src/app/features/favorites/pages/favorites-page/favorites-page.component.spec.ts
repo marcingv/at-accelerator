@@ -2,12 +2,12 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FavoritesPageComponent } from './favorites-page.component';
 import { provideRouter } from '@angular/router';
 import { DebugElement, signal } from '@angular/core';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { TvShowDetailsFactory } from '@testing/factories';
 import { provideTranslationsTestingModule } from '@testing/translations';
 import { By } from '@angular/platform-browser';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 
 describe('FavoritesPageComponent', () => {
   let component: FavoritesPageComponent;

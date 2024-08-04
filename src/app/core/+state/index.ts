@@ -3,7 +3,7 @@ import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { fromWishlist } from '@features/wishlist/data-access/+state';
 import { fromTvShows } from '@features/tv-shows/data-access/+state/tv-shows';
 import { fromTvShowsList } from '@features/tv-shows/data-access/+state/tv-shows-list';
-import { fromTvShowsFavorites } from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+import { fromTvShowsFavorites } from '@features/favorites/data-access/+state';
 import { fromTvShowsDetails } from '@features/tv-shows/data-access/+state/tv-shows-details';
 
 export interface State {

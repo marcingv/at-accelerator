@@ -7,9 +7,9 @@ import { provideRouter } from '@angular/router';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowDetailsFactory } from '@testing/factories';
 import { provideTranslationsTestingModule } from '@testing/translations';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
-import createSpyObj = jasmine.createSpyObj;
 import { WishlistShowsService } from '@features/wishlist/data-access/services';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
+import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {
   let component: TvShowRowActionsComponent;

@@ -5,7 +5,7 @@ import { TvShowDetailsFactory } from '@testing/factories';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideTranslationsTestingModule } from '@testing/translations';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 import SpyObj = jasmine.SpyObj;
 import createSpyObj = jasmine.createSpyObj;
 

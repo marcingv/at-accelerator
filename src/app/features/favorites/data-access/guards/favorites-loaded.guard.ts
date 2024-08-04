@@ -14,7 +14,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import {
   TvShowsFavoritesActions,
   TvShowsFavoritesSelectors,
-} from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+} from '@features/favorites/data-access/+state';
 
 export const favoritesLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const store = inject(Store);

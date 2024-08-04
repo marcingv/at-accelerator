@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WishlistShowsComponent } from './wishlist-shows.component';
 import { WishlistShowsService } from '@features/wishlist/data-access/services';
 import { TvShowDetailsFactory } from '@testing/factories';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import { signal } from '@angular/core';
 import { provideTranslationsTestingModule } from '@testing/translations';
 import { provideRouter } from '@angular/router';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 
 describe('WishlistShowsComponent', () => {
   let component: WishlistShowsComponent;

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import {
   TvShowsFavoritesActions,
   TvShowsFavoritesSelectors,
-} from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+} from '@features/favorites/data-access/+state';
 
 @Injectable({
   providedIn: 'root',

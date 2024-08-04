@@ -14,7 +14,7 @@ import {
 import {
   fromTvShowsFavorites,
   TvShowsFavoritesEffects,
-} from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+} from '@features/favorites/data-access/+state';
 
 describe('TvShowsFavouritesService', () => {
   let service: TvShowsFavouritesService;

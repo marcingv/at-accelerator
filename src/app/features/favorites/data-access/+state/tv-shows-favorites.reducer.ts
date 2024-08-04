@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { TvShowId } from '@core/models';
-import { TvShowsFavoritesActions } from '@features/tv-shows/data-access/+state/tv-shows-favorites/tv-shows-favorites.actions';
+import { TvShowsFavoritesActions } from '@features/favorites/data-access/+state/tv-shows-favorites.actions';
 
 export const tvShowsFavoritesFeatureKey = 'tvShowsFavorites';
 

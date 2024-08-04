@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CardComponent } from '@shared/cards';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
-import { FavoriteTvShowsListComponent } from '@features/tv-shows/components/favorite-tv-shows-list';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
+import { FavoriteTvShowsListComponent } from '@features/favorites/components/favorite-tv-shows-list';
 import { TranslationKey } from '@core/translations';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 
 @Component({
   selector: 'app-favorites-page',

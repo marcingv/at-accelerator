@@ -15,10 +15,10 @@ import { ButtonDirective } from '@shared/buttons/directives';
 import { Paths } from '@core/routing/paths';
 import { RouterLink } from '@angular/router';
 import { NextEpisodeCountdownPipe } from '@features/tv-shows/pipes';
-import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
 import { ToggleWishlistDirective } from '@features/wishlist/directives';
 import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
 import { TvShowCardActions } from './tv-show-card-actions';
+import { ToggleFavoriteTvShowDirective } from '@features/favorites/directives';
 
 @Component({
   selector: 'app-tv-show-card',

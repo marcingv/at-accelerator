@@ -9,7 +9,7 @@ import {
 import { TvShow } from '@core/models';
 import { TranslationKey } from '@core/translations';
 import { TranslocoService } from '@jsverse/transloco';
-import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 
 @Directive({
   selector: '[appToggleFavoriteTvShow]',
