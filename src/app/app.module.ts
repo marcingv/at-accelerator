@@ -14,14 +14,16 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from '@core/+state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { TvShowEffects } from '@features/data-access/+state/tv-shows';
-import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
+import { TranslocoRootModule } from '@core/translations';
+import { TvShowEffects } from '@features/tv-shows/data-access/+state/tv-shows';
+import { TvShowsListEffects } from '@features/tv-shows/data-access/+state/tv-shows-list';
 import {
   TvShowsFavoritesEffects,
   TvShowsFavoritesPersistenceEffects,
-} from '@features/data-access/+state/tv-shows-favorites';
-import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-details';
-import { TranslocoRootModule } from '@core/translations';
+} from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-shows-details';
+import { TvShowsApiService } from '@core/api/tv-shows-api.service';
+import { MockTvShowsApiService } from '@testing/api';
 
 @NgModule({
   imports: [
@@ -49,6 +51,10 @@ import { TranslocoRootModule } from '@core/translations';
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch()),
+    {
+      provide: TvShowsApiService,
+      useClass: MockTvShowsApiService,
+    },
   ],
   bootstrap: [AppComponent],
 })

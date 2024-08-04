@@ -1,10 +1,10 @@
 import { isDevMode } from '@angular/core';
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
-import { fromTvShows } from '@features/data-access/+state/tv-shows';
-import { fromTvShowsList } from '@features/data-access/+state/tv-shows-list';
-import { fromTvShowsFavorites } from '@features/data-access/+state/tv-shows-favorites';
-import { fromTvShowsDetails } from '@features/data-access/+state/tv-shows-details';
 import { fromWishlist } from '@features/wishlist/data-access/+state';
+import { fromTvShows } from '@features/tv-shows/data-access/+state/tv-shows';
+import { fromTvShowsList } from '@features/tv-shows/data-access/+state/tv-shows-list';
+import { fromTvShowsFavorites } from '@features/tv-shows/data-access/+state/tv-shows-favorites';
+import { fromTvShowsDetails } from '@features/tv-shows/data-access/+state/tv-shows-details';
 
 export interface State {
   [fromTvShows.tvShowsFeatureKey]: fromTvShows.State;
