@@ -4,6 +4,7 @@ import { TvShowId } from '@core/models';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { By } from '@angular/platform-browser';
+import { provideTranslationsTestingModule } from '@testing/translations';
 import createSpyObj = jasmine.createSpyObj;
 
 @Component({
@@ -30,6 +31,7 @@ describe('OpenTvShowGalleryDirective', () => {
     await TestBed.configureTestingModule({
       imports: [HostComponent],
       providers: [
+        provideTranslationsTestingModule(),
         { provide: TvShowGalleryService, useValue: tvShowGalleryService },
       ],
     }).compileComponents();

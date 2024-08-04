@@ -8,13 +8,20 @@ import {
 } from '@angular/core';
 import { TvShow } from '@core/models';
 import { TvShowsFavouritesService } from '@features/data-access';
+import { TranslationKey } from '@core/translations';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Directive({
   selector: '[appToggleFavoriteTvShow]',
   standalone: true,
 })
 export class ToggleFavoriteTvShowDirective {
+  private ADD_LABEL: TranslationKey = 'showsTable.actions.addToFavorites';
+  private REMOVE_LABEL: TranslationKey =
+    'showsTable.actions.removeFromFavorites';
+
   private readonly favoritesService = inject(TvShowsFavouritesService);
+  private readonly transloco = inject(TranslocoService);
 
   public appToggleFavoriteTvShow = input.required<TvShow>();
 
@@ -41,6 +48,8 @@ export class ToggleFavoriteTvShowDirective {
   }
 
   @HostBinding('attr.title') get title(): string {
-    return this.isFavorite() ? 'Remove from favorites' : 'Add to favorites';
+    return this.isFavorite()
+      ? this.transloco.translate(this.REMOVE_LABEL)
+      : this.transloco.translate(this.ADD_LABEL);
   }
 }

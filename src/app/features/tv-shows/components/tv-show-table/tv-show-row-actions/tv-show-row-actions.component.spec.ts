@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowDetailsFactory } from '@testing/factories';
+import { provideTranslationsTestingModule } from '@testing/translations';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {
@@ -43,6 +44,7 @@ describe('TvShowRowActionsComponent', () => {
       imports: [TvShowRowActionsComponent],
       providers: [
         provideRouter([]),
+        provideTranslationsTestingModule(),
         { provide: TvShowsFavouritesService, useValue: favouritesService },
         { provide: TvShowGalleryService, useValue: tvShowGalleryService },
       ],

@@ -7,6 +7,7 @@ import { DebugElement, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
 import { provideRouter } from '@angular/router';
+import { provideTranslationsTestingModule } from '@testing/translations';
 import SpyObj = jasmine.SpyObj;
 
 describe('FavoriteTvShowsListComponent', () => {
@@ -34,6 +35,7 @@ describe('FavoriteTvShowsListComponent', () => {
       imports: [FavoriteTvShowsListComponent],
       providers: [
         provideRouter([]),
+        provideTranslationsTestingModule(),
         { provide: TvShowsFavouritesService, useValue: favoritesService },
       ],
     }).compileComponents();

@@ -7,6 +7,7 @@ import { TvShowsFavouritesService } from '@features/data-access';
 import { By } from '@angular/platform-browser';
 import SpyObj = jasmine.SpyObj;
 import createSpyObj = jasmine.createSpyObj;
+import { provideTranslationsTestingModule } from '@testing/translations';
 
 @Component({
   selector: 'app-host',
@@ -34,6 +35,7 @@ describe('ToggleFavoriteTvShowDirective', () => {
     TestBed.configureTestingModule({
       imports: [HostComponent],
       providers: [
+        provideTranslationsTestingModule(),
         { provide: TvShowsFavouritesService, useValue: favoritesService },
       ],
     });

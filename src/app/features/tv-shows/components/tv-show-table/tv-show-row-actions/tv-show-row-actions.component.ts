@@ -17,6 +17,8 @@ import {
   ToggleFavoriteTvShowDirective,
 } from '@features/tv-shows/directives';
 import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
+import { TranslationKey } from '@core/translations';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -31,12 +33,20 @@ import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-docu
     ToggleFavoriteTvShowDirective,
     OpenTvShowGalleryDirective,
     ClipboardDocumentListIconComponent,
+    TranslocoPipe,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowRowActionsComponent implements OnChanges {
+  protected readonly DETAILS_LABEL: TranslationKey =
+    'showsTable.actions.details';
+  protected readonly WISHLIST_ADD: TranslationKey =
+    'showsTable.actions.addToWishlist';
+  protected readonly WISHLIST_REMOVE: TranslationKey =
+    'showsTable.actions.removeFromWishlist';
+
   @Input({ required: true }) public tvShow!: TvShow;
 
   protected detailsLink: string[] = [];

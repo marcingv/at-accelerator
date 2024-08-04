@@ -1,1 +1,12 @@
-{}
+{
+  "showsTable": {
+    "actions": {
+      "details": "Szczegóły",
+      "openGallery": "Zobacz galerię",
+      "addToWishlist": "Dodaj do listy życzeń",
+      "removeFromWishlist": "Usuń z listy życzeń",
+      "addToFavorites": "Dodaj do ulubionych",
+      "removeFromFavorites": "Usuń z ulubionych"
+    }
+  }
+}
