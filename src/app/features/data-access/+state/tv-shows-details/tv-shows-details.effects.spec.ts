@@ -1,19 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
-
+import { Subject } from 'rxjs';
 import { TvShowsDetailsEffects } from './tv-shows-details.effects';
+import { Action } from '@ngrx/store';
+import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 
 describe('TvShowsDetailsEffects', () => {
-  let actions$: Observable<any>;
+  let actions$: Subject<Action>;
   let effects: TvShowsDetailsEffects;
+  let api: jasmine.SpyObj<TvShowsApiService>;
 
   beforeEach(() => {
+    actions$ = new Subject<Action>();
+    api = jasmine.createSpyObj<TvShowsApiService>(['details']);
+
     TestBed.configureTestingModule({
       providers: [
         TvShowsDetailsEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+        { provide: TvShowsApiService, useValue: api },
+      ],
     });
 
     effects = TestBed.inject(TvShowsDetailsEffects);

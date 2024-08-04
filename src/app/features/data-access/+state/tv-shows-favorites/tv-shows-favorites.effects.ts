@@ -29,8 +29,6 @@ export class TvShowsFavoritesEffects {
         this.store.select(TvShowsFavoritesSelectors.selectNotLoadedIds),
       ),
       exhaustMap(([, idsToLoad]: [Action, TvShowId[]]) => {
-        console.warn(idsToLoad);
-
         const requests$: Array<Observable<TvShowDetails | null>> = [];
         idsToLoad.forEach((oneId: TvShowId) =>
           requests$.push(
@@ -43,8 +41,6 @@ export class TvShowsFavoritesEffects {
 
         return forkJoin(requests$).pipe(
           switchMap((results: Array<TvShowDetails | null>) => {
-            console.warn('zaladowalem', results);
-
             const models: TvShowDetails[] = results.filter(
               (oneTvShow) => !!oneTvShow,
             ) as TvShowDetails[];

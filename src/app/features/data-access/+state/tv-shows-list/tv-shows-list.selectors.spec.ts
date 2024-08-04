@@ -4,9 +4,9 @@ import { selectTvShowsListState } from './tv-shows-list.selectors';
 describe('TvShowsList Selectors', () => {
   it('should select the feature state', () => {
     const result = selectTvShowsListState({
-      [fromTvShowsList.tvShowsListFeatureKey]: {}
+      [fromTvShowsList.tvShowsListFeatureKey]: fromTvShowsList.initialState,
     });
 
-    expect(result).toEqual({});
+    expect(result).toEqual(fromTvShowsList.initialState);
   });
 });

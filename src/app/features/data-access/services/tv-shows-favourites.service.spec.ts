@@ -1,13 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TvShowsFavouritesService } from './tv-shows-favourites.service';
-import { TvShow } from '@core/models';
+import { TvShowDetails } from '@core/models';
+import { TvShowDetailsFactory } from '@testing/factories';
+import {
+  fromTvShowsDetails,
+  TvShowsDetailsActions,
+} from '@features/data-access/+state/tv-shows-details';
+import {
+  fromTvShowsFavorites,
+  TvShowsFavoritesEffects,
+} from '@features/data-access/+state/tv-shows-favorites';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore, Store } from '@ngrx/store';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('TvShowsFavouritesService', () => {
   let service: TvShowsFavouritesService;
 
-  const shows: TvShow[] = [
-    {
+  const shows: TvShowDetails[] = [
+    TvShowDetailsFactory.createInstance({
       id: 1,
       status: 'Running',
       start_date: '2024-01-01',
@@ -16,8 +29,8 @@ describe('TvShowsFavouritesService', () => {
       network: 'Network',
       permalink: 'http://localhost',
       image_thumbnail_path: 'http://localhost',
-    },
-    {
+    }),
+    TvShowDetailsFactory.createInstance({
       id: 2,
       status: 'Running',
       start_date: '2024-01-01',
@@ -26,8 +39,8 @@ describe('TvShowsFavouritesService', () => {
       network: 'Network',
       permalink: 'http://localhost',
       image_thumbnail_path: 'http://localhost',
-    },
-    {
+    }),
+    TvShowDetailsFactory.createInstance({
       id: 3,
       status: 'Running',
       start_date: '2024-01-01',
@@ -36,14 +49,33 @@ describe('TvShowsFavouritesService', () => {
       network: 'Network',
       permalink: 'http://localhost',
       image_thumbnail_path: 'http://localhost',
-    },
+    }),
   ];
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        provideStore({
+          [fromTvShowsDetails.tvShowsDetailsFeatureKey]:
+            fromTvShowsDetails.reducer,
+          [fromTvShowsFavorites.tvShowsFavoritesFeatureKey]:
+            fromTvShowsFavorites.reducer,
+        }),
+        provideEffects(TvShowsFavoritesEffects),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
+    });
 
     service = TestBed.inject(TvShowsFavouritesService);
     service.clearAll();
+
+    const store = TestBed.inject(Store);
+    store.dispatch(
+      TvShowsDetailsActions.addMany({
+        models: shows,
+      }),
+    );
   });
 
   it('should be created', () => {
@@ -51,22 +83,22 @@ describe('TvShowsFavouritesService', () => {
   });
 
   it('should initially have empty favourites', () => {
-    expect(service.listSignal()).toEqual([]);
+    expect(service.favorites()).toEqual([]);
     expect(service.idsSignal()).toEqual([]);
   });
 
   it('should add tv show to favourites', () => {
-    const favouritesSignal = service.listSignal;
+    const favouritesSignal = service.favorites;
     const favouritesIdsSignal = service.idsSignal;
 
     expect(favouritesSignal()).toEqual([]);
     expect(favouritesIdsSignal()).toEqual([]);
 
-    service.add(shows[0]);
+    service.toggle(shows[0]);
     expect(favouritesSignal().length).toEqual(1);
     expect(favouritesIdsSignal().length).toEqual(1);
 
-    service.add(shows[1]);
+    service.toggle(shows[1]);
     expect(favouritesSignal().length).toEqual(2);
     expect(favouritesIdsSignal().length).toEqual(2);
 
@@ -75,28 +107,28 @@ describe('TvShowsFavouritesService', () => {
   });
 
   it('should not have duplicates', () => {
-    const favouritesSignal = service.listSignal;
+    const favouritesSignal = service.favorites;
     const favouritesIdsSignal = service.idsSignal;
 
-    service.add(shows[0]);
-    service.add(shows[0]);
-    service.add(shows[0]);
+    service.toggle(shows[0]);
+    service.toggle(shows[0]);
+    service.toggle(shows[0]);
 
     expect(favouritesSignal().length).toEqual(1);
     expect(favouritesIdsSignal().length).toEqual(1);
   });
 
   it('should remove tv show from favourites', () => {
-    const favouritesSignal = service.listSignal;
+    const favouritesSignal = service.favorites;
     const favouritesIdsSignal = service.idsSignal;
 
-    service.add(shows[1]);
-    service.add(shows[2]);
+    service.toggle(shows[1]);
+    service.toggle(shows[2]);
 
     expect(favouritesSignal().length).toEqual(2);
     expect(favouritesIdsSignal().length).toEqual(2);
 
-    service.remove(shows[2].id);
+    service.toggle(shows[2]);
 
     expect(favouritesSignal().length).toEqual(1);
     expect(favouritesIdsSignal().length).toEqual(1);
@@ -106,10 +138,10 @@ describe('TvShowsFavouritesService', () => {
     const isFavouriteSignal = service.isFavourite(shows[0].id);
     expect(isFavouriteSignal()).toBeFalse();
 
-    service.add(shows[0]);
+    service.toggle(shows[0]);
     expect(isFavouriteSignal()).toBeTrue();
 
-    service.remove(shows[0].id);
+    service.toggle(shows[0]);
     expect(isFavouriteSignal()).toBeFalse();
   });
 });

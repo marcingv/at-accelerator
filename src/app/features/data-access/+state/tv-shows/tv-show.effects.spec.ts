@@ -1,19 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
-
+import { Subject } from 'rxjs';
 import { TvShowEffects } from './tv-show.effects';
+import { Action } from '@ngrx/store';
 
 describe('TvShowEffects', () => {
-  let actions$: Observable<any>;
+  let actions$: Subject<Action>;
   let effects: TvShowEffects;
 
   beforeEach(() => {
+    actions$ = new Subject<Action>();
+
     TestBed.configureTestingModule({
-      providers: [
-        TvShowEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [TvShowEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.inject(TvShowEffects);
