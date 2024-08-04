@@ -3,11 +3,11 @@ import { Component, DebugElement, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import { TvShowDetailsFactory } from '@testing/factories';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TvShowsFavouritesService } from '@features/data-access';
 import { By } from '@angular/platform-browser';
+import { provideTranslationsTestingModule } from '@testing/translations';
+import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import SpyObj = jasmine.SpyObj;
 import createSpyObj = jasmine.createSpyObj;
-import { provideTranslationsTestingModule } from '@testing/translations';
 
 @Component({
   selector: 'app-host',

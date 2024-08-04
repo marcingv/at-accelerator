@@ -6,11 +6,11 @@ import {
   Injectable,
   OutputRefSubscription,
 } from '@angular/core';
-import { TvShowDetailsService } from '@features/data-access/services/tv-show-details.service';
 import { Observable, ReplaySubject, tap } from 'rxjs';
 import { TvShowGalleryDialogComponent } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { DOCUMENT } from '@angular/common';
+import { TvShowDetailsService } from '@features/tv-shows/data-access/services/tv-show-details.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromWishlist from './wishlist.reducer';
 import { TvShow, TvShowId } from '@core/models';
-import { fromTvShows } from '@features/data-access/+state/tv-shows';
 import { Dictionary } from '@ngrx/entity';
+import { fromTvShows } from '@features/tv-shows/data-access/+state/tv-shows';
 
 export const selectWishlistState = createFeatureSelector<fromWishlist.State>(
   fromWishlist.wishlistFeatureKey,

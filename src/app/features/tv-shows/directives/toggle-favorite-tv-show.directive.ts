@@ -7,9 +7,9 @@ import {
   input,
 } from '@angular/core';
 import { TvShow } from '@core/models';
-import { TvShowsFavouritesService } from '@features/data-access';
 import { TranslationKey } from '@core/translations';
 import { TranslocoService } from '@jsverse/transloco';
+import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 
 @Directive({
   selector: '[appToggleFavoriteTvShow]',

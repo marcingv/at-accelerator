@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowRowActionsComponent } from './tv-show-row-actions.component';
 import { TvShowDetails } from '@core/models';
-import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowDetailsFactory } from '@testing/factories';
 import { provideTranslationsTestingModule } from '@testing/translations';
+import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {

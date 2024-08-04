@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
 import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-collection-placeholder';
-import { TvShowsFavouritesService } from '@features/data-access';
+import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 
 @Component({
   selector: 'app-favorite-tv-shows-list',

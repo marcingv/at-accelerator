@@ -1,6 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FavoriteTvShowsListComponent } from './favorite-tv-shows-list.component';
-import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { TvShowDetailsFactory } from '@testing/factories';
 import { DebugElement, signal } from '@angular/core';
@@ -8,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
 import { provideRouter } from '@angular/router';
 import { provideTranslationsTestingModule } from '@testing/translations';
+import { TvShowsFavouritesService } from '@features/tv-shows/data-access';
 import SpyObj = jasmine.SpyObj;
 
 describe('FavoriteTvShowsListComponent', () => {
