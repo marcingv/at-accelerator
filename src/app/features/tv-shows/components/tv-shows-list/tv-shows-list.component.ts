@@ -8,7 +8,10 @@ import { TvShow, TvShowDetails } from '@core/models';
 import { TranslationKey } from '@core/translations';
 import { EmptyCollectionPlaceholderComponent } from '@shared/placeholders/empty-collection-placeholder';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card';
+import {
+  TvShowCardActions,
+  TvShowCardComponent,
+} from '@features/tv-shows/components/tv-show-card';
 
 @Component({
   selector: 'app-tv-shows-list',
@@ -25,6 +28,8 @@ import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card'
 export class TvShowsListComponent {
   public readonly shows: InputSignal<Array<TvShow | TvShowDetails>> =
     input.required<Array<TvShow | TvShowDetails>>();
+
+  public readonly actions = input<TvShowCardActions[]>(['details']);
 
   public readonly emptyMessage: InputSignal<TranslationKey | undefined> =
     input<TranslationKey>();

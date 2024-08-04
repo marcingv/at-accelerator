@@ -16,6 +16,9 @@ import { Paths } from '@core/routing/paths';
 import { RouterLink } from '@angular/router';
 import { NextEpisodeCountdownPipe } from '@features/tv-shows/pipes';
 import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
+import { ToggleWishlistDirective } from '@features/wishlist/directives';
+import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
+import { TvShowCardActions } from './tv-show-card-actions';
 
 @Component({
   selector: 'app-tv-show-card',
@@ -29,21 +32,36 @@ import { ToggleFavoriteTvShowDirective } from '@features/tv-shows/directives';
     RouterLink,
     NextEpisodeCountdownPipe,
     ToggleFavoriteTvShowDirective,
+    ToggleWishlistDirective,
+    ClipboardDocumentListIconComponent,
   ],
   templateUrl: './tv-show-card.component.html',
   styleUrl: './tv-show-card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowCardComponent {
-  public tvShow: InputSignal<TvShow | TvShowDetails> = input.required<
+  public readonly actions = input<TvShowCardActions[]>(['details']);
+  public readonly toggleFavoriteAvailable = computed(() =>
+    this.actions().includes('toggleFavorite'),
+  );
+  public readonly toggleWishlistAvailable = computed(() =>
+    this.actions().includes('toggleWishlist'),
+  );
+  public readonly detailsAvailable = computed(() =>
+    this.actions().includes('details'),
+  );
+
+  public readonly tvShow: InputSignal<TvShow | TvShowDetails> = input.required<
     TvShow | TvShowDetails
   >();
 
-  public tvShowDetails: Signal<TvShowDetails | undefined> = computed(() => {
-    const tvShow = this.tvShow();
+  public readonly tvShowDetails: Signal<TvShowDetails | undefined> = computed(
+    () => {
+      const tvShow = this.tvShow();
 
-    return isTvShowDetails(tvShow) ? tvShow : undefined;
-  });
+      return isTvShowDetails(tvShow) ? tvShow : undefined;
+    },
+  );
 
   protected cssBackgroundImage = computed(() => {
     return `url('${this.tvShow().image_thumbnail_path}')`;

@@ -14,11 +14,15 @@ describe('WishlistPageComponent', () => {
   let favoritesService: jasmine.SpyObj<TvShowsFavouritesService>;
 
   beforeEach(async () => {
-    wishListService = jasmine.createSpyObj<WishlistShowsService>(['shows']);
+    wishListService = jasmine.createSpyObj<WishlistShowsService>([
+      'shows',
+      'isOnWishlist',
+    ]);
     wishListService.shows.and.returnValue([
       TvShowDetailsFactory.createInstance(),
       TvShowDetailsFactory.createInstance(),
     ]);
+    wishListService.isOnWishlist.and.returnValue(signal(false));
 
     favoritesService = jasmine.createSpyObj<TvShowsFavouritesService>([
       'isFavourite',

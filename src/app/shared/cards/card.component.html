@@ -1,19 +1,19 @@
 <div class="flex flex-col bg-white rounded shadow">
-  @if (headerTpl) {
+  @if (headerTpl(); as headerTpl) {
     <div class="card-header p-4 border-b">
       <ng-container *ngTemplateOutlet="headerTpl"></ng-container>
     </div>
   }
 
   <div class="card-body p-4">
-    @if (bodyTpl) {
+    @if (bodyTpl(); as bodyTpl) {
       <ng-container *ngTemplateOutlet="bodyTpl"></ng-container>
     } @else {
       <ng-content></ng-content>
     }
   </div>
 
-  @if (footerTpl) {
+  @if (footerTpl(); as footerTpl) {
     <div class="card-footer p-4 border-t text-xs">
       <ng-container *ngTemplateOutlet="footerTpl"></ng-container>
     </div>

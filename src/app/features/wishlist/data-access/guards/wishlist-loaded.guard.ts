@@ -8,10 +8,7 @@ import {
 } from '@features/wishlist/data-access/+state';
 import { Actions, ofType } from '@ngrx/effects';
 
-export const wishlistLoadedGuard: CanActivateFn = (
-  route,
-  state,
-): Observable<boolean> => {
+export const wishlistLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const store = inject(Store);
   const actions$ = inject(Actions);
 

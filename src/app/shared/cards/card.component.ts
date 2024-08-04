@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
   TemplateRef,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
@@ -15,12 +15,7 @@ import { NgTemplateOutlet } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  @ContentChild('header', { read: TemplateRef, static: true })
-  protected readonly headerTpl?: TemplateRef<unknown>;
-
-  @ContentChild('body', { read: TemplateRef, static: true })
-  protected readonly bodyTpl?: TemplateRef<unknown>;
-
-  @ContentChild('footer', { read: TemplateRef, static: true })
-  protected readonly footerTpl?: TemplateRef<unknown>;
+  protected headerTpl = contentChild('header', { read: TemplateRef });
+  protected bodyTpl = contentChild('body', { read: TemplateRef });
+  protected footerTpl = contentChild('footer', { read: TemplateRef });
 }
