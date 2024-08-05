@@ -13,9 +13,9 @@ export class AuthApiService {
         login = login.trim();
         password = password.trim();
 
-        if (!login || !password) {
+        if (!login || !password || password !== 'haslo') {
           throw new HttpErrorResponse({
-            error: 'Invalid credentails',
+            error: 'Invalid credentials',
             status: 400,
           });
         }

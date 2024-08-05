@@ -63,6 +63,7 @@ export class LoginFormComponent implements OnChanges {
 
   public showSubmitButton = input<boolean>(true);
   public disableSubmitButton = input<boolean>(false);
+  public formDisabled = input<boolean>(false);
   public initialFormData = input<Partial<LoginFormData>>();
   public formStateChange = output<LoginFormState>();
   public submitForm = output<ValidLoginFormState>();
@@ -73,9 +74,13 @@ export class LoginFormComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     const initialFormDataChange = changes['initialFormData'];
-
     if (initialFormDataChange) {
       this.formGroup.patchValue(initialFormDataChange.currentValue);
+    }
+
+    const formDisabledChange = changes['formDisabled'];
+    if (formDisabledChange) {
+      formDisabledChange.currentValue ? this.disableForm() : this.enableForm();
     }
   }
 

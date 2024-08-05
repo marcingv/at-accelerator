@@ -1,0 +1,22 @@
+<div class="flex gap-4 items-center">
+  <div>
+    @if (user(); as loggedUser) {
+      <span class="font-bold">{{ loggedUser.username }}</span>
+    } @else {
+      Gość
+    }
+  </div>
+
+  @if (user(); as loggedUser) {
+    <a class="menu-link cursor-pointer" (click)="signOutUser()">Wyloguj</a>
+  } @else {
+    <a
+      [routerLink]="SIGN_IN_LINK"
+      routerLinkActive="active"
+      class="menu-link"
+      [title]="SIGN_IN_LABEL | transloco"
+    >
+      {{ SIGN_IN_LABEL | transloco }}
+    </a>
+  }
+</div>

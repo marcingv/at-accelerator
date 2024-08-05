@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -13,6 +15,7 @@ import {
 } from '@features/auth/components/login-form';
 import { JsonPipe } from '@angular/common';
 import { ButtonDirective } from '@shared/buttons/directives';
+import { UserService } from '@features/auth/data-access/services';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -23,6 +26,12 @@ import { ButtonDirective } from '@shared/buttons/directives';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInPageComponent {
+  private readonly userService: UserService = inject(UserService);
+
+  protected readonly signInError = this.userService.signInError;
+  protected readonly signInPending: Signal<boolean> =
+    this.userService.signInPending;
+
   protected initialFormData: WritableSignal<Partial<LoginFormData>> = signal<
     Partial<LoginFormData>
   >({ username: 'marcingv', password: 'haslo' });
@@ -34,6 +43,6 @@ export class SignInPageComponent {
   }
 
   protected onSubmitForm(state: ValidLoginFormState): void {
-    console.warn('submit', state);
+    this.userService.signIn(state.formData.username, state.formData.password);
   }
 }

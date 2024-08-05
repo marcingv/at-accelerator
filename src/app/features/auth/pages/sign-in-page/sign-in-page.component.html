@@ -6,10 +6,17 @@
       </ng-template>
 
       <div class="flex flex-col gap-4">
+        @if (signInError(); as signInError) {
+          <p class="bg-red-200 text-red-400 rounded p-4">
+            {{ signInError }}
+          </p>
+        }
+
         <app-login-form
           #loginForm
           [initialFormData]="initialFormData()"
           [showSubmitButton]="false"
+          [formDisabled]="signInPending()"
           (formStateChange)="onFormStateChange($event)"
           (submitForm)="onSubmitForm($event)"
         ></app-login-form>

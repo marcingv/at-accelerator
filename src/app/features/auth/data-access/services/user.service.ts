@@ -1,48 +1,71 @@
-import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { SignedInUser } from '@core/models';
-import { AuthApiService } from '@core/api';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { first, map, merge, Observable, of, shareReplay } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Actions, ofType } from '@ngrx/effects';
+import { UserActions, UserSelectors } from '@features/auth/data-access/+state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private api: AuthApiService = inject(AuthApiService);
+  private store = inject(Store);
+  private actions$ = inject(Actions);
 
-  private userSignal = signal<SignedInUser | null>(null);
-
-  public isLoggedIn: Signal<boolean> = computed(() => !!this.userSignal());
-  public isGuest: Signal<boolean> = computed(() => !this.userSignal());
-
-  public get user(): Signal<SignedInUser | null> {
-    return this.userSignal.asReadonly();
-  }
+  public user: Signal<SignedInUser | null> = this.store.selectSignal(
+    UserSelectors.selectUser,
+  );
+  public isLoggedIn: Signal<boolean> = this.store.selectSignal(
+    UserSelectors.selectIsLoggedIn,
+  );
+  public isGuest: Signal<boolean> = this.store.selectSignal(
+    UserSelectors.selectIsGuest,
+  );
+  public signInError: Signal<string | undefined> = this.store.selectSignal(
+    UserSelectors.selectSignInError,
+  );
+  public signInPending: Signal<boolean> = this.store.selectSignal(
+    UserSelectors.selectIsSignInPending,
+  );
 
   public signIn(
     login: string,
     password: string,
   ): Observable<SignedInUser | null> {
-    return this.api.signIn(login, password).pipe(
-      tap((response) => this.onSignInSuccess(response)),
-      catchError(() => {
-        this.onSignInFailure();
+    const result$ = merge(
+      this.actions$.pipe(
+        ofType(UserActions.loginSuccess),
+        map((action) => action.user),
+      ),
+      this.actions$.pipe(
+        ofType(UserActions.loginFailure),
+        map(() => null),
+      ),
+    ).pipe(first(), shareReplay(1));
 
-        return of(null);
+    result$.subscribe();
+
+    this.store.dispatch(
+      UserActions.login({
+        username: login,
+        password: password,
       }),
     );
+
+    return result$;
   }
 
   public signOut(): Observable<boolean> {
-    this.userSignal.set(null);
+    const result$ = this.actions$.pipe(
+      ofType(UserActions.logoutSuccess),
+      map(() => true),
+      first(),
+      shareReplay(1),
+    );
+    result$.subscribe();
 
-    return of(true);
-  }
+    this.store.dispatch(UserActions.logout());
 
-  private onSignInSuccess(user: SignedInUser): void {
-    this.userSignal.set(user);
-  }
-
-  private onSignInFailure(): void {
-    this.userSignal.set(null);
+    return result$;
   }
 }
