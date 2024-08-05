@@ -25,9 +25,7 @@ describe('AuthApiService', () => {
   });
 
   it('should successfully sign in', async () => {
-    const response = await firstValueFrom(
-      service.signIn('marcingv', 'password'),
-    );
+    const response = await firstValueFrom(service.signIn('marcingv', 'haslo'));
 
     expect(response).toBeTruthy();
     expect(response.username).toEqual('marcingv');

@@ -2,6 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { AuthApiService } from '@core/api';
 import { firstValueFrom, of } from 'rxjs';
+import { provideStore } from '@ngrx/store';
+import { fromUser, UserEffects } from '@features/auth/data-access/+state';
+import { provideEffects } from '@ngrx/effects';
 
 describe('UserService', () => {
   let service: UserService;
@@ -9,8 +12,23 @@ describe('UserService', () => {
 
   beforeEach(() => {
     api = jasmine.createSpyObj<AuthApiService>(['signIn']);
+    api.signIn.and.callFake((login) =>
+      of({
+        username: login,
+        signInTime: Date.now(),
+        role: 'user',
+      }),
+    );
 
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: AuthApiService, useValue: api },
+        provideStore({
+          [fromUser.userFeatureKey]: fromUser.reducer,
+        }),
+        provideEffects(UserEffects),
+      ],
+    });
 
     service = TestBed.inject(UserService);
   });
@@ -24,14 +42,6 @@ describe('UserService', () => {
     expect(service.isLoggedIn()).toBeFalse();
     expect(service.user()).toBeFalsy();
 
-    api.signIn.and.returnValue(
-      of({
-        username: 'myUserName',
-        signInTime: Date.now(),
-        role: 'user',
-      }),
-    );
-
     const result = await firstValueFrom(
       service.signIn('myUserName', 'password'),
     );
@@ -40,17 +50,10 @@ describe('UserService', () => {
     expect(service.isGuest()).toBeFalse();
     expect(service.isLoggedIn()).toBeTrue();
     expect(service.user()).toBeTruthy();
+    expect(service.user()?.username).toEqual('myUserName');
   });
 
   it('should sign out user', async () => {
-    api.signIn.and.returnValue(
-      of({
-        username: 'myUserName',
-        signInTime: Date.now(),
-        role: 'user',
-      }),
-    );
-
     const result = await firstValueFrom(
       service.signIn('myUserName', 'password'),
     );
