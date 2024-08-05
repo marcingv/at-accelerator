@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { AuthApiService } from '@core/api';
 import { firstValueFrom, of } from 'rxjs';
 
-fdescribe('UserService', () => {
+describe('UserService', () => {
   let service: UserService;
   let api: jasmine.SpyObj<AuthApiService>;
 
