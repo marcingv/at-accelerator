@@ -1,0 +1,35 @@
+<div class="flex justify-center">
+  <div class="w-96 mt-48">
+    <app-card>
+      <ng-template #header>
+        <h2 class="font-bold text-center">Sign In</h2>
+      </ng-template>
+
+      <div class="flex flex-col gap-4">
+        <app-login-form
+          #loginForm
+          [initialFormData]="initialFormData()"
+          [showSubmitButton]="false"
+          (formStateChange)="onFormStateChange($event)"
+          (submitForm)="onSubmitForm($event)"
+        ></app-login-form>
+      </div>
+
+      <ng-template #footer>
+        <div class="flex gap-4 justify-between">
+          <button
+            appButton="primary"
+            (click)="loginForm.triggerSubmit()"
+            [disabled]="!formState()?.isValid"
+          >
+            Zaloguj
+          </button>
+
+          <button appButton="secondary" (click)="loginForm.resetForm()">
+            Reset
+          </button>
+        </div>
+      </ng-template>
+    </app-card>
+  </div>
+</div>

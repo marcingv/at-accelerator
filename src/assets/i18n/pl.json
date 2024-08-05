@@ -6,7 +6,8 @@
     "menu": {
       "search": "Szukaj",
       "favorites": "Ulubione",
-      "wishlist": "Lista życzeń"
+      "wishlist": "Lista życzeń",
+      "signIn": "Logowanie"
     }
   },
   "showsTable": {

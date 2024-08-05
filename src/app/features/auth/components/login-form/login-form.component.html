@@ -1,0 +1,44 @@
+<form
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="onEnterKeydown()"
+  class="flex flex-col gap-4"
+>
+  <div class="form-control">
+    <label>Username</label>
+    <input
+      appFormControl
+      type="text"
+      placeholder="Username"
+      [formControl]="formGroup.controls.username"
+    />
+
+    @if (formGroup.controls.username.dirty && usernameErrors(); as errors) {
+      <p class="control-errors">{{ errors | json }}</p>
+    }
+  </div>
+
+  <div class="form-control">
+    <label>Password</label>
+    <input
+      appFormControl
+      type="password"
+      placeholder="Password"
+      [formControl]="formGroup.controls.password"
+    />
+
+    @if (formGroup.controls.password.dirty && passwordErrors(); as errors) {
+      <p class="control-errors">{{ errors | json }}</p>
+    }
+  </div>
+
+  @if (showSubmitButton()) {
+    <button
+      appButton="primary"
+      type="submit"
+      [disabled]="disableSubmitButton()"
+    >
+      Zaloguj
+    </button>
+  }
+</form>

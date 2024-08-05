@@ -6,7 +6,8 @@
     "menu": {
       "search": "Search",
       "favorites": "My favorites",
-      "wishlist": "My wishlist"
+      "wishlist": "My wishlist",
+      "signIn": "Sign In"
     }
   },
   "showsTable": {

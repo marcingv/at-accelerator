@@ -7,32 +7,43 @@
       TV Show Tracker
     </a>
 
-    <div class="flex gap-1 items-center">
-      <a
-        [routerLink]="SEARCH_LINK"
-        routerLinkActive="active"
-        class="menu-link"
-        [title]="SEARCH_LABEL | transloco"
-      >
-        {{ SEARCH_LABEL | transloco }}
-      </a>
+    <div class="flex flex-1 justify-between gap-4">
+      <div class="flex gap-1 items-center">
+        <a
+          [routerLink]="SEARCH_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="SEARCH_LABEL | transloco"
+        >
+          {{ SEARCH_LABEL | transloco }}
+        </a>
+
+        <a
+          [routerLink]="FAVORITES_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="FAVORITES_LABEL | transloco"
+        >
+          {{ FAVORITES_LABEL | transloco }}
+        </a>
+
+        <a
+          [routerLink]="WISHLIST_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="WISHLIST_LABEL | transloco"
+        >
+          {{ WISHLIST_LABEL | transloco }}
+        </a>
+      </div>
 
       <a
-        [routerLink]="FAVORITES_LINK"
+        [routerLink]="SIGN_IN_LINK"
         routerLinkActive="active"
         class="menu-link"
-        [title]="FAVORITES_LABEL | transloco"
+        [title]="SIGN_IN_LABEL | transloco"
       >
-        {{ FAVORITES_LABEL | transloco }}
-      </a>
-
-      <a
-        [routerLink]="WISHLIST_LINK"
-        routerLinkActive="active"
-        class="menu-link"
-        [title]="WISHLIST_LABEL | transloco"
-      >
-        {{ WISHLIST_LABEL | transloco }}
+        {{ SIGN_IN_LABEL | transloco }}
       </a>
     </div>
   </div>
