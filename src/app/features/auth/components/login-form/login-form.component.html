@@ -10,10 +10,10 @@
       appFormControl
       type="text"
       placeholder="Username"
-      [formControl]="formGroup.controls.username"
+      [formControl]="usernameCtrl"
     />
 
-    @if (formGroup.controls.username.dirty && usernameErrors(); as errors) {
+    @if (usernameCtrl.dirty && usernameErrors(); as errors) {
       <p class="control-errors">{{ errors | json }}</p>
     }
   </div>
@@ -24,10 +24,10 @@
       appFormControl
       type="password"
       placeholder="Password"
-      [formControl]="formGroup.controls.password"
+      [formControl]="passwordCtrl"
     />
 
-    @if (formGroup.controls.password.dirty && passwordErrors(); as errors) {
+    @if (passwordCtrl.dirty && passwordErrors(); as errors) {
       <p class="control-errors">{{ errors | json }}</p>
     }
   </div>

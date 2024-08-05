@@ -36,27 +36,27 @@ import { ButtonDirective } from '@shared/buttons/directives';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
+  protected usernameCtrl = new FormControl<string | null>(null, [
+    Validators.required,
+    Validators.minLength(5),
+  ]);
+
+  protected passwordCtrl = new FormControl<string | null>(null, [
+    Validators.required,
+    Validators.minLength(5),
+  ]);
+
   protected formGroup = new FormGroup({
-    username: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.minLength(5),
-    ]),
-    password: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.minLength(5),
-    ]),
+    username: this.usernameCtrl,
+    password: this.passwordCtrl,
   });
 
   protected usernameErrors = toSignal(
-    this.formGroup.controls.username.statusChanges.pipe(
-      map(() => this.formGroup.controls.username.errors),
-    ),
+    this.usernameCtrl.statusChanges.pipe(map(() => this.usernameCtrl.errors)),
   );
 
   protected passwordErrors = toSignal(
-    this.formGroup.controls.password.statusChanges.pipe(
-      map(() => this.formGroup.controls.password.errors),
-    ),
+    this.passwordCtrl.statusChanges.pipe(map(() => this.passwordCtrl.errors)),
   );
 
   public showSubmitButton = input<boolean>(true);
