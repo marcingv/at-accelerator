@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
   input,
+  OnChanges,
   output,
+  SimpleChanges,
 } from '@angular/core';
-import { FormControlDirective } from '@shared/forms';
+import { FormControlComponent, FormControlDirective } from '@shared/forms';
 import {
   FormControl,
   FormGroup,
@@ -30,12 +31,13 @@ import { ButtonDirective } from '@shared/buttons/directives';
     ReactiveFormsModule,
     JsonPipe,
     ButtonDirective,
+    FormControlComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnChanges {
   protected usernameCtrl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(5),
@@ -66,21 +68,15 @@ export class LoginFormComponent {
   public submitForm = output<ValidLoginFormState>();
 
   public constructor() {
-    this.setUpInitialDataUpdates();
     this.registerFormStateNotifications();
   }
 
-  private setUpInitialDataUpdates(): void {
-    effect(() => {
-      const initialFormData: Partial<LoginFormData> | undefined =
-        this.initialFormData();
+  public ngOnChanges(changes: SimpleChanges): void {
+    const initialFormDataChange = changes['initialFormData'];
 
-      if (!initialFormData) {
-        return;
-      }
-
-      this.formGroup.patchValue(initialFormData);
-    });
+    if (initialFormDataChange) {
+      this.formGroup.patchValue(initialFormDataChange.currentValue);
+    }
   }
 
   private registerFormStateNotifications(): void {
@@ -132,5 +128,13 @@ export class LoginFormComponent {
 
   public resetForm(): void {
     this.formGroup.reset();
+  }
+
+  public disableForm(): void {
+    this.formGroup.disable();
+  }
+
+  public enableForm(): void {
+    this.formGroup.enable();
   }
 }

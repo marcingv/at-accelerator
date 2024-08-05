@@ -25,7 +25,7 @@ import { ButtonDirective } from '@shared/buttons/directives';
 export class SignInPageComponent {
   protected initialFormData: WritableSignal<Partial<LoginFormData>> = signal<
     Partial<LoginFormData>
-  >({ username: 'marcingv' });
+  >({ username: 'marcingv', password: 'haslo' });
 
   protected formState = signal<LoginFormState | undefined>(undefined);
 

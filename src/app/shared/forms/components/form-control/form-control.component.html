@@ -1,0 +1,9 @@
+<div [ngClass]="cssClasses()" class="form-control">
+  <label>{{ label() }}</label>
+
+  <ng-content></ng-content>
+
+  @if (ngControl()?.dirty && errors(); as errors) {
+    <p class="control-errors">{{ errors | json }}</p>
+  }
+</div>
