@@ -1,4 +1,5 @@
 import { LoginFormData } from './login-form-data';
+import { NullablePartial } from '@shared/types';
 
 export interface ValidLoginFormState {
   isValid: true;
@@ -7,7 +8,7 @@ export interface ValidLoginFormState {
 
 export interface InvalidLoginFormState {
   isValid: false;
-  formData: Partial<LoginFormData>;
+  formData: NullablePartial<LoginFormData>;
 }
 
 export declare type LoginFormState =

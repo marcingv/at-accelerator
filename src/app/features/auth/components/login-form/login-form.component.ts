@@ -37,14 +37,14 @@ import { ButtonDirective } from '@shared/buttons/directives';
 })
 export class LoginFormComponent {
   protected formGroup = new FormGroup({
-    username: new FormControl<string>('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(5)],
-    }),
-    password: new FormControl<string>('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(5)],
-    }),
+    username: new FormControl<string | null>(null, [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    password: new FormControl<string | null>(null, [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
   });
 
   protected usernameErrors = toSignal(
