@@ -1,4 +1,4 @@
-import { fromTvShowsList } from '@features/data-access/+state/tv-shows-list';
+import { fromTvShowsList } from '@features/search/data-access/+state';
 
 export class TvShowsListStateFactory {
   public static createInstance(

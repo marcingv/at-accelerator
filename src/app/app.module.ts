@@ -14,13 +14,18 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from '@core/+state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { TvShowEffects } from '@features/data-access/+state/tv-shows';
-import { TvShowsListEffects } from '@features/data-access/+state/tv-shows-list';
+import { TranslocoRootModule } from '@core/translations';
+import { TvShowEffects } from '@features/tv-shows/data-access/+state/tv-shows';
+import { TvShowsListEffects } from '@features/search/data-access/+state';
 import {
   TvShowsFavoritesEffects,
   TvShowsFavoritesPersistenceEffects,
-} from '@features/data-access/+state/tv-shows-favorites';
-import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-details';
+} from '@features/favorites/data-access/+state';
+import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-shows-details';
+import { TvShowsApiService } from '@core/api/tv-shows-api.service';
+import { MockTvShowsApiService } from '@testing/api';
+import { WishlistEffects } from '@features/wishlist/data-access/+state';
+import { WishlistPersistenceEffects } from '@features/wishlist/data-access/+state/wishlist-persistence.effects';
 
 @NgModule({
   imports: [
@@ -37,16 +42,23 @@ import { TvShowsDetailsEffects } from '@features/data-access/+state/tv-shows-det
       TvShowsFavoritesEffects,
       TvShowsFavoritesPersistenceEffects,
       TvShowsDetailsEffects,
+      WishlistEffects,
+      WishlistPersistenceEffects,
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),
     }),
+    TranslocoRootModule,
   ],
   declarations: [AppComponent],
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch()),
+    {
+      provide: TvShowsApiService,
+      useClass: MockTvShowsApiService,
+    },
   ],
   bootstrap: [AppComponent],
 })

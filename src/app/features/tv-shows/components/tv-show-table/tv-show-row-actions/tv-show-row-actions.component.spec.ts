@@ -1,12 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TvShowRowActionsComponent } from './tv-show-row-actions.component';
 import { TvShowDetails } from '@core/models';
-import { TvShowsFavouritesService } from 'src/app/features/data-access';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { TvShowGalleryService } from '@features/tv-shows/components/tv-show-gallery-dialog';
 import { TvShowDetailsFactory } from '@testing/factories';
+import { provideTranslationsTestingModule } from '@testing/translations';
+import { WishlistShowsService } from '@features/wishlist/data-access/services';
+import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
 import createSpyObj = jasmine.createSpyObj;
 
 describe('TvShowRowActionsComponent', () => {
@@ -14,6 +16,7 @@ describe('TvShowRowActionsComponent', () => {
   let fixture: ComponentFixture<TvShowRowActionsComponent>;
   let favouritesService: jasmine.SpyObj<TvShowsFavouritesService>;
   let tvShowGalleryService: jasmine.SpyObj<TvShowGalleryService>;
+  let wishlistService: jasmine.SpyObj<WishlistShowsService>;
 
   let isFavoriteSignal: WritableSignal<boolean>;
 
@@ -39,12 +42,20 @@ describe('TvShowRowActionsComponent', () => {
 
     tvShowGalleryService = createSpyObj<TvShowGalleryService>(['showDialog']);
 
+    wishlistService = createSpyObj<WishlistShowsService>([
+      'isOnWishlist',
+      'toggle',
+    ]);
+    wishlistService.isOnWishlist.and.returnValue(signal(false));
+
     await TestBed.configureTestingModule({
       imports: [TvShowRowActionsComponent],
       providers: [
         provideRouter([]),
+        provideTranslationsTestingModule(),
         { provide: TvShowsFavouritesService, useValue: favouritesService },
         { provide: TvShowGalleryService, useValue: tvShowGalleryService },
+        { provide: WishlistShowsService, useValue: wishlistService },
       ],
     }).compileComponents();
 

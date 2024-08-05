@@ -22,7 +22,7 @@
         <td colspan="5" class="text-center">No results found</td>
       </tr>
     } @else {
-      @for (tvShow of shows; track tvShow; let i = $index) {
+      @for (tvShow of shows; track tvShow.id; let i = $index) {
         <tr>
           <td data-label="Name">{{ tvShow.name }}</td>
           <td data-label="Country">{{ tvShow.country }}</td>

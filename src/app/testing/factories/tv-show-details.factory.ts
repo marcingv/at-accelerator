@@ -29,8 +29,7 @@ export class TvShowDetailsFactory {
         params.image_path ??
         'https://static.episodate.com/images/tv-show/full/17658.jpg',
       image_thumbnail_path:
-        params.image_thumbnail_path ??
-        'https://localhost/images/tv-show/thumbnail/17658.jpg',
+        params.image_thumbnail_path ?? '/assets/images/movie-placeholder.png',
       rating: params.rating ?? '9.4068',
       rating_count: params.rating_count ?? '118',
       countdown: params.countdown ?? null,

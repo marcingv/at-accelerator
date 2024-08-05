@@ -3,7 +3,7 @@
     appButton="transparent"
     class="!p-1"
     [routerLink]="detailsLink"
-    title="Details"
+    [title]="DETAILS_LABEL | transloco"
   >
     <app-info-circle-icon cssClass="size-5"></app-info-circle-icon>
   </a>
@@ -15,6 +15,18 @@
     [attr.data-test-id]="'action-bookmark-' + tvShow.id"
   >
     <app-bookmark-icon cssClass="size-5"></app-bookmark-icon>
+  </button>
+
+  <button
+    appButton="transparent"
+    class="!p-1"
+    [appToggleWishlist]="tvShow"
+    [title]="WISHLIST_ADD | transloco"
+    [attr.data-test-id]="'action-wishlist-' + tvShow.id"
+  >
+    <app-clipboard-document-list-icon
+      cssClass="size-5"
+    ></app-clipboard-document-list-icon>
   </button>
 
   <button

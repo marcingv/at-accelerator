@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^18.1.2",
     "@angular/platform-browser-dynamic": "^18.1.2",
     "@angular/router": "^18.1.2",
+    "@jsverse/transloco": "^7.4.3",
     "@ngrx/effects": "^18.0.1",
     "@ngrx/entity": "^18.0.1",
     "@ngrx/operators": "^18.0.1",

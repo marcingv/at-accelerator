@@ -9,17 +9,31 @@
       </h2>
 
       <div class="flex flex-row">
-        <button
-          appButton="transparent"
-          class="!p-1"
-          [appToggleFavoriteTvShow]="tvShow()"
-        >
-          <app-bookmark-icon></app-bookmark-icon>
-        </button>
+        @if (toggleFavoriteAvailable()) {
+          <button
+            appButton="transparent"
+            class="!p-1"
+            [appToggleFavoriteTvShow]="tvShow()"
+          >
+            <app-bookmark-icon></app-bookmark-icon>
+          </button>
+        }
 
-        <button appButton="transparent" class="!p-1">
-          <app-info-circle-icon></app-info-circle-icon>
-        </button>
+        @if (toggleWishlistAvailable()) {
+          <button
+            appButton="transparent"
+            class="!p-1"
+            [appToggleWishlist]="tvShow()"
+          >
+            <app-clipboard-document-list-icon></app-clipboard-document-list-icon>
+          </button>
+        }
+
+        @if (detailsAvailable()) {
+          <button appButton="transparent" class="!p-1">
+            <app-info-circle-icon></app-info-circle-icon>
+          </button>
+        }
       </div>
     </div>
   </ng-template>
@@ -35,7 +49,9 @@
     </div>
   </ng-template>
 
-  <ng-template #footer>
-    {{ tvShow() | nextEpisodeCountdown }}
-  </ng-template>
+  @if (tvShowDetails(); as details) {
+    <ng-template #footer>
+      {{ details | nextEpisodeCountdown }}
+    </ng-template>
+  }
 </app-card>

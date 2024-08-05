@@ -12,10 +12,12 @@ import { CommonModule } from '@angular/common';
 import { BookmarkIconComponent } from '@shared/icons/bookmark-icon';
 import { InfoCircleIconComponent } from '@shared/icons/info-circle-icon';
 import { ArrowTopRightOnSquareIconComponent } from '@shared/icons/arrow-top-right-on-square-icon';
-import {
-  OpenTvShowGalleryDirective,
-  ToggleFavoriteTvShowDirective,
-} from '@features/tv-shows/directives';
+import { OpenTvShowGalleryDirective } from '@features/tv-shows/directives';
+import { ClipboardDocumentListIconComponent } from '@shared/icons/clipboard-document-list-icon';
+import { TranslationKey } from '@core/translations';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { ToggleWishlistDirective } from '@features/wishlist/directives';
+import { ToggleFavoriteTvShowDirective } from '@features/favorites/directives';
 
 @Component({
   selector: 'app-tv-show-row-actions',
@@ -29,12 +31,22 @@ import {
     ArrowTopRightOnSquareIconComponent,
     ToggleFavoriteTvShowDirective,
     OpenTvShowGalleryDirective,
+    ClipboardDocumentListIconComponent,
+    TranslocoPipe,
+    ToggleWishlistDirective,
   ],
   templateUrl: './tv-show-row-actions.component.html',
   styleUrl: './tv-show-row-actions.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvShowRowActionsComponent implements OnChanges {
+  protected readonly DETAILS_LABEL: TranslationKey =
+    'showsTable.actions.details';
+  protected readonly WISHLIST_ADD: TranslationKey =
+    'showsTable.actions.addToWishlist';
+  protected readonly WISHLIST_REMOVE: TranslationKey =
+    'showsTable.actions.removeFromWishlist';
+
   @Input({ required: true }) public tvShow!: TvShow;
 
   protected detailsLink: string[] = [];

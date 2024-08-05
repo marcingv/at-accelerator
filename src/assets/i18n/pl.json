@@ -1,0 +1,28 @@
+{
+  "common": {
+    "emptyCollection": "Lista jest pusta"
+  },
+  "header": {
+    "menu": {
+      "search": "Szukaj",
+      "favorites": "Ulubione",
+      "wishlist": "Lista życzeń"
+    }
+  },
+  "showsTable": {
+    "actions": {
+      "details": "Szczegóły",
+      "openGallery": "Zobacz galerię",
+      "addToWishlist": "Dodaj do listy życzeń",
+      "removeFromWishlist": "Usuń z listy życzeń",
+      "addToFavorites": "Dodaj do ulubionych",
+      "removeFromFavorites": "Usuń z ulubionych"
+    }
+  },
+  "favoritesShows": {
+    "emptyMessage": "Nie masz ulubionych seriali."
+  },
+  "wishlistShows": {
+    "emptyMessage": "Twoja lista życzeń jest pusta."
+  }
+}
