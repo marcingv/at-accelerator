@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TvShowSearchFormComponent } from './tv-show-search-form.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('TvShowSearchFormComponent', () => {
   let component: TvShowSearchFormComponent;
@@ -9,7 +9,14 @@ describe('TvShowSearchFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TvShowSearchFormComponent],
-    }).compileComponents();
+    })
+      .overrideComponent(TvShowSearchFormComponent, {
+        set: {
+          imports: [],
+          schemas: [NO_ERRORS_SCHEMA],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(TvShowSearchFormComponent);
     component = fixture.componentInstance;

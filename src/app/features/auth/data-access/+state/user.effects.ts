@@ -4,7 +4,6 @@ import { delay, exhaustMap } from 'rxjs/operators';
 import { catchError, map, of, tap } from 'rxjs';
 import { UserActions } from './user.actions';
 import { AuthApiService } from '@core/api';
-import { SignedInUser } from '@core/models';
 import { Paths } from '@core/routing/paths';
 import { Router } from '@angular/router';
 
@@ -40,7 +39,7 @@ export class UserEffects {
   public logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.logout),
-      map((action) => {
+      map(() => {
         return UserActions.logoutSuccess();
       }),
     );
@@ -50,7 +49,7 @@ export class UserEffects {
     () => {
       return this.actions$.pipe(
         ofType(UserActions.loginSuccess),
-        tap((action) => this.onSuccessfulUserLogin(action.user)),
+        tap(() => this.onSuccessfulUserLogin()),
       );
     },
     { dispatch: false },
@@ -68,7 +67,7 @@ export class UserEffects {
 
   public constructor(private actions$: Actions) {}
 
-  private onSuccessfulUserLogin(signedUser: SignedInUser): void {
+  private onSuccessfulUserLogin(): void {
     this.router.navigate([Paths.ROOT]);
   }
 

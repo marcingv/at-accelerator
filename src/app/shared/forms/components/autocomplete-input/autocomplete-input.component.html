@@ -1,0 +1,26 @@
+<div class="relative flex-1">
+  <input
+    appFormControl
+    [formControl]="queryCtrl"
+    [placeholder]="placeholder()"
+    (focus)="onInputFocus()"
+    (blur)="onInputBlur()"
+    type="text"
+    class="w-full"
+  />
+
+  @if (menuOpened() && filteredSuggestions(); as suggestions) {
+    @if (suggestions.length) {
+      <ul>
+        @for (oneSuggestion of suggestions; let index = $index; track index) {
+          <li
+            [ngClass]="{ active: oneSuggestion === queryCtrl.value }"
+            (click)="chooseSuggestion(oneSuggestion)"
+          >
+            {{ oneSuggestion }}
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>

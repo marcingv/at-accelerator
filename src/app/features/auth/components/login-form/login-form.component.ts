@@ -4,6 +4,8 @@ import {
   input,
   OnChanges,
   output,
+  Signal,
+  signal,
   SimpleChanges,
 } from '@angular/core';
 import { FormControlComponent, FormControlDirective } from '@shared/forms';
@@ -22,6 +24,7 @@ import {
   ValidLoginFormState,
 } from '@features/auth/components/login-form/login-form-state';
 import { ButtonDirective } from '@shared/buttons/directives';
+import { AutocompleteInputComponent } from '@shared/forms/components/autocomplete-input';
 
 @Component({
   selector: 'app-login-form',
@@ -32,12 +35,19 @@ import { ButtonDirective } from '@shared/buttons/directives';
     JsonPipe,
     ButtonDirective,
     FormControlComponent,
+    AutocompleteInputComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent implements OnChanges {
+  protected usernameSuggestions: Signal<string[]> = signal([
+    'marcingv',
+    'someUser1',
+    'anotherUser2',
+  ]);
+
   protected usernameCtrl = new FormControl<string | null>(null, [
     Validators.required,
     Validators.minLength(5),

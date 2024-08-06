@@ -1,0 +1,11 @@
+ul {
+  @apply mt-4 rounded shadow divide-y divide-solid border absolute bg-white w-full;
+}
+
+li {
+  @apply p-2 hover:bg-slate-100 active:bg-slate-300 cursor-pointer;
+}
+
+li.active {
+  @apply bg-slate-300 font-semibold;
+}
