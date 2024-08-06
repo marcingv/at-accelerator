@@ -1,11 +1,5 @@
 import { IsUserLoggedInDirective } from './is-user-logged-in.directive';
-import {
-  Component,
-  Signal,
-  signal,
-  viewChild,
-  WritableSignal,
-} from '@angular/core';
+import { Component, signal, viewChild, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserService } from '@features/auth/data-access/services';
 import { provideRouter } from '@angular/router';

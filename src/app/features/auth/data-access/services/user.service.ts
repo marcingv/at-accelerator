@@ -1,6 +1,6 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { SignedInUser } from '@core/models';
-import { first, map, merge, Observable, of, shareReplay } from 'rxjs';
+import { first, map, merge, Observable, shareReplay } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { UserActions, UserSelectors } from '@features/auth/data-access/+state';
