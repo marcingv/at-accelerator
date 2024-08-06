@@ -5,12 +5,12 @@
   class="flex flex-col gap-4"
 >
   <app-form-control label="Username">
-    <input
-      appFormControl
-      type="text"
+    <app-autocomplete-input
       placeholder="Username"
       [formControl]="usernameCtrl"
-    />
+      [suggestions]="usernameSuggestions()"
+      [itemsFiltering]="false"
+    ></app-autocomplete-input>
   </app-form-control>
 
   <app-form-control label="Password">

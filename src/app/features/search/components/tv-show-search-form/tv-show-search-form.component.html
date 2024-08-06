@@ -7,14 +7,11 @@
         Name
       </label>
 
-      <input
-        appFormControl
-        [formControl]="formGroup.controls.query"
-        type="text"
+      <app-shows-autocomplete-input
         id="name"
-        placeholder="Name of the show"
         class="flex-1 min-w-12"
-      />
+        [formControl]="formGroup.controls.query"
+      ></app-shows-autocomplete-input>
 
       <button appButton="primary" (click)="onSubmitSearch()" title="Search">
         Search

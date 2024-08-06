@@ -1,15 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchPageComponent } from './search-page.component';
-import { Signal, signal } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Signal, signal } from '@angular/core';
 import { TvShow } from '@core/models';
 import { provideRouter } from '@angular/router';
 import { TvShowsListProviderService } from '@features/search/data-access/services';
 import createSpyObj = jasmine.createSpyObj;
+import { TvShowSearchFormComponent } from '@features/search/components/tv-show-search-form';
 
 describe('SearchPageComponent', () => {
   let component: SearchPageComponent;
   let fixture: ComponentFixture<SearchPageComponent>;
-  let listProvider;
+  let listProvider: jasmine.SpyObj<TvShowsListProviderService>;
 
   beforeEach(() => {
     listProvider = createSpyObj<TvShowsListProviderService>([], {
@@ -36,7 +37,13 @@ describe('SearchPageComponent', () => {
         provideRouter([]),
         { provide: TvShowsListProviderService, useValue: listProvider },
       ],
+    }).overrideComponent(TvShowSearchFormComponent, {
+      set: {
+        imports: [],
+        schemas: [NO_ERRORS_SCHEMA],
+      },
     });
+
     fixture = TestBed.createComponent(SearchPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
