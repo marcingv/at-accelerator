@@ -3,11 +3,20 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Paths } from '@core/routing/paths';
 import { TranslationKey } from '@core/translations';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { UserSigningComponent } from '@shared/layouts/main-layout/user-signing/user-signing.component';
+import { IsUserLoggedInDirective } from '@features/auth/directives';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLinkActive, RouterLink, TranslocoPipe],
+  imports: [
+    RouterOutlet,
+    RouterLinkActive,
+    RouterLink,
+    TranslocoPipe,
+    UserSigningComponent,
+    IsUserLoggedInDirective,
+  ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

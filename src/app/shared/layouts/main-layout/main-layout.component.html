@@ -7,33 +7,39 @@
       TV Show Tracker
     </a>
 
-    <div class="flex gap-1 items-center">
-      <a
-        [routerLink]="SEARCH_LINK"
-        routerLinkActive="active"
-        class="menu-link"
-        [title]="SEARCH_LABEL | transloco"
-      >
-        {{ SEARCH_LABEL | transloco }}
-      </a>
+    <div class="flex flex-1 justify-between gap-4">
+      <div class="flex gap-1 items-center">
+        <a
+          [routerLink]="SEARCH_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="SEARCH_LABEL | transloco"
+        >
+          {{ SEARCH_LABEL | transloco }}
+        </a>
 
-      <a
-        [routerLink]="FAVORITES_LINK"
-        routerLinkActive="active"
-        class="menu-link"
-        [title]="FAVORITES_LABEL | transloco"
-      >
-        {{ FAVORITES_LABEL | transloco }}
-      </a>
+        <a
+          *appIsUserLoggedIn
+          [routerLink]="FAVORITES_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="FAVORITES_LABEL | transloco"
+        >
+          {{ FAVORITES_LABEL | transloco }}
+        </a>
 
-      <a
-        [routerLink]="WISHLIST_LINK"
-        routerLinkActive="active"
-        class="menu-link"
-        [title]="WISHLIST_LABEL | transloco"
-      >
-        {{ WISHLIST_LABEL | transloco }}
-      </a>
+        <a
+          *appIsUserLoggedIn
+          [routerLink]="WISHLIST_LINK"
+          routerLinkActive="active"
+          class="menu-link"
+          [title]="WISHLIST_LABEL | transloco"
+        >
+          {{ WISHLIST_LABEL | transloco }}
+        </a>
+      </div>
+
+      <app-user-signing class="flex"></app-user-signing>
     </div>
   </div>
 </header>

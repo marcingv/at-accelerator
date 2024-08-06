@@ -1,0 +1,65 @@
+<form
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="onEnterKeydown()"
+  class="flex flex-col gap-4"
+>
+  <app-form-control label="Username">
+    <input
+      appFormControl
+      type="text"
+      placeholder="Username"
+      [formControl]="usernameCtrl"
+    />
+  </app-form-control>
+
+  <app-form-control label="Password">
+    <input
+      appFormControl
+      type="password"
+      placeholder="Password"
+      [formControl]="passwordCtrl"
+    />
+  </app-form-control>
+
+  <!--  <div class="form-control">-->
+  <!--    <label>Username</label>-->
+  <!--    <input-->
+  <!--      appFormControl-->
+  <!--      type="text"-->
+  <!--      placeholder="Username"-->
+  <!--      [formControl]="usernameCtrl"-->
+  <!--    />-->
+
+  <!--    @if (-->
+  <!--      (usernameCtrl.dirty || !usernameCtrl.untouched) && usernameErrors();-->
+  <!--      as errors-->
+  <!--    ) {-->
+  <!--      <p class="control-errors">{{ errors | json }}</p>-->
+  <!--    }-->
+  <!--  </div>-->
+
+  <!--  <div class="form-control">-->
+  <!--    <label>Password</label>-->
+  <!--    <input-->
+  <!--      appFormControl-->
+  <!--      type="password"-->
+  <!--      placeholder="Password"-->
+  <!--      [formControl]="passwordCtrl"-->
+  <!--    />-->
+
+  <!--    @if (passwordCtrl.dirty && passwordErrors(); as errors) {-->
+  <!--      <p class="control-errors">{{ errors | json }}</p>-->
+  <!--    }-->
+  <!--  </div>-->
+
+  @if (showSubmitButton()) {
+    <button
+      appButton="primary"
+      type="submit"
+      [disabled]="disableSubmitButton()"
+    >
+      Zaloguj
+    </button>
+  }
+</form>

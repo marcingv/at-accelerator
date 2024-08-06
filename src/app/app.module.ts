@@ -26,6 +26,7 @@ import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { MockTvShowsApiService } from '@testing/api';
 import { WishlistEffects } from '@features/wishlist/data-access/+state';
 import { WishlistPersistenceEffects } from '@features/wishlist/data-access/+state/wishlist-persistence.effects';
+import { UserEffects } from '@features/auth/data-access/+state';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { WishlistPersistenceEffects } from '@features/wishlist/data-access/+stat
       metaReducers,
     }),
     EffectsModule.forRoot(
+      UserEffects,
       TvShowEffects,
       TvShowsListEffects,
       TvShowsFavoritesEffects,

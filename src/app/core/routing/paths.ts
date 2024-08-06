@@ -5,4 +5,6 @@ export enum Paths {
   FAVORITES = 'favorites',
   DETAILS = 'details',
   WISHLIST = 'wishlist',
+  AUTH = 'auth',
+  SIGN_IN = 'sign-in',
 }

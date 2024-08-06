@@ -8,3 +8,4 @@ export * from './tv-show';
 export * from './tv-show-details';
 export * from './tv-show-details-response';
 export * from './tv-shows-paged-collection-response';
+export * from './signed-in-user';

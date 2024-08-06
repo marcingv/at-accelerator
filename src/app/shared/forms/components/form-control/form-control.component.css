@@ -1,0 +1,16 @@
+.form-control {
+  @apply flex flex-col gap-2;
+}
+
+.control-errors {
+  @apply bg-red-200 text-red-400 rounded p-2 text-xs;
+}
+
+label {
+  @apply uppercase font-semibold text-xs text-slate-500;
+}
+
+
+.invalid label {
+  @apply text-red-400;
+}
