@@ -10,5 +10,7 @@ export const UserActions = createActionGroup({
     'Login Failure': props<{ username: string; error: HttpErrorResponse }>(),
     Logout: emptyProps(),
     'Logout Success': emptyProps(),
+    'Restore Remembered User': emptyProps(),
+    'No Remembered User': emptyProps(),
   },
 });

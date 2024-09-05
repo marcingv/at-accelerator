@@ -6,6 +6,7 @@ import { UserActions } from './user.actions';
 import { AuthApiService } from '@core/api';
 import { Paths } from '@core/routing/paths';
 import { Router } from '@angular/router';
+import { SignedInUser } from '@core/models';
 
 @Injectable()
 export class UserEffects {
@@ -18,7 +19,7 @@ export class UserEffects {
       exhaustMap((action) => {
         return this.api.signIn(action.username, action.password).pipe(
           delay(2000),
-          map((response) => {
+          map((response: SignedInUser) => {
             return UserActions.loginSuccess({
               user: response,
             });
