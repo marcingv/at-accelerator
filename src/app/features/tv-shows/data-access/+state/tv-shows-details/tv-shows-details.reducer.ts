@@ -67,3 +67,12 @@ export const selectById = (id: TvShowId) =>
     tvShowsDetailsFeature.selectEntities,
     (entities): TvShowDetails | null => entities[id] ?? null,
   );
+
+export const TvShowsDetailsSelectors = {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+  selectExists,
+  selectById,
+};

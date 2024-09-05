@@ -56,3 +56,10 @@ export const tvShowsFeature = createFeature({
 
 export const { selectIds, selectEntities, selectAll, selectTotal } =
   tvShowsFeature;
+
+export const TvShowSelectors = {
+  selectIds,
+  selectEntities,
+  selectTotal,
+  selectAll,
+};

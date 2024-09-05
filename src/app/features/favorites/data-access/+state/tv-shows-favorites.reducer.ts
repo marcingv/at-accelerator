@@ -1,6 +1,7 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer } from '@ngrx/store';
 import { TvShowId } from '@core/models';
 import { TvShowsFavoritesActions } from '@features/favorites/data-access/+state/tv-shows-favorites.actions';
+import { immerOn } from 'ngrx-immer/store';
 
 export const tvShowsFavoritesFeatureKey = 'tvShowsFavorites';
 
@@ -14,31 +15,20 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(
-    TvShowsFavoritesActions.set,
-    (state, action): State => ({
-      ...state,
-      tvShowsIds: action.ids,
-    }),
-  ),
-  on(TvShowsFavoritesActions.toggle, (state, action): State => {
-    const tvShowsIds: TvShowId[] = state.tvShowsIds.slice();
-    if (tvShowsIds.includes(action.id)) {
-      tvShowsIds.splice(tvShowsIds.indexOf(action.id), 1);
+  immerOn(TvShowsFavoritesActions.set, (state, action) => {
+    state.tvShowsIds = action.ids;
+  }),
+  immerOn(TvShowsFavoritesActions.toggle, (state, action) => {
+    const tvShowsIds: TvShowId[] = state.tvShowsIds;
+    const idx: number = tvShowsIds.indexOf(action.id);
+    if (idx >= 0) {
+      tvShowsIds.splice(idx, 1);
     } else {
       tvShowsIds.push(action.id);
     }
-
-    return {
-      ...state,
-      tvShowsIds: tvShowsIds,
-    };
   }),
-  on(TvShowsFavoritesActions.clear, (state): State => {
-    return {
-      ...state,
-      tvShowsIds: [],
-    };
+  immerOn(TvShowsFavoritesActions.clear, (state) => {
+    state.tvShowsIds = [];
   }),
 );
 
