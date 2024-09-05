@@ -1,6 +1,7 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, on } from '@ngrx/store';
 import { WishlistActions } from './wishlist.actions';
 import { TvShowId } from '@core/models';
+import { createImmerReducer } from 'ngrx-immer/store';
 
 export const wishlistFeatureKey = 'wishlist';
 
@@ -12,35 +13,28 @@ export const initialState: State = {
   tvShowsIds: [],
 };
 
-export const reducer = createReducer(
+export const reducer = createImmerReducer(
   initialState,
-  on(
-    WishlistActions.set,
-    (state, action): State => ({
-      ...state,
-      tvShowsIds: action.ids,
-    }),
-  ),
+  on(WishlistActions.set, (state, action): State => {
+    state.tvShowsIds = action.ids;
+
+    return state;
+  }),
   on(WishlistActions.toggle, (state, action): State => {
-    const ids: TvShowId[] = [...state.tvShowsIds];
-    if (ids.includes(action.id)) {
-      ids.splice(ids.indexOf(action.id), 1);
+    const idx: number = state.tvShowsIds.indexOf(action.id);
+    if (idx >= 0) {
+      state.tvShowsIds.splice(idx, 1);
     } else {
-      ids.push(action.id);
+      state.tvShowsIds.push(action.id);
     }
 
-    return {
-      ...state,
-      tvShowsIds: ids,
-    };
+    return state;
   }),
-  on(
-    WishlistActions.clear,
-    (state): State => ({
-      ...state,
-      tvShowsIds: [],
-    }),
-  ),
+  on(WishlistActions.clear, (state): State => {
+    state.tvShowsIds = [];
+
+    return state;
+  }),
 );
 
 export const wishlistFeature = createFeature({

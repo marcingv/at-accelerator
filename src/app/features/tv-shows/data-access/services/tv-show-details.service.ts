@@ -7,6 +7,7 @@ import {
   fromTvShowsDetails,
   TvShowsDetailsActions,
 } from '@features/tv-shows/data-access/+state/tv-shows-details';
+import { TvShowsDetailsSelectors } from '@features/tv-shows/data-access/+state/tv-shows-details/tv-shows-details.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class TvShowDetailsService {
   private readonly actions$: Actions = inject(Actions);
 
   public getDetails(id: TvShowId): Observable<TvShowDetails | null> {
-    return this.store.select(fromTvShowsDetails.selectById(id)).pipe(
+    return this.store.select(TvShowsDetailsSelectors.selectById(id)).pipe(
+      // return this.store.select(fromTvShowsDetails.selectById(id)).pipe(
       switchMap((model: TvShowDetails | null) => {
         if (model) {
           return of(model);
