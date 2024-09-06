@@ -39,7 +39,7 @@ export class UserPersistenceEffects implements OnInitEffects {
       map(() => {
         const user = this.getRememberedUser();
         if (user) {
-          return UserActions.loginSuccess({ user: user });
+          return UserActions.loginSuccess({ user: user, skipRedirect: true });
         } else {
           return UserActions.noRememberedUser();
         }

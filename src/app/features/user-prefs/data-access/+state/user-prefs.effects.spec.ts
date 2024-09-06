@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { ReplaySubject } from 'rxjs';
 import { UserPrefsEffects } from './user-prefs.effects';
 import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('UserPrefsEffects', () => {
   let actions$: ReplaySubject<Action>;
@@ -12,7 +13,11 @@ describe('UserPrefsEffects', () => {
     actions$ = new ReplaySubject<Action>();
 
     TestBed.configureTestingModule({
-      providers: [UserPrefsEffects, provideMockActions(() => actions$)],
+      providers: [
+        UserPrefsEffects,
+        provideMockActions(() => actions$),
+        provideMockStore(),
+      ],
     });
 
     effects = TestBed.inject(UserPrefsEffects);

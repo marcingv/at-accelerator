@@ -1,4 +1,4 @@
-import { createFeature, createReducer } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { TvShowId } from '@core/models';
 import { immerOn } from 'ngrx-immer/store';
 import { WishlistActions } from './actions/wishlist.actions';
@@ -53,6 +53,12 @@ export const reducer = createReducer(
   }),
 
   // General actions
+  on(UserPrefsActions.set, (state, action): State => {
+    return {
+      ...state,
+      ...action.state,
+    };
+  }),
   immerOn(UserPrefsActions.clear, (state) => {
     state.wishlistShowsIds = [];
     state.favoriteShowsIds = [];
