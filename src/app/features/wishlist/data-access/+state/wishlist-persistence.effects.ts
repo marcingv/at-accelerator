@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { WishlistActions } from '@features/wishlist/data-access/+state/wishlist.actions';
+import { WishlistActions } from '@features/user-prefs/data-access/+state/actions/wishlist.actions';
 import { BrowserStorage, LocalStorageService } from '@core/storage';
 import { TvShowId } from '@core/models';
 import { map } from 'rxjs';

@@ -1,10 +1,8 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TvShow, TvShowId } from '@core/models';
-import {
-  WishlistActions,
-  WishlistSelectors,
-} from '@features/wishlist/data-access/+state';
+import { WishlistSelectors } from '@features/wishlist/data-access/+state';
+import { WishlistActions } from '@features/user-prefs/data-access/+state';
 
 @Injectable({
   providedIn: 'root',

@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
 import { TvShowId } from '@core/models';
 import { BrowserStorage, LocalStorageService } from '@core/storage';
-import { TvShowsFavoritesActions } from '@features/favorites/data-access/+state/tv-shows-favorites.actions';
+import { TvShowsFavoritesActions } from '@features/user-prefs/data-access/+state/actions/tv-shows-favorites.actions';
 import { TvShowsFavoritesSelectors } from '@features/favorites/data-access/+state/index';
 
 @Injectable()

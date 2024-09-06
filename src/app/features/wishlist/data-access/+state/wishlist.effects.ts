@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { WishlistActions } from '@features/wishlist/data-access/+state/wishlist.actions';
+import { WishlistActions } from '@features/user-prefs/data-access/+state/actions/wishlist.actions';
 import {
   catchError,
   concat,

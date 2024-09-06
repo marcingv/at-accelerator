@@ -11,10 +11,8 @@ import {
   switchMap,
 } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
-import {
-  TvShowsFavoritesActions,
-  TvShowsFavoritesSelectors,
-} from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesSelectors } from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesActions } from '@features/user-prefs/data-access/+state';
 
 export const favoritesLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const store = inject(Store);

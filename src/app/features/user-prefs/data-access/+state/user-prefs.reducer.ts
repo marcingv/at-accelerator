@@ -1,9 +1,9 @@
 import { createFeature, createReducer } from '@ngrx/store';
 import { TvShowId } from '@core/models';
 import { immerOn } from 'ngrx-immer/store';
-import { WishlistActions } from '../../../wishlist/data-access/+state/wishlist.actions';
-import { TvShowsFavoritesActions } from '../../../favorites/data-access/+state/tv-shows-favorites.actions';
-import { UserPrefsActions } from '@features/user-prefs/data-access/+state/user-prefs.actions';
+import { WishlistActions } from './actions/wishlist.actions';
+import { TvShowsFavoritesActions } from './actions/tv-shows-favorites.actions';
+import { UserPrefsActions } from '@features/user-prefs/data-access/+state/actions/user-prefs.actions';
 
 export const userPrefsFeatureKey = 'userPrefs';
 
