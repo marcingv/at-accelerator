@@ -11,10 +11,8 @@ import {
   fromTvShowsDetails,
   TvShowsDetailsActions,
 } from '@features/tv-shows/data-access/+state/tv-shows-details';
-import {
-  fromTvShowsFavorites,
-  TvShowsFavoritesEffects,
-} from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesEffects } from '@features/favorites/data-access/+state';
+import { fromUserPrefs } from '@features/user-prefs/data-access/+state';
 
 describe('TvShowsFavouritesService', () => {
   let service: TvShowsFavouritesService;
@@ -58,8 +56,7 @@ describe('TvShowsFavouritesService', () => {
         provideStore({
           [fromTvShowsDetails.tvShowsDetailsFeatureKey]:
             fromTvShowsDetails.reducer,
-          [fromTvShowsFavorites.tvShowsFavoritesFeatureKey]:
-            fromTvShowsFavorites.reducer,
+          [fromUserPrefs.userPrefsFeatureKey]: fromUserPrefs.reducer,
         }),
         provideEffects(TvShowsFavoritesEffects),
         provideHttpClient(),
