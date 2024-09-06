@@ -76,9 +76,7 @@ describe('UserPersistenceEffects', () => {
 
     const resultAction = await firstValueFrom(effects.restoreRememberedUser);
 
-    expect(resultAction).toEqual(
-      UserActions.loginSuccess({ user: user, skipRedirect: true }),
-    );
+    expect(resultAction).toEqual(UserActions.set({ user: user }));
   });
 
   it('should do nothing when there is no remembered user', async () => {

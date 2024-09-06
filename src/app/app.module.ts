@@ -22,7 +22,10 @@ import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-
 import { TvShowsApiService } from '@core/api/tv-shows-api.service';
 import { MockTvShowsApiService } from '@testing/api';
 import { WishlistEffects } from '@features/wishlist/data-access/+state';
-import { UserEffects } from '@features/auth/data-access/+state';
+import {
+  UserBroadcastChannelEffects,
+  UserEffects,
+} from '@features/auth/data-access/+state';
 import { UserPersistenceEffects } from '@features/auth/data-access/+state/user-persistence.effects';
 import { UserPrefsEffects } from '@features/user-prefs/data-access/+state';
 
@@ -37,6 +40,7 @@ import { UserPrefsEffects } from '@features/user-prefs/data-access/+state';
     }),
     EffectsModule.forRoot(
       UserEffects,
+      UserBroadcastChannelEffects,
       UserPersistenceEffects,
       UserPrefsEffects,
       TvShowEffects,
