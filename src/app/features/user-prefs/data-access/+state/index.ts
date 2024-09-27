@@ -6,6 +6,7 @@ export * from './actions/wishlist.actions';
 export * from './actions/tv-shows-favorites.actions';
 
 export * from './user-prefs.effects';
+export * from './user-prefs-broadcast-channel.effects';
 
 export { fromUserPrefs };
 export { UserPrefsSelectors };

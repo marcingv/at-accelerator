@@ -25,7 +25,10 @@ import {
   UserEffects,
 } from '@features/auth/data-access/+state';
 import { UserPersistenceEffects } from '@features/auth/data-access/+state/user-persistence.effects';
-import { UserPrefsEffects } from '@features/user-prefs/data-access/+state';
+import {
+  UserPrefsBroadcastChannelEffects,
+  UserPrefsEffects,
+} from '@features/user-prefs/data-access/+state';
 
 @NgModule({
   imports: [
@@ -41,6 +44,7 @@ import { UserPrefsEffects } from '@features/user-prefs/data-access/+state';
       UserBroadcastChannelEffects,
       UserPersistenceEffects,
       UserPrefsEffects,
+      UserPrefsBroadcastChannelEffects,
       TvShowEffects,
       TvShowsListEffects,
       TvShowsFavoritesEffects,

@@ -31,4 +31,8 @@ export class TvShowsFavouritesService {
       TvShowsFavoritesSelectors.selectIsFavorite(tvShowId),
     );
   }
+
+  public reload(): void {
+    this.store.dispatch(TvShowsFavoritesActions.loadFavorites());
+  }
 }
