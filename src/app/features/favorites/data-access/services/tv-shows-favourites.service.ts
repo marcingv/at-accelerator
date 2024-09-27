@@ -1,10 +1,8 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { TvShow, TvShowId } from '@core/models';
 import { Store } from '@ngrx/store';
-import {
-  TvShowsFavoritesActions,
-  TvShowsFavoritesSelectors,
-} from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesSelectors } from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesActions } from '@features/user-prefs/data-access/+state';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +30,9 @@ export class TvShowsFavouritesService {
     return this.store.selectSignal(
       TvShowsFavoritesSelectors.selectIsFavorite(tvShowId),
     );
+  }
+
+  public reload(): void {
+    this.store.dispatch(TvShowsFavoritesActions.loadFavorites());
   }
 }

@@ -1,7 +1,7 @@
-import { initialState, reducer } from './tv-shows-favorites.reducer';
+import { initialState, reducer } from './user-prefs.reducer';
 import { Action } from '@ngrx/store';
 
-describe('TvShowsFavorites Reducer', () => {
+describe('UserPrefs Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as Action;

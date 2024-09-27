@@ -2,11 +2,9 @@ import { CanActivateFn } from '@angular/router';
 import { first, map, Observable, of, shareReplay, switchMap } from 'rxjs';
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  WishlistActions,
-  WishlistSelectors,
-} from '@features/wishlist/data-access/+state';
+import { WishlistSelectors } from '@features/wishlist/data-access/+state';
 import { Actions, ofType } from '@ngrx/effects';
+import { WishlistActions } from '@features/user-prefs/data-access/+state';
 
 export const wishlistLoadedGuard: CanActivateFn = (): Observable<boolean> => {
   const store = inject(Store);

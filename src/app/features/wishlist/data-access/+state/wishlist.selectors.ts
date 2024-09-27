@@ -1,17 +1,10 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromWishlist from './wishlist.reducer';
+import { createSelector } from '@ngrx/store';
 import { TvShow, TvShowId } from '@core/models';
 import { Dictionary } from '@ngrx/entity';
 import { fromTvShows } from '@features/tv-shows/data-access/+state/tv-shows';
+import { UserPrefsSelectors } from '@features/user-prefs/data-access/+state';
 
-export const selectWishlistState = createFeatureSelector<fromWishlist.State>(
-  fromWishlist.wishlistFeatureKey,
-);
-
-export const selectWishlistIds = createSelector(
-  selectWishlistState,
-  (state: fromWishlist.State): TvShowId[] => state.tvShowsIds,
-);
+export const selectWishlistIds = UserPrefsSelectors.selectWishlistIds;
 
 export const selectWishlistEntities = createSelector(
   selectWishlistIds,

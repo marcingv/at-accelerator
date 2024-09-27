@@ -5,7 +5,7 @@ import { TvShowDetailsFactory } from '@testing/factories';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { provideTranslationsTestingModule } from '@testing/translations';
-import { fromWishlist } from '@features/wishlist/data-access/+state';
+import { fromUserPrefs } from '@features/user-prefs/data-access/+state';
 
 @Component({
   selector: 'app-host',
@@ -24,9 +24,9 @@ describe('ToggleWishlistDirective', () => {
   let store: MockStore;
 
   const INITIAL_STATE: {
-    [fromWishlist.wishlistFeatureKey]: fromWishlist.State;
+    [fromUserPrefs.userPrefsFeatureKey]: fromUserPrefs.State;
   } = {
-    wishlist: fromWishlist.initialState,
+    userPrefs: fromUserPrefs.initialState,
   };
 
   beforeEach(async () => {

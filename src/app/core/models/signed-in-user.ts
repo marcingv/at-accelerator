@@ -1,5 +1,7 @@
+export declare type Username = string;
+
 export interface SignedInUser {
-  username: string;
+  username: Username;
   signInTime: number;
   role: 'user';
 }

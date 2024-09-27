@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, exhaustMap } from 'rxjs/operators';
-import { catchError, map, of, tap } from 'rxjs';
+import { catchError, filter, map, of, tap } from 'rxjs';
 import { UserActions } from './user.actions';
 import { AuthApiService } from '@core/api';
 import { Paths } from '@core/routing/paths';
 import { Router } from '@angular/router';
+import { SignedInUser } from '@core/models';
 
 @Injectable()
 export class UserEffects {
@@ -17,8 +18,8 @@ export class UserEffects {
       ofType(UserActions.login),
       exhaustMap((action) => {
         return this.api.signIn(action.username, action.password).pipe(
-          delay(2000),
-          map((response) => {
+          delay(1000),
+          map((response: SignedInUser) => {
             return UserActions.loginSuccess({
               user: response,
             });
@@ -49,6 +50,7 @@ export class UserEffects {
     () => {
       return this.actions$.pipe(
         ofType(UserActions.loginSuccess),
+        filter((action) => !action.skipRedirect),
         tap(() => this.onSuccessfulUserLogin()),
       );
     },

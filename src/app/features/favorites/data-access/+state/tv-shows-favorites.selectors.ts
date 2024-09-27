@@ -1,18 +1,10 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromTvShowsFavorites from './tv-shows-favorites.reducer';
+import { createSelector } from '@ngrx/store';
 import { TvShowDetails, TvShowId } from '@core/models';
 import { Dictionary } from '@ngrx/entity';
 import { fromTvShowsDetails } from '@features/tv-shows/data-access/+state/tv-shows-details';
+import { UserPrefsSelectors } from '@features/user-prefs/data-access/+state';
 
-export const selectTvShowsFavoritesState =
-  createFeatureSelector<fromTvShowsFavorites.State>(
-    fromTvShowsFavorites.tvShowsFavoritesFeatureKey,
-  );
-
-export const selectIds = createSelector(
-  selectTvShowsFavoritesState,
-  (state: fromTvShowsFavorites.State): TvShowId[] => state.tvShowsIds,
-);
+export const selectIds = UserPrefsSelectors.selectFavoritesIds;
 
 export const selectAll = createSelector(
   fromTvShowsDetails.selectEntities,

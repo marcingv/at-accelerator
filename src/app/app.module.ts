@@ -17,16 +17,18 @@ import { EffectsModule } from '@ngrx/effects';
 import { TranslocoRootModule } from '@core/translations';
 import { TvShowEffects } from '@features/tv-shows/data-access/+state/tv-shows';
 import { TvShowsListEffects } from '@features/search/data-access/+state';
-import {
-  TvShowsFavoritesEffects,
-  TvShowsFavoritesPersistenceEffects,
-} from '@features/favorites/data-access/+state';
+import { TvShowsFavoritesEffects } from '@features/favorites/data-access/+state';
 import { TvShowsDetailsEffects } from '@features/tv-shows/data-access/+state/tv-shows-details';
-import { TvShowsApiService } from '@core/api/tv-shows-api.service';
-import { MockTvShowsApiService } from '@testing/api';
 import { WishlistEffects } from '@features/wishlist/data-access/+state';
-import { WishlistPersistenceEffects } from '@features/wishlist/data-access/+state/wishlist-persistence.effects';
-import { UserEffects } from '@features/auth/data-access/+state';
+import {
+  UserBroadcastChannelEffects,
+  UserEffects,
+} from '@features/auth/data-access/+state';
+import { UserPersistenceEffects } from '@features/auth/data-access/+state/user-persistence.effects';
+import {
+  UserPrefsBroadcastChannelEffects,
+  UserPrefsEffects,
+} from '@features/user-prefs/data-access/+state';
 
 @NgModule({
   imports: [
@@ -39,13 +41,15 @@ import { UserEffects } from '@features/auth/data-access/+state';
     }),
     EffectsModule.forRoot(
       UserEffects,
+      UserBroadcastChannelEffects,
+      UserPersistenceEffects,
+      UserPrefsEffects,
+      UserPrefsBroadcastChannelEffects,
       TvShowEffects,
       TvShowsListEffects,
       TvShowsFavoritesEffects,
-      TvShowsFavoritesPersistenceEffects,
       TvShowsDetailsEffects,
       WishlistEffects,
-      WishlistPersistenceEffects,
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -57,10 +61,6 @@ import { UserEffects } from '@features/auth/data-access/+state';
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch()),
-    {
-      provide: TvShowsApiService,
-      useClass: MockTvShowsApiService,
-    },
   ],
   bootstrap: [AppComponent],
 })

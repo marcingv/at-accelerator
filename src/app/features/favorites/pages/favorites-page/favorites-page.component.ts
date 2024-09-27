@@ -4,6 +4,8 @@ import { TvShowCardComponent } from '@features/tv-shows/components/tv-show-card'
 import { FavoriteTvShowsListComponent } from '@features/favorites/components/favorite-tv-shows-list';
 import { TranslationKey } from '@core/translations';
 import { TvShowsFavouritesService } from '@features/favorites/data-access/services';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-favorites-page',
@@ -20,4 +22,13 @@ export class FavoritesPageComponent {
     'favoritesShows.emptyMessage';
 
   public readonly favorites = this.favoritesService.favorites;
+
+  constructor() {
+    toObservable(this.favoritesService.idsSignal)
+      .pipe(
+        tap(() => this.favoritesService.reload()),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
+  }
 }

@@ -21,6 +21,12 @@ export const reducer = createReducer(
   on(UserActions.login, (state): State => {
     return { ...state, signInPending: true, signInError: undefined };
   }),
+  on(UserActions.set, (state, action): State => {
+    return {
+      ...state,
+      user: action.user,
+    };
+  }),
   on(UserActions.loginSuccess, (state, action): State => {
     return {
       ...state,
